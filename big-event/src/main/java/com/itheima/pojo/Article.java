@@ -1,6 +1,7 @@
 package com.itheima.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.itheima.anno.State;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -28,7 +29,9 @@ public class Article {
     @NotNull
     private Integer categoryId;//文章分类id
     private Integer createUser;//创建人ID
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;//创建时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;//更新时间
 
     public interface Add extends Default {
