@@ -2,6 +2,7 @@ package com.sky.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sky.annotation.AutoFill;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
 import com.sky.constant.StatusConstant;
@@ -10,6 +11,7 @@ import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
+import com.sky.enumeration.OperationType;
 import com.sky.exception.AccountLockedException;
 import com.sky.exception.AccountNotFoundException;
 import com.sky.exception.PasswordErrorException;
@@ -35,6 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param employeeLoginDTO
      * @return
      */
+    @Override
     public Employee login(EmployeeLoginDTO employeeLoginDTO) {
         String username = employeeLoginDTO.getUsername();
         String password = employeeLoginDTO.getPassword();
@@ -83,14 +86,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         //设置密码，默认密码123456
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
 
-        //设置当前记录的创建时间和修改时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(employee.getCreateTime());
-
-        //设置当前记录创建人id和修改人id
-        employee.setCreateUser(BaseContext.getCurrentId());//目前写个假数据，后期修改
-
-        employee.setUpdateUser(employee.getCreateUser());
+//        //设置创建时间、修改时间、创建人、修改人
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(employee.getCreateTime());
+//        employee.setCreateUser(BaseContext.getCurrentId());//目前写个假数据，后期修改
+//        employee.setUpdateUser(employee.getCreateUser());
 
         employeeMapper.insert(employee);//后续步骤定义
     }
@@ -114,6 +114,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param status
      * @param id
      */
+    @Override
     public void startOrStop(Integer status, Long id) {
         Employee employee = Employee.builder()
                 .status(status)
@@ -128,6 +129,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param id
      * @return
      */
+    @Override
     public Employee getById(Long id) {
         Employee employee = employeeMapper.getById(id);
         employee.setPassword("****");
@@ -139,12 +141,13 @@ public class EmployeeServiceImpl implements EmployeeService {
      *
      * @param employeeDTO
      */
+    @Override
     public void update(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO, employee);
 
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.update(employee);
     }
