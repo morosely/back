@@ -15,3 +15,11 @@ sky:
     access-key-id: LTAI5t8WND2bniKb6q318pkP
     access-key-secret: WgpkCsBNLqPYVoQkC5BycjsayCMje4
     bucket-name: images-big-event
+  redis:
+    host: 192.168.83.11
+    port: 6379
+#    password: 0
+    database: 0
+  wechat:
+    appid: wx67e83cae697bbce3
+    secret: 2536585cac64cbe8c5b9e7610770ecf8
