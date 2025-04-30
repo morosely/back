@@ -40,12 +40,12 @@ public class DishController {
     @ApiOperation("根据分类id查询菜品")
     public Result<List<DishVO>> list(Long categoryId) throws JsonProcessingException {
         //构造redis中的key，规则：dish_分类id
-        String key = "dish_" + categoryId;
+        String key = "dish:" + categoryId;
 
         //查询redis中是否存在菜品数据
-//        List<DishVO> list = (List<DishVO>) redisTemplate.opsForValue().get(key);
-        String res = (String)redisTemplate.opsForValue().get(key);
-        List<DishVO> list = JSON.parseArray(res,DishVO.class);
+        List<DishVO> list = (List<DishVO>) redisTemplate.opsForValue().get(key);
+//        String res = (String)redisTemplate.opsForValue().get(key);
+//        List<DishVO> list = JSON.parseArray(res,DishVO.class);
 //        List<DishVO> dataList = (List<DishVO>)redisTemplate.opsForList().range("list_"+key, 0, -1); // 获取列表中的所有元素
         if(list != null && list.size() > 0){
             //如果存在，直接返回，无须查询数据库
@@ -60,8 +60,8 @@ public class DishController {
         list = dishService.listWithFlavor(dish);
         ////////////////////////////////////////////////////////
         ObjectMapper mapper = new ObjectMapper();
-//        redisTemplate.opsForValue().set(key,list);
-        redisTemplate.opsForValue().set(key,JSON.toJSONString(list));
+        redisTemplate.opsForValue().set(key,list);
+//        redisTemplate.opsForValue().set(key,JSON.toJSONString(list));
 //        redisTemplate.opsForList().rightPushAll("list_"+key, list);
         return Result.success(list);
     }

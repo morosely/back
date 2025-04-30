@@ -42,7 +42,7 @@ public class DishController {
         dishService.saveWithFlavor(dishDTO);//后绪步骤开发
 
         //清理缓存数据
-        String key = "dish_" + dishDTO.getCategoryId();
+        String key = "dish:" + dishDTO.getCategoryId();
         cleanCache(key);
         return Result.success();
     }
@@ -71,7 +71,7 @@ public class DishController {
         log.info("菜品批量删除：{}", ids);
         dishService.deleteBatch(ids);//后绪步骤实现
         //将所有的菜品缓存数据清理掉，所有以dish_开头的key
-        cleanCache("dish_*");
+        cleanCache("dish:*");
         return Result.success();
     }
 
@@ -99,7 +99,7 @@ public class DishController {
         log.info("修改菜品：{}", dishDTO);
         dishService.updateWithFlavor(dishDTO);
         //将所有的菜品缓存数据清理掉，所有以dish_开头的key
-        cleanCache("dish_*");
+        cleanCache("dish:*");
         return Result.success();
     }
 
@@ -127,7 +127,7 @@ public class DishController {
     public Result<String> startOrStop(@PathVariable Integer status, Long id) {
         dishService.startOrStop(status, id);
         //将所有的菜品缓存数据清理掉，所有以dish_开头的key
-        cleanCache("dish_*");
+        cleanCache("dish:*");
         return Result.success();
     }
 
