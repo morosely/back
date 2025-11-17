@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ExtShopModelMapper">
+  <update id="update" parameterType="JSONObject">
+    update extshop
+    set entId = #{entId,jdbcType=BIGINT},
+      erpCode = #{erpCode,jdbcType=VARCHAR},
+      shopCode = #{shopCode,jdbcType=VARCHAR},
+      shopName = #{shopName,jdbcType=VARCHAR},
+      shopEnName = #{shopEnName,jdbcType=VARCHAR},
+      shopSName = #{shopSName,jdbcType=VARCHAR},
+      <!--parentId = #{parentId,jdbcType=BIGINT},-->
+      parentCode = #{parentCode,jdbcType=VARCHAR},
+      shopForm = #{shopForm,jdbcType=VARCHAR},
+      shopTypex = #{shopTypex,jdbcType=VARCHAR},
+      purchaseTypex = #{purchaseTypex,jdbcType=VARCHAR},
+      owneShopIdx = #{owneShopIdx,jdbcType=VARCHAR},
+      shopSize = #{shopSize,jdbcType=VARCHAR},
+      shopLevel = #{shopLevel,jdbcType=VARCHAR},
+      commerceCircle = #{commerceCircle,jdbcType=VARCHAR},
+      league = #{league,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      priceGroup = #{priceGroup,jdbcType=VARCHAR},
+      shopZonex = #{shopZonex,jdbcType=VARCHAR},
+      openningTime = #{openningTime,jdbcType=TIMESTAMP},
+      bookNo = #{bookNo,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      companyName = #{companyName,jdbcType=VARCHAR},
+      deliveryCode = #{deliveryCode,jdbcType=VARCHAR},
+      deliveryName = #{deliveryName,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      busiAreage = #{busiAreage,jdbcType=DOUBLE},
+      buildAreage = #{buildAreage,jdbcType=DOUBLE},
+      rent = #{rent,jdbcType=DECIMAL},
+      deliveryCycle = #{deliveryCycle,jdbcType=VARCHAR},
+      safeStockDays = #{safeStockDays,jdbcType=INTEGER},
+      orderCycle = #{orderCycle,jdbcType=VARCHAR},
+      recordDate = #{recordDate,jdbcType=TIMESTAMP},
+      regionId = #{regionId,jdbcType=BIGINT},
+      regionCode = #{regionCode,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      serviceRadiu = #{serviceRadiu,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      level = #{level,jdbcType=SMALLINT},
+      leafFlag = #{leafFlag,jdbcType=BIT},
+      status = #{status,jdbcType=SMALLINT},
+      sourceFromCode = #{sourceFromCode,jdbcType=VARCHAR},
+      dealStatus = #{dealStatus,jdbcType=INTEGER},
+      lang = #{lang,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      createDate = #{createDate,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      updateDate = #{updateDate,jdbcType=TIMESTAMP},
+      groupCode = #{groupCode,jdbcType=VARCHAR}
+    where entId = #{entId} and erpCode = #{erpCode} and shopCode = #{shopCode}
+  </update>
+  
+
+  <select id="count" parameterType="JSONObject" resultType="long">
+    select count(*) from extshop
+    where entId = #{entId} and erpCode = #{erpCode} and shopCode = #{shopCode}
+  </select>
+
+  <insert id="insertAll" parameterType="JSONObject">
+    insert into extshop (eshopId, entId, erpCode,
+    shopCode, shopName,shopSName,shopEnName,
+    parentId, parentCode, shopForm,
+    shopTypex, purchaseTypex, owneShopIdx,
+    shopSize, shopLevel, commerceCircle,
+    league, brand, priceGroup,
+    shopZonex, openningTime, bookNo,
+    subject, companyName, deliveryCode,
+    deliveryName, telephone, busiAreage,
+    buildAreage, rent, deliveryCycle,
+    safeStockDays, orderCycle, recordDate,
+    regionId, regionCode, longitude,
+    latitude, serviceRadiu, address,
+    level, leafFlag, status,
+    sourceFromCode, dealStatus, lang,
+    creator, createDate, modifier,
+    updateDate, groupCode)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.eshopId,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT}, #{item.erpCode,jdbcType=VARCHAR},
+      #{item.shopCode,jdbcType=VARCHAR}, #{item.shopName,jdbcType=VARCHAR}, #{item.shopSName,jdbcType=VARCHAR},#{item.shopEnName,jdbcType=VARCHAR},
+      #{item.parentId,jdbcType=BIGINT}, #{item.parentCode,jdbcType=VARCHAR}, #{item.shopForm,jdbcType=VARCHAR},
+      #{item.shopTypex,jdbcType=VARCHAR}, #{item.purchaseTypex,jdbcType=VARCHAR}, #{item.owneShopIdx,jdbcType=VARCHAR},
+      #{item.shopSize,jdbcType=VARCHAR}, #{item.shopLevel,jdbcType=VARCHAR}, #{item.commerceCircle,jdbcType=VARCHAR},
+      #{item.league,jdbcType=VARCHAR}, #{item.brand,jdbcType=VARCHAR}, #{item.priceGroup,jdbcType=VARCHAR},
+      #{item.shopZonex,jdbcType=VARCHAR}, #{item.openningTime,jdbcType=TIMESTAMP}, #{item.bookNo,jdbcType=VARCHAR},
+      #{item.subject,jdbcType=VARCHAR}, #{item.companyName,jdbcType=VARCHAR}, #{item.deliveryCode,jdbcType=VARCHAR},
+      #{item.deliveryName,jdbcType=VARCHAR}, #{item.telephone,jdbcType=VARCHAR}, #{item.busiAreage,jdbcType=DOUBLE},
+      #{item.buildAreage,jdbcType=DOUBLE}, #{item.rent,jdbcType=DECIMAL}, #{item.deliveryCycle,jdbcType=VARCHAR},
+      #{item.safeStockDays,jdbcType=INTEGER}, #{item.orderCycle,jdbcType=VARCHAR}, #{item.recordDate,jdbcType=TIMESTAMP},
+      #{item.regionId,jdbcType=BIGINT}, #{item.regionCode,jdbcType=VARCHAR}, #{item.longitude,jdbcType=VARCHAR},
+      #{item.latitude,jdbcType=VARCHAR}, #{item.serviceRadiu,jdbcType=INTEGER}, #{item.address,jdbcType=VARCHAR},
+      #{item.level,jdbcType=SMALLINT}, #{item.leafFlag,jdbcType=BIT}, #{item.status,jdbcType=SMALLINT},
+      #{item.sourceFromCode,jdbcType=VARCHAR}, #{item.dealStatus,jdbcType=INTEGER}, #{item.lang,jdbcType=VARCHAR},
+      #{item.creator,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP}, #{item.modifier,jdbcType=VARCHAR},
+      #{item.updateDate,jdbcType=TIMESTAMP}, #{item.groupCode,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <insert id="insert" parameterType="JSONObject">
+    insert into extshop (eshopId, entId, erpCode,
+      shopCode, shopName, shopSName,shopEnName,
+      parentId, parentCode, shopForm,
+      shopTypex, purchaseTypex, owneShopIdx,
+      shopSize, shopLevel, commerceCircle,
+      league, brand, priceGroup,
+      shopZonex, openningTime, bookNo,
+      subject, companyName, deliveryCode,
+      deliveryName, telephone, busiAreage,
+      buildAreage, rent, deliveryCycle,
+      safeStockDays, orderCycle, recordDate,
+      regionId, regionCode, longitude,
+      latitude, serviceRadiu, address,
+      level, leafFlag, status,
+      sourceFromCode, dealStatus, lang,
+      creator, createDate, modifier,
+      updateDate, groupCode)
+    values (#{eshopId,jdbcType=BIGINT}, #{entId,jdbcType=BIGINT}, #{erpCode,jdbcType=VARCHAR},
+      #{shopCode,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{shopSName,jdbcType=VARCHAR},#{shopEnName,jdbcType=VARCHAR},
+      #{parentId,jdbcType=BIGINT}, #{parentCode,jdbcType=VARCHAR}, #{shopForm,jdbcType=VARCHAR},
+      #{shopTypex,jdbcType=VARCHAR}, #{purchaseTypex,jdbcType=VARCHAR}, #{owneShopIdx,jdbcType=VARCHAR},
+      #{shopSize,jdbcType=VARCHAR}, #{shopLevel,jdbcType=VARCHAR}, #{commerceCircle,jdbcType=VARCHAR},
+      #{league,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{priceGroup,jdbcType=VARCHAR},
+      #{shopZonex,jdbcType=VARCHAR}, #{openningTime,jdbcType=TIMESTAMP}, #{bookNo,jdbcType=VARCHAR},
+      #{subject,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{deliveryCode,jdbcType=VARCHAR},
+      #{deliveryName,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{busiAreage,jdbcType=DOUBLE},
+      #{buildAreage,jdbcType=DOUBLE}, #{rent,jdbcType=DECIMAL}, #{deliveryCycle,jdbcType=VARCHAR},
+      #{safeStockDays,jdbcType=INTEGER}, #{orderCycle,jdbcType=VARCHAR}, #{recordDate,jdbcType=TIMESTAMP},
+      #{regionId,jdbcType=BIGINT}, #{regionCode,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR},
+      #{latitude,jdbcType=VARCHAR}, #{serviceRadiu,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR},
+      #{level,jdbcType=INTEGER}, #{leafFlag,jdbcType=BIT}, #{status,jdbcType=INTEGER},
+      #{sourceFromCode,jdbcType=VARCHAR}, #{dealStatus,jdbcType=INTEGER}, #{lang,jdbcType=VARCHAR},
+      #{creator,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR},
+      #{updateDate,jdbcType=TIMESTAMP}, #{groupCode,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateAll" parameterType="JSONObject" >
+	  <foreach collection="list" item="item" separator=";" >
+	    update extshop
+	    <set>
+	      <if test="item.shopName != null" >
+	        shopName = #{item.shopName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.shopSName != null" >
+	        shopSName = #{item.shopSName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.shopEnName != null" >
+	        shopEnName = #{item.shopEnName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.parentId != null" >
+	        parentId = #{item.parentId,jdbcType=BIGINT},
+	      </if>
+	      <if test="item.parentCode != null" >
+	        parentCode = #{item.parentCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.shopForm != null" >
+	        shopForm = #{item.shopForm,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.shopTypex != null" >
+	        shopTypex = #{item.shopTypex,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.purchaseTypex != null" >
+	        purchaseTypex = #{item.purchaseTypex,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.owneShopIdx != null" >
+	        owneShopIdx = #{item.owneShopIdx,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.shopSize != null" >
+	        shopSize = #{item.shopSize,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.shopLevel != null" >
+	        shopLevel = #{item.shopLevel,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.commerceCircle != null" >
+	        commerceCircle = #{item.commerceCircle,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.league != null" >
+	        league = #{item.league,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.brand != null" >
+	        brand = #{item.brand,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.priceGroup != null" >
+	        priceGroup = #{item.priceGroup,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.shopZonex != null" >
+	        shopZonex = #{item.shopZonex,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.openningTime != null" >
+	        openningTime = #{item.openningTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="item.bookNo != null" >
+	        bookNo = #{item.bookNo,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.subject != null" >
+	        subject = #{item.subject,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.companyName != null" >
+	        companyName = #{item.companyName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.deliveryCode != null" >
+	        deliveryCode = #{item.deliveryCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.deliveryName != null" >
+	        deliveryName = #{item.deliveryName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.telephone != null" >
+	        telephone = #{item.telephone,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.busiAreage != null" >
+	        busiAreage = #{item.busiAreage,jdbcType=DOUBLE},
+	      </if>
+	      <if test="item.buildAreage != null" >
+	        buildAreage = #{item.buildAreage,jdbcType=DOUBLE},
+	      </if>
+	      <if test="item.rent != null" >
+	        rent = #{item.rent,jdbcType=DECIMAL},
+	      </if>
+	      <if test="item.deliveryCycle != null" >
+	        deliveryCycle = #{item.deliveryCycle,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.safeStockDays != null" >
+	        safeStockDays = #{item.safeStockDays,jdbcType=INTEGER},
+	      </if>
+	      <if test="item.orderCycle != null" >
+	        orderCycle = #{item.orderCycle,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.recordDate != null" >
+	        recordDate = #{item.recordDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="item.regionId != null" >
+	        regionId = #{item.regionId,jdbcType=BIGINT},
+	      </if>
+	      <if test="item.regionCode != null" >
+	        regionCode = #{item.regionCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.longitude != null" >
+	        longitude = #{item.longitude,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.latitude != null" >
+	        latitude = #{item.latitude,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.serviceRadiu != null" >
+	        serviceRadiu = #{item.serviceRadiu,jdbcType=INTEGER},
+	      </if>
+	      <if test="item.address != null" >
+	        address = #{item.address,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.level != null" >
+	        level = #{item.level,jdbcType=INTEGER},
+	      </if>
+	      <if test="item.leafFlag != null" >
+	        leafFlag = #{item.leafFlag,jdbcType=BIT},
+	      </if>
+	      <if test="item.status != null" >
+	        status = #{item.status,jdbcType=INTEGER},
+	      </if>
+	      <if test="item.sourceFromCode != null" >
+	        sourceFromCode = #{item.sourceFromCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.dealStatus != null" >
+	        dealStatus = #{item.dealStatus,jdbcType=INTEGER},
+	      </if>
+	      <if test="item.lang != null" >
+	        lang = #{item.lang,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.creator != null" >
+	        creator = #{item.creator,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.createDate != null" >
+	        createDate = #{item.createDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="item.modifier != null" >
+	        modifier = #{item.modifier,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.updateDate != null" >
+	        updateDate = #{item.updateDate,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="item.groupCode != null" >
+	        groupCode = #{item.groupCode,jdbcType=VARCHAR},
+	      </if>
+	    </set>
+	    where shopCode = #{item.shopCode} and entId = #{item.entId} and erpCode = #{item.erpCode}
+	    </foreach>
+    </update>
+</mapper>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.SaleOrgModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.SaleOrgModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="saleOrgId" jdbcType="BIGINT" property="saleOrgId" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="shopId" jdbcType="BIGINT" property="shopId" />
+    <result column="orgCode" jdbcType="VARCHAR" property="orgCode" />
+    <result column="orgName" jdbcType="VARCHAR" property="orgName" />
+    <result column="orgEnName" jdbcType="VARCHAR" property="orgEnName" />
+    <result column="orgSname" jdbcType="VARCHAR" property="orgSname" />
+    <result column="parentId" jdbcType="BIGINT" property="parentId" />
+    <result column="parentCode" jdbcType="VARCHAR" property="parentCode" />
+    <result column="shopForm" jdbcType="VARCHAR" property="shopForm" />
+    <result column="shopTypex" jdbcType="VARCHAR" property="shopTypex" />
+    <result column="purchaseTypex" jdbcType="VARCHAR" property="purchaseTypex" />
+    <result column="commerceCircle" jdbcType="VARCHAR" property="commerceCircle" />
+    <result column="league" jdbcType="VARCHAR" property="league" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="priceGroup" jdbcType="VARCHAR" property="priceGroup" />
+    <result column="shopZonex" jdbcType="VARCHAR" property="shopZonex" />
+    <result column="openningTime" jdbcType="TIMESTAMP" property="openningTime" />
+    <result column="bookNo" jdbcType="VARCHAR" property="bookNo" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="companyName" jdbcType="VARCHAR" property="companyName" />
+    <result column="deliveryCode" jdbcType="VARCHAR" property="deliveryCode" />
+    <result column="deliveryName" jdbcType="VARCHAR" property="deliveryName" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="busiAreage" jdbcType="DOUBLE" property="busiAreage" />
+    <result column="buildAreage" jdbcType="DOUBLE" property="buildAreage" />
+    <result column="rent" jdbcType="DECIMAL" property="rent" />
+    <result column="deliveryCycle" jdbcType="VARCHAR" property="deliveryCycle" />
+    <result column="safeStockDays" jdbcType="INTEGER" property="safeStockDays" />
+    <result column="orderCycle" jdbcType="VARCHAR" property="orderCycle" />
+    <result column="recordDate" jdbcType="TIMESTAMP" property="recordDate" />
+    <result column="industry" jdbcType="VARCHAR" property="industry" />
+    <result column="accountCode" jdbcType="VARCHAR" property="accountCode" />
+    <result column="manageArea" jdbcType="VARCHAR" property="manageArea" />
+    <result column="onlineFlag" jdbcType="BIT" property="onlineFlag" />
+    <result column="wareType" jdbcType="INTEGER" property="wareType" />
+    <result column="chainType" jdbcType="INTEGER" property="chainType" />
+    <result column="upDeliveryFlag" jdbcType="BIT" property="upDeliveryFlag" />
+    <result column="raiseRate" jdbcType="DOUBLE" property="raiseRate" />
+    <result column="defaultSettlebasi" jdbcType="INTEGER" property="defaultSettlebasi" />
+    <result column="zssFlag" jdbcType="BIT" property="zssFlag" />
+    <result column="multiVendorFlag" jdbcType="BIT" property="multiVendorFlag" />
+    <result column="kindPrincipal" jdbcType="VARCHAR" property="kindPrincipal" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="planGrossProfit" jdbcType="DECIMAL" property="planGrossProfit" />
+    <result column="flatRate" jdbcType="DECIMAL" property="flatRate" />
+    <result column="changeRate" jdbcType="DECIMAL" property="changeRate" />
+    <result column="realBusinessArea" jdbcType="DOUBLE" property="realBusinessArea" />
+    <result column="postGroup" jdbcType="VARCHAR" property="postGroup" />
+    <result column="businessCompany" jdbcType="VARCHAR" property="businessCompany" />
+    <result column="dstoreManageFlag" jdbcType="BIT" property="dstoreManageFlag" />
+    <result column="categoryCode" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="containShareArea" jdbcType="DOUBLE" property="containShareArea" />
+    <result column="shareRate" jdbcType="REAL" property="shareRate" />
+    <result column="pmkcMin" jdbcType="DECIMAL" property="pmkcMin" />
+    <result column="pmkcMax" jdbcType="DECIMAL" property="pmkcMax" />
+    <result column="purchaseCycle" jdbcType="INTEGER" property="purchaseCycle" />
+    <result column="assistCode" jdbcType="VARCHAR" property="assistCode" />
+    <result column="orientation" jdbcType="VARCHAR" property="orientation" />
+    <result column="sharp" jdbcType="VARCHAR" property="sharp" />
+    <result column="length" jdbcType="VARCHAR" property="length" />
+    <result column="rentHardLevel" jdbcType="CHAR" property="rentHardLevel" />
+    <result column="advType" jdbcType="VARCHAR" property="advType" />
+    <result column="advMedia" jdbcType="VARCHAR" property="advMedia" />
+    <result column="storeType" jdbcType="VARCHAR" property="storeType" />
+    <result column="rentArea" jdbcType="DOUBLE" property="rentArea" />
+    <result column="repossessionFlag" jdbcType="CHAR" property="repossessionFlag" />
+    <result column="unitRent" jdbcType="DECIMAL" property="unitRent" />
+    <result column="totalRent" jdbcType="DECIMAL" property="totalRent" />
+    <result column="lesseeCoor" jdbcType="VARCHAR" property="lesseeCoor" />
+    <result column="storeAssistInfo" jdbcType="CHAR" property="storeAssistInfo" />
+    <result column="contractNo" jdbcType="VARCHAR" property="contractNo" />
+    <result column="source" jdbcType="SMALLINT" property="source" />
+    <result column="build" jdbcType="VARCHAR" property="build" />
+    <result column="floor" jdbcType="VARCHAR" property="floor" />
+    <result column="busiType" jdbcType="VARCHAR" property="busiType" />
+    <result column="busiPlace" jdbcType="VARCHAR" property="busiPlace" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="level" jdbcType="SMALLINT" property="level" />
+    <result column="leafFlag" jdbcType="BIT" property="leafFlag" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  
+  <select id="selectIn" parameterType="java.util.List" resultMap="BaseResultMap">
+  	 SELECT s.* 
+  	 FROM SaleOrg s
+  	 WHERE 1=1
+  	 AND s.saleOrgId IN
+  	 <foreach collection="value" index="index" item="item" open="(" separator="," close=")">
+	     ${item}       
+	 </foreach>
+  </select>
+  
+  <!--根据erpCode 和 orgCode 逐级查柜组 -->
+  <select id="getSaleOrgList" parameterType="map" resultType="map">
+		SELECT s.*,b.erpName
+		FROM saleOrg s
+		LEFT JOIN businesscompany b ON  s.erpCode=b.erpCode
+		WHERE 1=1
+		<if test="entId != null">
+			AND s.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND s.erpCode = #{erpCode}
+		</if>
+		<if test="parentCode != null">
+			AND s.parentCode = #{parentCode}
+		</if>
+  </select>
+  
+</mapper>

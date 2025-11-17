@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.AeonJDTokenModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.AeonJDTokenModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="companyCode" jdbcType="VARCHAR" property="companyCode" />
+    <result column="itemCode1" jdbcType="VARCHAR" property="itemCode1" />
+    <result column="itemCode2" jdbcType="VARCHAR" property="itemCode2" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="importDate" jdbcType="TIMESTAMP" property="importDate" />
+  </resultMap>
+  
+   <insert id="insert" parameterType="java.util.Map">
+   insert into aeon_jdtoken (companyCode, itemCode1, itemCode2, number)
+	values
+		(#{companyCode}, #{itemCode1}, #{itemCode2}, #{number})
+  </insert>
+  
+  <update id="update" parameterType="java.util.Map">
+   update aeon_jdtoken set 
+        companyCode = #{companyCode,jdbcType=VARCHAR},
+        itemCode2 = #{itemCode2,jdbcType=VARCHAR},
+        number = #{number,jdbcType=INTEGER}
+    where  itemCode1 = #{itemCode1,jdbcType=VARCHAR}
+  </update>
+</mapper>

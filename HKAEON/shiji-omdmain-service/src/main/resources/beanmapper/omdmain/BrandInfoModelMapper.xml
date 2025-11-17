@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.BrandInfoModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.BrandInfoModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="brandId" jdbcType="BIGINT" property="brandId" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="brandName" jdbcType="VARCHAR" property="brandName" />
+    <result column="brandSCode" jdbcType="VARCHAR" property="brandSCode" />
+    <result column="brandCode" jdbcType="VARCHAR" property="brandCode" />
+    <result column="brandTypeCode" jdbcType="VARCHAR" property="brandTypeCode" />
+    <result column="brandLevelCode" jdbcType="VARCHAR" property="brandLevelCode" />
+    <result column="brandEnName" jdbcType="VARCHAR" property="brandEnName" />
+    <result column="designer" jdbcType="VARCHAR" property="designer" />
+    <result column="brandDesc" jdbcType="VARCHAR" property="brandDesc" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  
+  <select id="selectInBrandId" parameterType="map" resultMap="BaseResultMap">
+  	SELECT b.*
+  	FROM BrandInfo b
+  	WHERE 1=1
+  	AND b.brandId IN
+  	<foreach item="item" index="index" collection="brandIds" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+  </select>
+</mapper>

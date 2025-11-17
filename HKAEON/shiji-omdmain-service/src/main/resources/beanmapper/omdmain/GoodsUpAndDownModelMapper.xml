@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.GoodsUpAndDownModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.GoodsUpAndDownModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="guadid" jdbcType="BIGINT" property="guadid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="shopId" jdbcType="BIGINT" property="shopId" />
+    <result column="channelId" jdbcType="BIGINT" property="channelId" />
+    <result column="sgid" jdbcType="BIGINT" property="sgid" />
+    <result column="updownStatus" jdbcType="SMALLINT" property="updownStatus" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="isValid" jdbcType="VARCHAR" property="isValid" />
+  </resultMap>
+  
+  <update id="updateStatus" parameterType="map">
+		UPDATE goodsupanddown SET isValid = #{isValid} WHERE shopId IN
+		<foreach collection="shopIds" index="index" item="item" open="(" separator="," close=")">
+           #{item}    
+       	</foreach>
+       	<if test="channelId != null">
+       		AND channelId = #{channelId}
+       	</if>
+	</update>
+  
+  <select id="searchByState" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+			s.*
+		FROM
+			goodsupanddown s 
+		WHERE 1=1
+		<if test="entId != null">
+			AND s.entId = #{entId}
+		</if>
+		<if test="shopId != null">
+		     AND s.shopId = #{shopId}
+		</if>
+		<if test="channelId != null">
+			 AND s.channelId = #{channelId}
+		</if>
+		<if test="ssgid != null">
+			AND s.ssgid = #{ssgid}
+		</if>
+		<if test="isValid != null">
+			 AND s.isValid = #{isValid}
+		</if>		
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<select id="searchIn" parameterType="map" resultMap="BaseResultMap">
+		SELECT 
+			s.*
+		FROM 
+			goodsupanddown s
+		WHERE 1=1
+		<if test = "entId != null">
+			AND s.entId = #{entId}
+		</if>
+		<if test = "shopId != null">
+			AND s.shopId = #{shopId}
+		</if>
+		<if test="isValid != null">
+			 AND s.isValid = #{isValid}
+		</if>	
+		<if test = "channelId != null">
+			AND s.channelId = #{channelId}
+		</if>
+			AND s.ssgid IN
+		<foreach collection="infoList" item="item" open="(" separator="," close=")">
+			#{item.ssgid}
+		</foreach>
+	</select>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.out.PaymentDeamonOutMapper">
+    <resultMap id="BaseResultMap" type="java.util.Map">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="entId" jdbcType="BIGINT" property="ent_id" />
+        <result column="erpCode" jdbcType="VARCHAR" property="jygs" />
+        <result column="payCode" jdbcType="VARCHAR" property="code" />
+        <result column="payName" jdbcType="VARCHAR" property="name" />
+        <result column="payType" jdbcType="VARCHAR" property="paytype" />
+        <result column="parentId" jdbcType="VARCHAR" property="parent_id" />
+        <result column="rate" jdbcType="VARCHAR" property="pmhl" />
+        <result column="payPattern" jdbcType="VARCHAR" property="pmlx" />
+        <result column="leafFlag" jdbcType="VARCHAR" property="ismj" />
+
+    </resultMap>
+
+    <select id="search" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        a.entId,a.payCode,a.payName,a.payType,a.parentId,a.rate,a.payPattern,a.leafFlag,e.erpCode
+        FROM
+        paymentMethod a ,
+        (
+        SELECT b.pmid, b.erpCode FROM paymentMethodRef b WHERE
+        b.entId=#{entId}
+        <if test="jygs != null">
+            AND b.erpCode = #{jygs}
+        </if>
+        <if test="code != null">
+            AND b.payCode = #{code}
+        </if>
+        <if test="name != null">
+            AND b.payName = #{name}
+        </if>
+        ) e
+        WHERE a.pmid in (e.pmid)
+        <if test="paytype != null">
+            AND a.payType = #{paytype}
+        </if>
+        <if test="parent_id != null">
+            AND a.parentId = #{parent_id}
+        </if>
+        <if test="pmhl != null">
+            AND a.rate = #{pmhl}
+        </if>
+        <if test="pmlx != null">
+            AND a.payPattern = #{pmlx}
+        </if>
+        <if test="paytype != null">
+            AND a.leafFlag = #{ismj}
+        </if>
+        <if test="page_no != null and page_size != null">
+            limit ${page_no},${page_size}
+        </if>
+    </select>
+
+    <select id="count" parameterType="map" resultType="long">
+        SELECT
+        count(1)
+        FROM
+        paymentMethod a where pmid in
+        (
+        SELECT pmid FROM paymentMethodRef b WHERE
+        b.entId=#{entId}
+        <if test="jygs != null">
+            AND b.erpCode = #{jygs}
+        </if>
+        <if test="code != null">
+            AND b.payCode = #{code}
+        </if>
+        <if test="name != null">
+            AND b.payName = #{name}
+        </if>
+        )
+        <if test="paytype != null">
+            AND a.payType = #{paytype}
+        </if>
+        <if test="parent_id != null">
+            AND a.parentId = #{parent_id}
+        </if>
+        <if test="pmhl != null">
+            AND a.rate = #{pmhl}
+        </if>
+        <if test="pmlx != null">
+            AND a.payPattern = #{pmlx}
+        </if>
+        <if test="paytype != null">
+            AND a.leafFlag = #{ismj}
+        </if>
+    </select>
+</mapper>

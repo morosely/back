@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GoodsSpecModelMapper">
+
+  <update id="update" parameterType="JSONObject">
+    update goodsspec
+    set entId = #{entId,jdbcType=BIGINT},
+      erpCode = #{erpCode,jdbcType=VARCHAR},
+      shopId = #{shopId,jdbcType=BIGINT},
+      sgid = #{sgid,jdbcType=BIGINT},
+      goodsCode = #{goodsCode,jdbcType=VARCHAR},
+      spurNum = #{spurNum,jdbcType=INTEGER},
+      spurSpec = #{spurSpec,jdbcType=VARCHAR},
+      spurUnit = #{spurUnit,jdbcType=VARCHAR},
+      mpurNum = #{mpurNum,jdbcType=INTEGER},
+      mpurSpec = #{mpurSpec,jdbcType=VARCHAR},
+      mpurUnit = #{mpurUnit,jdbcType=VARCHAR},
+      lpurNum = #{lpurNum,jdbcType=INTEGER},
+      lpurSpec = #{lpurSpec,jdbcType=VARCHAR},
+      lpurUnit = #{lpurUnit,jdbcType=VARCHAR},
+      purNum = #{purNum,jdbcType=INTEGER},
+      minPurNum = #{minPurNum,jdbcType=INTEGER},
+      minPurUnit = #{minPurUnit,jdbcType=VARCHAR},
+      sDeliveryNum = #{sDeliveryNum,jdbcType=INTEGER},
+      sDeliverySpec = #{sDeliverySpec,jdbcType=VARCHAR},
+      sDeliveryUnit = #{sDeliveryUnit,jdbcType=VARCHAR},
+      mDeliveryNum = #{mDeliveryNum,jdbcType=INTEGER},
+      mDeliverySpec = #{mDeliverySpec,jdbcType=VARCHAR},
+      mDeliveryUnit = #{mDeliveryUnit,jdbcType=VARCHAR},
+      lDeliveryNum = #{lDeliveryNum,jdbcType=INTEGER},
+      lDeliverySpec = #{lDeliverySpec,jdbcType=VARCHAR},
+      lDeliveryUnit = #{lDeliveryUnit,jdbcType=VARCHAR},
+      deliveryNum = #{deliveryNum,jdbcType=INTEGER},
+      minDeliveryNum = #{minDeliveryNum,jdbcType=INTEGER},
+      minDeliveryUnit = #{minDeliveryUnit,jdbcType=VARCHAR},
+      lang = #{lang,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      createDate = #{createDate,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      updateDate = #{updateDate,jdbcType=TIMESTAMP}
+    where gsid = #{gsid,jdbcType=BIGINT}
+  </update>
+
+  <select id="count" parameterType="JSONObject" resultType="long">
+    select count(*) from goodsspec where gsid = #{gsid}
+  </select>
+
+  <insert id="insertAll" parameterType="JSONObject">
+    insert into goodsspec
+    (gsid, entId, erpCode,
+    shopId, sgid, goodsCode,
+    spurNum, spurSpec, spurUnit,
+    mpurNum, mpurSpec, mpurUnit,
+    lpurNum, lpurSpec, lpurUnit,
+    purNum, minPurNum, minPurUnit,
+    sDeliveryNum, sDeliverySpec, sDeliveryUnit,
+    mDeliveryNum, mDeliverySpec, mDeliveryUnit,
+    lDeliveryNum, lDeliverySpec, lDeliveryUnit,
+    deliveryNum, minDeliveryNum, minDeliveryUnit,
+    lang, creator, createDate,
+    modifier, updateDate)
+    values
+    <foreach collection="list" separator="," item="item">
+      (
+      #{item.gsid,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT}, #{item.erpCode,jdbcType=VARCHAR},
+      #{item.shopId,jdbcType=BIGINT}, #{item.sgid,jdbcType=BIGINT}, #{item.goodsCode,jdbcType=VARCHAR},
+      #{item.spurNum,jdbcType=INTEGER}, #{item.spurSpec,jdbcType=VARCHAR}, #{item.spurUnit,jdbcType=VARCHAR},
+      #{item.mpurNum,jdbcType=INTEGER}, #{item.mpurSpec,jdbcType=VARCHAR}, #{item.mpurUnit,jdbcType=VARCHAR},
+      #{item.lpurNum,jdbcType=INTEGER}, #{item.lpurSpec,jdbcType=VARCHAR}, #{item.lpurUnit,jdbcType=VARCHAR},
+      #{item.purNum,jdbcType=INTEGER}, #{item.minPurNum,jdbcType=INTEGER}, #{item.minPurUnit,jdbcType=VARCHAR},
+      #{item.sDeliveryNum,jdbcType=INTEGER}, #{item.sDeliverySpec,jdbcType=VARCHAR}, #{item.sDeliveryUnit,jdbcType=VARCHAR},
+      #{item.mDeliveryNum,jdbcType=INTEGER}, #{item.mDeliverySpec,jdbcType=VARCHAR}, #{item.mDeliveryUnit,jdbcType=VARCHAR},
+      #{item.lDeliveryNum,jdbcType=INTEGER}, #{item.lDeliverySpec,jdbcType=VARCHAR}, #{item.lDeliveryUnit,jdbcType=VARCHAR},
+      #{item.deliveryNum,jdbcType=INTEGER}, #{item.minDeliveryNum,jdbcType=INTEGER}, #{item.minDeliveryUnit,jdbcType=VARCHAR},
+      #{item.lang,jdbcType=VARCHAR}, #{item.creator,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP},
+      #{item.modifier,jdbcType=VARCHAR}, #{item.updateDate,jdbcType=TIMESTAMP}
+      )
+    </foreach>
+  </insert>
+</mapper>

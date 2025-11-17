@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.ExtShopModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.ExtShopModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="eshopId" jdbcType="BIGINT" property="eshopId" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="shopCode" jdbcType="VARCHAR" property="shopCode" />
+    <result column="shopName" jdbcType="VARCHAR" property="shopName" />
+    <result column="shopSName" jdbcType="VARCHAR" property="shopSName" />
+    <result column="parentId" jdbcType="BIGINT" property="parentId" />
+    <result column="parentCode" jdbcType="VARCHAR" property="parentCode" />
+    <result column="shopForm" jdbcType="VARCHAR" property="shopForm" />
+    <result column="shopTypex" jdbcType="VARCHAR" property="shopTypex" />
+    <result column="purchaseTypex" jdbcType="VARCHAR" property="purchaseTypex" />
+    <result column="owneShopIdx" jdbcType="VARCHAR" property="owneShopIdx" />
+    <result column="shopSize" jdbcType="VARCHAR" property="shopSize" />
+    <result column="shopLevel" jdbcType="VARCHAR" property="shopLevel" />
+    <result column="commerceCircle" jdbcType="VARCHAR" property="commerceCircle" />
+    <result column="league" jdbcType="VARCHAR" property="league" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="priceGroup" jdbcType="VARCHAR" property="priceGroup" />
+    <result column="shopZonex" jdbcType="VARCHAR" property="shopZonex" />
+    <result column="openningTime" jdbcType="TIMESTAMP" property="openningTime" />
+    <result column="bookNo" jdbcType="VARCHAR" property="bookNo" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="companyName" jdbcType="VARCHAR" property="companyName" />
+    <result column="deliveryCode" jdbcType="VARCHAR" property="deliveryCode" />
+    <result column="deliveryName" jdbcType="VARCHAR" property="deliveryName" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="busiAreage" jdbcType="DOUBLE" property="busiAreage" />
+    <result column="buildAreage" jdbcType="DOUBLE" property="buildAreage" />
+    <result column="rent" jdbcType="DECIMAL" property="rent" />
+    <result column="deliveryCycle" jdbcType="VARCHAR" property="deliveryCycle" />
+    <result column="safeStockDays" jdbcType="INTEGER" property="safeStockDays" />
+    <result column="orderCycle" jdbcType="VARCHAR" property="orderCycle" />
+    <result column="recordDate" jdbcType="TIMESTAMP" property="recordDate" />
+    <result column="regionId" jdbcType="BIGINT" property="regionId" />
+    <result column="regionCode" jdbcType="VARCHAR" property="regionCode" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="serviceRadiu" jdbcType="INTEGER" property="serviceRadiu" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="leafFlag" jdbcType="BIT" property="leafFlag" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="sourceFromCode" jdbcType="VARCHAR" property="sourceFromCode" />
+    <result column="dealStatus" jdbcType="INTEGER" property="dealStatus" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="shopEnName" jdbcType="VARCHAR" property="shopEnName" />
+  </resultMap>
+</mapper>

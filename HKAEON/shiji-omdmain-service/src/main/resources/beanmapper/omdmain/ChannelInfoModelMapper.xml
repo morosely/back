@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.ChannelInfoModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.ChannelInfoModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="channelId" jdbcType="BIGINT" property="channelId" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="channelCode" jdbcType="VARCHAR" property="channelCode" />
+    <result column="channelName" jdbcType="VARCHAR" property="channelName" />
+    <result column="selfBuildFlag" jdbcType="BIT" property="selfBuildFlag" />
+    <result column="channelType" jdbcType="SMALLINT" property="channelType" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="isMarketChannel" jdbcType="SMALLINT" property="isMarketChannel" />
+    <result column="posmode" jdbcType="VARCHAR" property="posmode" />
+  </resultMap>
+  
+  <select id="selectIn" parameterType="map" resultMap="BaseResultMap">
+  	SELECT c.*
+  	FROM ChannelInfo c
+  	WHERE 1=1 AND c.channelId IN
+	<foreach collection="channelIds" index="index" item="item" open="(" separator="," close=")">
+		${item}       
+	</foreach>
+  </select>
+
+    <update id="updateModel" parameterType="map">
+        update channelinfo
+        <set>
+            <if test="channelCode != null">
+                channelCode = #{channelCode},
+            </if>
+            <if test="channelName != null">
+                channelName = #{channelName},
+            </if>
+            <if test="isMarketChannel != null">
+                isMarketChannel =#{isMarketChannel},
+            </if>
+            <if test="selfBuildFlag != null">
+                selfBuildFlag =#{selfBuildFlag},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="lang != null and lang != ''">
+                lang = #{lang},
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier},
+            </if>
+            <if test="posmode != null and posmode != ''">
+                posmode = #{posmode},
+            </if>
+            <if test="posmode == null or posmode == ''">
+                posmode = null,
+            </if>
+        </set>
+        where channelId = #{channelId}
+    </update>
+
+</mapper>

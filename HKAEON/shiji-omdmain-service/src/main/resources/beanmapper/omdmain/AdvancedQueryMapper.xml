@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.AdvancedQueryMapper">
+
+	<resultMap id="advancedQueryMap" type="HashMap">
+		<result property="key" column="COLUMN_NAME" />
+		<result property="value" column="COLUMN_COMMENT" />
+	</resultMap>
+	
+	<resultMap id="resultMap" type="HashMap">
+		<result property="key" column="mapkey" />
+		<result property="value" column="mapvalue" />
+	</resultMap>
+
+	<update id="updateRetryDoFlag" parameterType="map" statementType="STATEMENT">
+		update ${tableName}_change set doFlag = 0 where doFlag = 2
+	</update>
+
+	<!--查询前置机地址-->
+	<select id="selectFrontAddress" parameterType="map" resultType="JSONObject">
+		select * from syncfrontaddress where status = 1;
+	</select>
+
+	<update id="updateDoFlag" parameterType="map" statementType="STATEMENT">
+		update ${tableName}_change set doFlag = ${doFlag} where trigger_change_id in
+		<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+			${item}
+		</foreach>
+	</update>
+
+	<select id="selectUniqueKeyBase" parameterType="map" resultType="JSONObject">
+		select * from ${tableName} where (${uniqueKeyField}) in
+		<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+			(
+			<foreach collection="keys" item="field" index="indexkey" open="" separator="," close="">
+				${field}
+			</foreach>
+			)
+		</foreach>
+	</select>
+
+	<delete id="deletedUniqueKeyBase" parameterType="map">
+		delete from ${tableName} where (${uniqueKeyField}) in
+		<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+			(
+			<foreach collection="keys" item="field" index="indexkey" open="" separator="," close="">
+				${field}
+			</foreach>
+			)
+		</foreach>
+	</delete>
+
+	<!--通用批量操作 add by yihaitao 2024-06-25-->
+	<insert id="upsert" parameterType="map">
+		replace into ${tableName} (${fields}) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			<foreach collection="keys" item="field" index="indexkey" separator=",">
+				${field}
+			</foreach>
+			)
+		</foreach>
+	</insert>
+
+	<!--查询增量数据uniqueKey-->
+	<select id="getChangeUniqueKey" parameterType="map" resultType="JSONObject" statementType="STATEMENT">
+		select * from ${tableName}_change where doFlag = 0 limit 0,${pageSize}
+	</select>
+
+	<!--查询唯一索引字段 add by yihaitao 2024-06-18-->
+	<select id="uniqueKeyField" parameterType="map" resultType="string" statementType="STATEMENT">
+		SELECT
+			kcu.column_name
+		FROM
+			information_schema.table_constraints tc
+				JOIN
+			information_schema.key_column_usage kcu
+			ON tc.constraint_name = kcu.constraint_name
+				AND tc.table_schema = kcu.table_schema
+		WHERE
+			tc.constraint_type = 'UNIQUE'
+		  AND tc.table_schema = 'omdmain' AND tc.table_name = '${tableName}_change'
+	</select>
+
+	<select id="primaryKey" parameterType="map" resultType="string" statementType="STATEMENT">
+		SELECT
+			kcu.column_name
+		FROM
+			information_schema.table_constraints tc
+				JOIN
+			information_schema.key_column_usage kcu
+			ON tc.constraint_name = kcu.constraint_name
+				AND tc.table_schema = kcu.table_schema
+		WHERE
+			tc.constraint_type = 'PRIMARY KEY' and
+			tc.table_schema = 'omdmain' AND kcu.table_name = '${tableName}' and tc.table_name = '${tableName}'
+	</select>
+
+	<!--动态查询,返回key value键值对 -->
+	<select id="selectMap" parameterType="map" resultMap="resultMap" statementType="STATEMENT">
+		SELECT ${field} FROM ${table} WHERE (${key}) IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+           (${item})       
+       	</foreach>  
+    </select>
+
+	<select id="selectShowCategoryMap" parameterType="java.util.Map" resultMap="resultMap" statementType="STATEMENT">
+		SELECT
+			sgid as mapkey,
+			group_concat( showCategoryName SEPARATOR ',' ) as mapvalue
+		FROM
+			shopchannelcategorygoodsref r
+			LEFT JOIN showcategory s ON r.showCategoryId = s.showCategoryId 
+		WHERE
+			r.shopId = ${shopId} 
+			AND r.channelId = ${channelId}
+			AND sgid IN 
+			<foreach item="item" index="index" collection="sgids" open="(" separator="," close=")">
+			  	${item}
+			</foreach>
+			AND r.isValid = 1
+		GROUP BY
+			sgid;
+	</select>
+
+	<select id="advancedQuery" parameterType="java.util.Map" resultMap="advancedQueryMap">
+		SELECT COLUMN_NAME,COLUMN_COMMENT FROM information_schema.COLUMNS
+		<where> 
+		  <if test="table != null">
+		       TABLE_NAME = #{table}
+		  </if> 
+		  <if test="schema != null">
+		      AND TABLE_SCHEMA = #{schema}
+		  </if>
+		  <if test="fields != null">
+		      AND COLUMN_NAME IN 
+		      <foreach item="item" index="index" collection="fields" open="(" separator="," close=")">
+			  		#{item}
+			  </foreach>
+		  </if>
+		</where>
+	</select>
+
+	<!-- 据根据业务规则唯一性批量查询(通用接口) -->
+	<select id="queryDataByUnique" parameterType="map" resultType="map" statementType="STATEMENT">
+		SELECT * FROM ${table} WHERE ${key} IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+           ${item}       
+       	</foreach>  
+	</select>
+	
+	<!--动态删除 (批量)-->
+	<delete id="deleteModel" parameterType="map" statementType="STATEMENT">
+		DELETE FROM	${table} WHERE ${key} IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+           ${item}       
+       	</foreach>  
+	</delete>
+	
+	<!--动态查询(批量) -->
+	<select id="selectModel" parameterType="map" resultType="map" statementType="STATEMENT">
+		SELECT * FROM ${table} WHERE ${key} IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+           ${item}       
+       	</foreach>  
+	</select>
+	
+	<!--动态更新(批量) -->
+	<update id="updateModel" parameterType="map"  statementType="STATEMENT">
+		UPDATE ${table} SET ${setField} = ${setFieldValue} 
+		<if test="updateDate != null">
+       		,updateDate = '${updateDate}'
+       	</if>
+		WHERE ${key} IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+           ${item}    
+       	</foreach>
+       	<if test="erpCode != null">
+       		AND erpCode = '${erpCode}'
+       	</if>
+       	<if test="entId != null">
+       		AND entId = ${entId}
+       	</if>
+	</update>
+</mapper>
+  

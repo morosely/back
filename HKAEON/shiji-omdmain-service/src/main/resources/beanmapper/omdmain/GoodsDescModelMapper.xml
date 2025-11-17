@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.GoodsDescModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.GoodsDescModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="gdid" jdbcType="BIGINT" property="gdid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="sgid" jdbcType="BIGINT" property="sgid" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="showTerm" jdbcType="SMALLINT" property="showTerm" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="goodsDesc" jdbcType="LONGVARCHAR" property="goodsDesc" />
+    <result column="printFlag" jdbcType="BIT" property="printFlag" />
+  </resultMap>
+  
+  <select id="selectInSGID" parameterType="map" resultMap="BaseResultMap">
+  	SELECT d.*
+  	FROM GoodsDesc d, Goods g
+  	WHERE 1=1 AND d.entId = #{entId} AND d.entId = g.entId AND d.erpCode = g.erpCode
+  	<if test="sgid != null">
+	 	AND g.sgid IN
+	 	<foreach collection="sgid" index="index" item="item" open="(" separator="," close=")">
+	        #{item}       
+	    </foreach>
+	</if>
+  </select>
+</mapper>
+
+

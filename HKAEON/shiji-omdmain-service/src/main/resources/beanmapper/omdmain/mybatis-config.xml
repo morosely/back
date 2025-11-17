@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "mybatis-3-config.dtd"[]>
+<configuration>
+	<!--
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+	-->
+	<!-- 忽略KEY大小写的MAP
+	<typeAliases>
+		<typeAlias type="com.product.storage.mybatis.HashMapCase"
+			alias="MapCase" />
+	</typeAliases> -->
+
+	<typeAliases>
+		<typeAlias type="java.util.HashMap" alias="MapCase" />
+		<typeAlias type="com.alibaba.fastjson.JSONObject" alias="JSONObject"/>
+	</typeAliases>
+
+	<plugins>
+		<plugin interceptor="com.product.storage.filter.DataRangeExecutorWrapper">
+			<property name="dbType" value="mysql" />
+		</plugin>
+		<!-- <plugin interceptor="com.product.storage.filter.ExecutorWrapper">
+			<property name="dbType" value="oracle" />
+		</plugin> -->
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<property name="offsetAsPageNum" value="false" />
+			<property name="rowBoundsWithCount" value="true" />
+			<property name="pageSizeZero" value="false" />
+		</plugin>
+
+	</plugins>
+
+	<mappers>
+		<!-- mapper start -->
+		<mapper resource="beanmapper/omdmain/DynQuery.xml" />
+		<mapper resource="beanmapper/omdmain/MyQuery.xml" />
+		<mapper resource="beanmapper/omdmain/AdvancedQueryMapper.xml" />
+		<mapper resource="beanmapper/omdmain/SaleGoodsModelMapper.xml" />
+		<mapper resource="beanmapper/omdmain/CategoryModelMapper.xml" />
+		<mapper resource="beanmapper/omdmain/CategoryPropertyModelMapper.xml" />
+		<mapper resource="beanmapper/omdmain/GoodsShopRefModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/CategoryLabelModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/DictionaryDataModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/SetMealTypeRefModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/ShopChannelCategoryGoodsRefModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/GoodsUpAndDownModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/SetMealDetailModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/SaleOrgModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/GoodsPropertyExtValueModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/GoodsSpecModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/ShopModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/ChannelInfoModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/ShowCategoryModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/VenderModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/GoodsModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/GoodsVenderRefModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/SaleGoodsItemsModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/StallInfoModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/BrandInfoModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/PaymentMethodRefModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/GoodsSpecPriceModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/GoodsMoreBarCodeModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/ProcessRecipeDetailModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/BusinessCompanyModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/ProcessRecipeModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/DecomposeRecipeModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/DecomposeRecipeDetailModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/GoodsDescModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/SaleGoodsImageRefModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/CategoryModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/ShopGoodsInfoUpdateModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/AeonTransLogModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/GoodsSpecialModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/AeonJDTokenModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/MinDiscountModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/ShopChannelRefModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/PaymentMethodModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/OrderCallNoMapper.xml"/>
+
+		<mapper resource="beanmapper/omdmain/PackageAttCateMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/PackageAttShopGoodsRefMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/PackageAttDictMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/PackageAttGoodsRefMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/SaleGoodsPropertyMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/CateringTimeMapper.xml"/>
+		
+		<!-- out -->
+		<mapper resource="beanmapper/omdmain/out/BusinessCompanyDeamonMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/BrandInfoDeamonOutMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/CategoryDeamonOutMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/VenderDeamonOutMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/GoodsShopRefDeamonOutMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/ShopDeamonOutMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/SaleOrgDeamonOutMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/SaleGoodsDeamonOutMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/PaymentDeamonOutMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/ChannelInfoDeamonOutMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/PosSaleGoodsOutModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/SyncSaleGoodsModelMapper.xml"/>
+		<mapper resource="beanmapper/omdmain/out/GoodsDeamonOutMapper.xml"/>
+		
+		<!-- hwg -->
+		<mapper resource="beanmapper/omdmain/hwg/Hwg_FulfillmentShopModelMapper.xml"/>
+		<!-- mapper end -->
+	</mappers>
+</configuration>

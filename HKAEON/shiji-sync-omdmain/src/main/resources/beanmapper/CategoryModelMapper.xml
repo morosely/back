@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CategoryModelMapper">
+
+	<!--商品的品类更新后，更新商品表品类ID--> 
+	<update id="updateGoodsCategory" parameterType="map">
+		<foreach collection="list" item="item" separator=";">
+	 		update goods t1 join category t2 on t1.categoryCode = t2.categoryCode and t1.entId = t2.entId and t1.erpCode = t2.erpCode 
+				set t1.categoryId = t2.categoryId where t1.sgid = #{item.sgid}
+		</foreach>
+	</update>
+	
+	<!-- 海外购品类库存初始化 -->
+	<!-- 1. 插入临时表 -->
+	<insert id="categoryStock" parameterType="JSONObject">
+        insert into categoryStock (categoryId, entId, erpCode,
+        categoryCode, categoryName, categorLevel,
+        parentId, parentCode, categoryStatus,
+        dmsValue, saleQuotaDays, standardSaleDays,
+        trySaleDays, safeStockDays, minStockDays,
+        maxStockDays, remark, status,
+        level, leafFlag, lang,
+        creator, createDate, modifier,
+        updateDate, license, manageCategoryCode)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.categoryId,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT}, #{item.erpCode,jdbcType=VARCHAR},
+            #{item.categoryCode,jdbcType=VARCHAR}, #{item.categoryName,jdbcType=VARCHAR}, #{item.categorLevel,jdbcType=VARCHAR},
+            #{item.parentId,jdbcType=BIGINT}, #{item.parentCode,jdbcType=VARCHAR}, #{item.categoryStatus,jdbcType=INTEGER},
+            #{item.dmsValue,jdbcType=DOUBLE}, #{item.saleQuotaDays,jdbcType=INTEGER}, #{item.standardSaleDays,jdbcType=INTEGER},
+            #{item.trySaleDays,jdbcType=INTEGER}, #{item.safeStockDays,jdbcType=INTEGER}, #{item.minStockDays,jdbcType=INTEGER},
+            #{item.maxStockDays,jdbcType=INTEGER}, #{item.remark,jdbcType=VARCHAR}, #{item.status,jdbcType=SMALLINT},
+            #{item.level,jdbcType=SMALLINT}, #{item.leafFlag,jdbcType=BIT}, #{item.lang,jdbcType=VARCHAR},
+            #{item.creator,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP}, #{item.modifier,jdbcType=VARCHAR},
+            #{item.updateDate,jdbcType=TIMESTAMP}, #{item.license,jdbcType=SMALLINT}, #{item.manageCategoryCode,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+    
+    <!-- 2. 刷新父亲ID -->
+    <delete id="deleteSeven" parameterType="map">
+    	delete from categorystock where (TO_DAYS(NOW()) - TO_DAYS(updateDate)) > 7;
+    </delete>
+    <update id="updateCateStockPid" parameterType="map">
+		update categoryStock c1 join category c2 on c1.categoryId = c2.categoryId 
+			set c1.parentId = c2.parentId 
+		  where c1.parentId is null
+	</update>
+	
+	<!-- 3. 取数据 -->
+	<select id="getCategoryStock" parameterType="map" resultType="com.alibaba.fastjson.JSONObject">
+		select 
+			entId,erpCode,categoryId,categoryCode,parentId,parentCode,`level`,leafFlag,
+			createDate,updateDate 
+		from 
+			categorystock 
+		where status = 1 
+			and updateDate BETWEEN #{startTime} and #{endTime}
+	</select>
+
+	<update id="updCategoryStock" parameterType="com.alibaba.fastjson.JSONObject">
+		update categorystock 
+		set `status` = 0 
+		where 
+				categoryId =#{categoryId, jdbcType=BIGINT}
+			AND entId = #{entId, jdbcType=BIGINT}
+			AND erpCode = #{erpCode, jdbcType=VARCHAR}
+			AND updateDate = #{updateDate, jdbcType=TIMESTAMP}
+	</update>
+
+	<!-- profit ERP系统品类编码允许重复的（不同层次品类编码可以重复），判断唯一性 编码+层级 -->
+	<update id="updateIdByCode" parameterType="map">
+	update category c1 join category c2 
+				on c1.parentCode = c2.categoryCode and c1.entId = c2.entId  and c1.erpCode = c2.erpCode and c1.level-1 = c2.level
+				set c1.parentId = c2.categoryId 
+			where c1.parentId is null
+	</update>
+	
+	<!-- 提供营销系统 -->
+	<insert id="initAllCategory" parameterType="map">
+        delete from allpathcategory;
+
+        insert into allpathcategory(categoryId,categorycode,categoryName,parentId,parentCode,level,entId,erpCode,createDate)  select categoryId,categorycode,categoryName,parentId,parentCode,level,entId,erpCode,NOW() from category where status = 1;
+
+        update allpathcategory t1 set t1.allPathName = t1.categoryName,t1.allPathCode = t1.categoryCode where t1.`level` = 1;
+
+        update allpathcategory t1 join allpathcategory t2 on t1.parentId = t2.categoryId
+            set t1.allPathName = CONCAT_WS('->',t2.allPathName,t1.categoryName),t1.allPathCode = CONCAT_WS('->',t2.allPathCode,t1.categoryCode) where t1.`level` = 2;
+
+        update allpathcategory t1 join allpathcategory t2 on t1.parentId = t2.categoryId
+            set t1.allPathName = CONCAT_WS('->',t2.allPathName,t1.categoryName),t1.allPathCode = CONCAT_WS('->',t2.allPathCode,t1.categoryCode) where t1.`level` = 3;
+
+        update allpathcategory t1 join allpathcategory t2 on t1.parentId = t2.categoryId
+            set t1.allPathName = CONCAT_WS('->',t2.allPathName,t1.categoryName),t1.allPathCode = CONCAT_WS('->',t2.allPathCode,t1.categoryCode) where t1.`level` = 4;
+
+        update allpathcategory t1 join allpathcategory t2 on t1.parentId = t2.categoryId
+            set t1.allPathName = CONCAT_WS('->',t2.allPathName,t1.categoryName),t1.allPathCode = CONCAT_WS('->',t2.allPathCode,t1.categoryCode) where t1.`level` = 5;
+	</insert>
+
+    <select id="count" parameterType="JSONObject" resultType="long">
+        select count(*) from category
+        where categoryCode = #{categoryCode} and entId = #{entId} and erpCode = #{erpCode}
+    </select>
+
+    <delete id="delete">
+        delete from category
+    </delete>
+
+    <insert id="insertAll" parameterType="JSONObject">
+        insert into category (categoryId, entId, erpCode,
+        categoryCode, categoryName, categorLevel,
+        parentId, parentCode, categoryStatus,
+        dmsValue, saleQuotaDays, standardSaleDays,
+        trySaleDays, safeStockDays, minStockDays,
+        maxStockDays, remark, status,
+        level, leafFlag, lang,
+        creator, createDate, modifier,
+        updateDate, license, manageCategoryCode
+        <foreach collection="@com.efuture.utils.BeanUtils@xmlList(list)" item="item" index="0">
+            <if test="item.dealType != null and item.dealType != ''">
+             ,dealType
+            </if>
+            <if test="item.seqNum != null and item.seqNum != ''">
+             ,seqNum
+            </if>
+        </foreach>
+        )
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.categoryId,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT}, #{item.erpCode,jdbcType=VARCHAR},
+            #{item.categoryCode,jdbcType=VARCHAR}, #{item.categoryName,jdbcType=VARCHAR}, #{item.categorLevel,jdbcType=VARCHAR},
+            #{item.parentId,jdbcType=BIGINT}, #{item.parentCode,jdbcType=VARCHAR}, #{item.categoryStatus,jdbcType=INTEGER},
+            #{item.dmsValue,jdbcType=DOUBLE}, #{item.saleQuotaDays,jdbcType=INTEGER}, #{item.standardSaleDays,jdbcType=INTEGER},
+            #{item.trySaleDays,jdbcType=INTEGER}, #{item.safeStockDays,jdbcType=INTEGER}, #{item.minStockDays,jdbcType=INTEGER},
+            #{item.maxStockDays,jdbcType=INTEGER}, #{item.remark,jdbcType=VARCHAR}, #{item.status,jdbcType=SMALLINT},
+            #{item.level,jdbcType=SMALLINT}, #{item.leafFlag,jdbcType=BIT}, #{item.lang,jdbcType=VARCHAR},
+            #{item.creator,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP}, #{item.modifier,jdbcType=VARCHAR},
+            #{item.updateDate,jdbcType=TIMESTAMP}, #{item.license,jdbcType=SMALLINT}, #{item.manageCategoryCode,jdbcType=VARCHAR}
+            <if test="item.dealType != null and item.dealType != ''">
+                ,#{item.dealType,jdbcType=CHAR}
+            </if>
+            <if test="item.seqNum != null and item.seqNum != ''">
+                ,#{item.seqNum,jdbcType=BIGINT}
+            </if>
+            )
+        </foreach>
+    </insert>
+
+   <!--不更新字段license,manageCategoryCode,restricted,shopSheetType -->
+   <update id="updateAll" parameterType="JSONObject">
+	<foreach collection="list" item="item" separator=";">
+        update category
+           <set>
+               <!-- <if test="item.entId != null">
+                   entId = #{item.entId,jdbcType=BIGINT},
+               </if>
+               <if test="item.erpCode != null">
+                   erpCode = #{item.erpCode,jdbcType=VARCHAR},
+               </if>
+               <if test="item.categoryCode != null">
+                   categoryCode = #{item.categoryCode,jdbcType=VARCHAR},
+               </if> -->
+               <if test="item.categoryName != null">
+                   categoryName = #{item.categoryName,jdbcType=VARCHAR},
+               </if>
+               <if test="item.categorLevel != null">
+                   categorLevel = #{item.categorLevel,jdbcType=VARCHAR},
+               </if>
+               <if test="item.parentId != null">
+                   parentId = #{item.parentId,jdbcType=BIGINT},
+               </if>
+               <if test="item.parentCode != null">
+                   parentCode = #{item.parentCode,jdbcType=VARCHAR},
+               </if>
+               <if test="item.categoryStatus != null">
+                   categoryStatus = #{item.categoryStatus,jdbcType=INTEGER},
+               </if>
+               <if test="item.dmsValue != null">
+                   dmsValue = #{item.dmsValue,jdbcType=DOUBLE},
+               </if>
+               <if test="item.saleQuotaDays != null">
+                   saleQuotaDays = #{item.saleQuotaDays,jdbcType=INTEGER},
+               </if>
+               <if test="item.standardSaleDays != null">
+                   standardSaleDays = #{item.standardSaleDays,jdbcType=INTEGER},
+               </if>
+               <if test="item.trySaleDays != null">
+                   trySaleDays = #{item.trySaleDays,jdbcType=INTEGER},
+               </if>
+               <if test="item.safeStockDays != null">
+                   safeStockDays = #{item.safeStockDays,jdbcType=INTEGER},
+               </if>
+               <if test="item.minStockDays != null">
+                   minStockDays = #{item.minStockDays,jdbcType=INTEGER},
+               </if>
+               <if test="item.maxStockDays != null">
+                   maxStockDays = #{item.maxStockDays,jdbcType=INTEGER},
+               </if>
+               <if test="item.remark != null">
+                   remark = #{item.remark,jdbcType=VARCHAR},
+               </if>
+               <if test="item.status != null">
+                   status = #{item.status,jdbcType=SMALLINT},
+               </if>
+               <!-- <if test="item.level != null">
+                   level = #{item.level,jdbcType=SMALLINT},
+               </if> -->
+               <if test="item.leafFlag != null">
+                   leafFlag = #{item.leafFlag,jdbcType=BIT},
+               </if>
+               <if test="item.lang != null">
+                   lang = #{item.lang,jdbcType=VARCHAR},
+               </if>
+               <if test="item.creator != null">
+                   creator = #{item.creator,jdbcType=VARCHAR},
+               </if>
+               <if test="item.createDate != null">
+                   createDate = #{item.createDate,jdbcType=TIMESTAMP},
+               </if>
+               <if test="item.modifier != null">
+                   modifier = #{item.modifier,jdbcType=VARCHAR},
+               </if>
+               <if test="item.updateDate != null">
+                   updateDate = #{item.updateDate,jdbcType=TIMESTAMP},
+               </if>
+               <if test="item.dealType != null and item.dealType != ''">
+                   dealType = #{item.dealType,jdbcType=CHAR},
+               </if>
+               <if test="item.seqNum != null and item.seqNum != ''">
+                   seqNum = #{item.seqNum,jdbcType=BIGINT},
+               </if>
+           </set>
+           where categoryCode = #{item.categoryCode} and entId = #{item.entId} and erpCode = #{item.erpCode} and level = #{item.level}
+            <if test="item.seqNum != null and item.seqNum != ''">
+                and #{item.seqNum,jdbcType=BIGINT} >= seqNum
+            </if>
+        </foreach>
+    </update>
+
+    <insert id="insert" parameterType="JSONObject">
+        insert into category (categoryId, entId, erpCode,
+                              categoryCode, categoryName, categorLevel,
+                              parentId, parentCode, categoryStatus,
+                              dmsValue, saleQuotaDays, standardSaleDays,
+                              trySaleDays, safeStockDays, minStockDays,
+                              maxStockDays, remark, status,
+                              level, leafFlag, lang,
+                              creator, createDate, modifier,
+                              updateDate, license, manageCategoryCode
+        <if test="dealType != null and dealType != ''">
+            ,dealType
+        </if>
+        <if test="seqNum != null and seqNum != ''">
+            ,seqNum
+        </if>
+        )
+        values (#{categoryId,jdbcType=BIGINT}, #{entId,jdbcType=BIGINT}, #{erpCode,jdbcType=VARCHAR},
+                #{categoryCode,jdbcType=VARCHAR}, #{categoryName,jdbcType=VARCHAR}, #{categorLevel,jdbcType=VARCHAR},
+                #{parentId,jdbcType=BIGINT}, #{parentCode,jdbcType=VARCHAR}, #{categoryStatus,jdbcType=INTEGER},
+                #{dmsValue,jdbcType=DOUBLE}, #{saleQuotaDays,jdbcType=INTEGER}, #{standardSaleDays,jdbcType=INTEGER},
+                #{trySaleDays,jdbcType=INTEGER}, #{safeStockDays,jdbcType=INTEGER}, #{minStockDays,jdbcType=INTEGER},
+                #{maxStockDays,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT},
+                #{level,jdbcType=SMALLINT}, #{leafFlag,jdbcType=BIT}, #{lang,jdbcType=VARCHAR},
+                #{creator,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR},
+                #{updateDate,jdbcType=TIMESTAMP}, #{license,jdbcType=SMALLINT}, #{manageCategoryCode,jdbcType=VARCHAR}
+        <if test="dealType != null and dealType != ''">
+            ,#{dealType,jdbcType=CHAR}
+        </if>
+        <if test="seqNum != null and seqNum != ''">
+            ,#{seqNum,jdbcType=BIGINT}
+        </if>
+               )
+    </insert>
+    <!--不更新字段license,manageCategoryCode,restricted,shopSheetType -->
+    <update id="update" parameterType="JSONObject">
+        update category
+        <set>
+            <!--<if test="entId != null">
+                entId = #{entId,jdbcType=BIGINT},
+            </if>
+            <if test="erpCode != null">
+                erpCode = #{erpCode,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryCode != null">
+                categoryCode = #{categoryCode,jdbcType=VARCHAR},
+            </if> -->
+            <if test="categoryName != null">
+                categoryName = #{categoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="categorLevel != null">
+                categorLevel = #{categorLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parentId = #{parentId,jdbcType=BIGINT},
+            </if>
+            <if test="parentCode != null">
+                parentCode = #{parentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryStatus != null">
+                categoryStatus = #{categoryStatus,jdbcType=INTEGER},
+            </if>
+            <if test="dmsValue != null">
+                dmsValue = #{dmsValue,jdbcType=DOUBLE},
+            </if>
+            <if test="saleQuotaDays != null">
+                saleQuotaDays = #{saleQuotaDays,jdbcType=INTEGER},
+            </if>
+            <if test="standardSaleDays != null">
+                standardSaleDays = #{standardSaleDays,jdbcType=INTEGER},
+            </if>
+            <if test="trySaleDays != null">
+                trySaleDays = #{trySaleDays,jdbcType=INTEGER},
+            </if>
+            <if test="safeStockDays != null">
+                safeStockDays = #{safeStockDays,jdbcType=INTEGER},
+            </if>
+            <if test="minStockDays != null">
+                minStockDays = #{minStockDays,jdbcType=INTEGER},
+            </if>
+            <if test="maxStockDays != null">
+                maxStockDays = #{maxStockDays,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=SMALLINT},
+            </if>
+            <!-- <if test="level != null">
+                level = #{level,jdbcType=SMALLINT},
+            </if> -->
+            <if test="leafFlag != null">
+                leafFlag = #{leafFlag,jdbcType=BIT},
+            </if>
+            <if test="lang != null">
+                lang = #{lang,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                createDate = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null">
+                updateDate = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dealType != null and dealType != ''">
+                dealType = #{dealType,jdbcType=CHAR},
+            </if>
+            <if test="seqNum != null and seqNum != ''">
+                seqNum = #{seqNum,jdbcType=BIGINT},
+            </if>
+        </set>
+        where categoryCode = #{categoryCode} and entId = #{entId} and erpCode = #{erpCode} and level = #{level}
+        <if test="seqNum != null and seqNum != ''">
+            and #{seqNum,jdbcType=BIGINT} >= seqNum
+        </if>
+    </update>
+	
+</mapper>

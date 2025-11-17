@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.ShopChannelCategoryGoodsRefModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.ShopChannelCategoryGoodsRefModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="sccgrid" jdbcType="BIGINT" property="sccgrid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="shopId" jdbcType="BIGINT" property="shopId" />
+    <result column="channelId" jdbcType="BIGINT" property="channelId" />
+    <result column="showCategoryId" jdbcType="BIGINT" property="showCategoryId" />
+    <result column="sgid" jdbcType="BIGINT" property="sgid" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="isValid" jdbcType="VARCHAR" property="isValid" />
+  </resultMap>
+  
+  <select id="batchDelete" parameterType="map">
+  	DELETE 
+  	FROM ShopChannelCategoryGoodsRef 
+  	WHERE 1=1
+  	<if test = "entId != null">
+  		AND entId = #{entId}
+  	</if>
+  	<if test = "shopId != null">
+  		AND shopId = #{shopId}
+  	</if>
+  	<if test = "channelId != null">
+  		AND channelId = #{channelId}
+  	</if>
+  		AND sgid IN
+	  	<foreach collection="infoList" item="item" open="(" separator="," close=")">
+			#{item.sgid}
+		</foreach>
+  </select>
+  
+  <select id="selectByState" parameterType="map" resultType="java.util.Map">
+  	SELECT
+  	s.*, g.goodsStatus, g.salePrice
+  	FROM  shopChannelCategoryGoodsRef s, SaleGoods g
+  	WHERE 1=1 AND s.entId = g.entId AND s.shopId = g.shopId AND s.sgid = g.sgid
+  	<if test="entId != null">
+  		AND s.entId = #{entId}
+  	</if>
+  	<if test="shopId != null">
+  		AND s.shopId = #{shopId}
+  	</if>
+  	<if test="channelId != null">
+  		AND s.channelId = #{channelId}
+  	</if>
+  	<if test="sgid != null">
+  		AND s.sgid = #{sgid}
+  	</if>
+  	<if test="showCategoryId != null">
+  		AND s.showCategoryId = #{showCategoryId}
+  	</if>
+  	<if test="page_no != null and page_size != null">
+  		limit ${page_no},${page_size}
+  	</if>
+  </select>
+  
+  <select id="selectByStateCount" parameterType="map" resultType="long">
+  	SELECT
+  	COUNT(1)
+  	FROM  shopChannelCategoryGoodsRef s, SaleGoods g
+  	WHERE 1=1 AND s.entId = g.entId AND s.shopId = g.shopId AND s.sgid = g.sgid
+  	<if test="entId != null">
+  		AND s.entId = #{entId}
+  	</if>
+  	<if test="shopId != null">
+  		AND s.shopId = #{shopId}
+  	</if>
+  	<if test="channelId != null">
+  		AND s.channelId = #{channelId}
+  	</if>
+  	<if test="sgid != null">
+  		AND s.sgid = #{sgid}
+  	</if>
+  	<if test="showCategoryId != null">
+  		AND s.showCategoryId = #{showCategoryId}
+  	</if>
+  	<if test="page_no != null and page_size != null">
+  		limit ${page_no},${page_size}
+  	</if>
+  </select>
+</mapper>

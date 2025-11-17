@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.CategoryLabelRefModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.CategoryLabelRefModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="clrid" jdbcType="BIGINT" property="clrid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="categoryId" jdbcType="BIGINT" property="categoryId" />
+    <result column="categoryLabelId" jdbcType="BIGINT" property="categoryLabelId" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+</mapper>

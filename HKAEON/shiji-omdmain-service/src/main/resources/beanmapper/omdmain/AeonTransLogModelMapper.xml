@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.AeonTransLogModelMapper">
+	<resultMap id="BaseResultMap" type="com.efuture.omdmain.model.AeonTransLogModel">
+		<!-- WARNING - @mbg.generated -->
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="seq" jdbcType="BIGINT" property="seq" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="ename" jdbcType="VARCHAR" property="ename" />
+		<result column="shop" jdbcType="VARCHAR" property="shop" />
+		<result column="size" jdbcType="BIGINT" property="size" />
+		<result column="down_start" jdbcType="TIMESTAMP" property="down_start" />
+		<result column="down_end" jdbcType="TIMESTAMP" property="down_end" />
+		<result column="load_start" jdbcType="TIMESTAMP" property="load_start" />
+		<result column="load_end" jdbcType="TIMESTAMP" property="load_end" />
+		<result column="diff_count" jdbcType="BIGINT" property="diff_count" />
+		<result column="rj_date" jdbcType="TIMESTAMP" property="rj_date" />
+		<result column="update" jdbcType="TIMESTAMP" property="update" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="ftpUploadTime" jdbcType="TIMESTAMP" property="ftpUploadTime" />
+	</resultMap>
+
+	<select id="get" resultType="Map" parameterType="Map">
+		select * from aeon_trans_log s
+		where 1=1
+		<!-- 开始时间，结束时间都为空 -->
+		<if test="rj_dateStart=null and rj_dateStart='' and rj_dateEnd=null and rj_dateEnd=''"> 
+			AND 1=1
+		</if>
+		<!-- 开始时间，结束时间都不为空 -->
+		<if test="rj_dateStart!=null and rj_dateStart!='' and rj_dateEnd!=null and rj_dateEnd!=''">
+			AND s.rj_date &gt;= #{rj_dateStart,jdbcType=DATE} AND s.rj_date &lt;= #{rj_dateEnd,jdbcType=DATE}
+		</if>
+		<!-- 开始不为空，结束为空 null -->
+		<if test="rj_dateStart!=null and rj_dateStart!='' and rj_dateEnd==null">
+			AND s.rj_date &gt;= #{rj_dateStart,jdbcType=DATE}
+		</if>
+		<!-- 开始不为空，结束为空 '' -->
+		<if test="rj_dateStart!=null and rj_dateStart!='' and rj_dateEnd==''">
+			AND s.rj_date &gt;= #{rj_dateStart,jdbcType=DATE}
+		</if>
+		<!-- 开始为空 null，结束不为空 -->
+		<if test="rj_dateStart==null  and rj_dateStart!=null and rj_dateEnd!=''">
+			AND s.rj_date &lt;= #{rj_dateEnd,jdbcType=DATE}
+		</if>
+		<!-- 开始为空 ''，结束不为空 -->
+		<if test="rj_dateStart==''  and rj_dateEnd!=null and rj_dateEnd!=''">
+			AND s.rj_date &lt;= #{rj_dateEnd,jdbcType=DATE}
+		</if>
+		<if test="mkt!=null and mkt!=''">
+			AND s.shop in (#{mkt,jdbcType=VARCHAR},'txt')
+		</if>
+		<!-- <if test="erpCode!=null and erpCode!=''"> AND s.erpCode = #{erpCode,jdbcType=VARCHAR} 
+		</if> -->
+		order by seq asc
+		limit #{limit,jdbcType=BIGINT},#{offset,jdbcType=BIGINT}
+	</select>
+
+	<select id="getCount" resultType="Long" parameterType="Map">
+		select count(1) from aeon_trans_log s
+		where 1=1
+		<!-- 开始时间，结束时间都为空 -->
+		<if test="rj_dateStart=null and rj_dateStart='' and rj_dateEnd=null and rj_dateEnd=''"> 
+			AND 1=1
+		</if>
+		<!-- 开始时间，结束时间都不为空 -->
+		<if test="rj_dateStart!=null and rj_dateStart!='' and rj_dateEnd!=null and rj_dateEnd!=''">
+			AND s.rj_date &gt;= #{rj_dateStart,jdbcType=DATE} AND s.rj_date &lt;= #{rj_dateEnd,jdbcType=DATE}
+		</if>
+		<!-- 开始不为空，结束为空 null -->
+		<if test="rj_dateStart!=null and rj_dateStart!='' and rj_dateEnd==null">
+			AND s.rj_date &gt;= #{rj_dateStart,jdbcType=DATE}
+		</if>
+		<!-- 开始不为空，结束为空 '' -->
+		<if test="rj_dateStart!=null and rj_dateStart!='' and rj_dateEnd==''">
+			AND s.rj_date &gt;= #{rj_dateStart,jdbcType=DATE}
+		</if>
+		<!-- 开始为空 null，结束不为空 -->
+		<if test="rj_dateStart==null  and rj_dateStart!=null and rj_dateEnd!=''">
+			AND s.rj_date &lt;= #{rj_dateEnd,jdbcType=DATE}
+		</if>
+		<!-- 开始为空 ''，结束不为空 -->
+		<if test="rj_dateStart==''  and rj_dateEnd!=null and rj_dateEnd!=''">
+			AND s.rj_date &lt;= #{rj_dateEnd,jdbcType=DATE}
+		</if>
+		<if test="mkt!=null and mkt!=''">
+			AND s.shop in (#{mkt,jdbcType=VARCHAR},'txt')
+		</if>
+		<!-- <if test="erpCode!=null and erpCode!=''"> AND s.erpCode = #{erpCode,jdbcType=VARCHAR} 
+			</if> -->
+	</select>
+	
+	<insert id="insert" parameterType="com.efuture.omdmain.model.AeonTransLogModel">
+		insert into aeon_trans_log
+		(id, seq, name,
+		ename, size,
+		down_start,
+		down_end, load_start, load_end,
+		diff_count, rj_date, update
+		)
+		values (#{id,jdbcType=BIGINT},
+		#{seq,jdbcType=BIGINT},
+		#{name,jdbcType=VARCHAR},
+		#{ename,jdbcType=VARCHAR},
+		#{size,jdbcType=BIGINT},
+		#{down_start,jdbcType=TIMESTAMP},
+		#{down_end,jdbcType=TIMESTAMP},
+		#{load_start,jdbcType=TIMESTAMP},
+		#{load_end,jdbcType=TIMESTAMP},
+		#{diff_count,jdbcType=BIGINT},
+		#{rj_date,jdbcType=TIMESTAMP},
+		#{update,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<insert id="insertSelective" parameterType="com.efuture.omdmain.model.AeonTransLogModel">
+		insert into aeon_trans_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="seq != null">
+				seq,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="ename != null">
+				ename,
+			</if>
+			<if test="size != null">
+				size,
+			</if>
+			<if test="down_start != null">
+				down_start,
+			</if>
+			<if test="down_end != null">
+				down_end,
+			</if>
+			<if test="load_start != null">
+				load_start,
+			</if>
+			<if test="load_end != null">
+				load_end,
+			</if>
+			<if test="diff_count != null">
+				diff_count,
+			</if>
+			<if test="rj_date != null">
+				rj_date,
+			</if>
+			<if test="update != null">
+				update,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="seq != null">
+				#{seq,jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="ename != null">
+				#{ename,jdbcType=VARCHAR},
+			</if>
+			<if test="size != null">
+				#{size,jdbcType=BIGINT},
+			</if>
+			<if test="down_start != null">
+				#{down_start,jdbcType=TIMESTAMP},
+			</if>
+			<if test="down_end != null">
+				#{down_end,jdbcType=TIMESTAMP},
+			</if>
+			<if test="load_start != null">
+				#{load_start,jdbcType=TIMESTAMP},
+			</if>
+			<if test="load_end != null">
+				#{load_end,jdbcType=TIMESTAMP},
+			</if>
+			<if test="diff_count != null">
+				#{diff_count,jdbcType=BIGINT},
+			</if>
+			<if test="rj_date != null">
+				#{rj_date,jdbcType=TIMESTAMP},
+			</if>
+			<if test="update != null">
+				#{update,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+</mapper>

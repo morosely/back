@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.PackageAttShopGoodsRefMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.PackageAttShopGoodsRef">
+    <!--@mbg.generated-->
+    <!--@Table packageattshopgoodsref-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="pCode" jdbcType="VARCHAR" property="pCode" />
+    <result column="cateringTimeCode" jdbcType="VARCHAR" property="cateringTimeCode" />
+    <result column="selfNotShow" jdbcType="CHAR" property="selfNotShow" />
+    <result column="shopCode" jdbcType="VARCHAR" property="shopCode" />
+    <result column="stallCode" jdbcType="VARCHAR" property="stallCode" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="barNo" jdbcType="VARCHAR" property="barNo" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="sGoodsCode" jdbcType="VARCHAR" property="sGoodsCode" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <!--删除套餐明细的所有属性分类 -->
+  <delete id="deleteSGoodsCode" parameterType="com.efuture.omdmain.model.PackageAttShopGoodsRef">
+    delete from packageattshopgoodsref where erpCode = #{erpCode,jdbcType=VARCHAR} and entId = #{entId,jdbcType=BIGINT} and shopCode = #{shopCode,jdbcType=VARCHAR}
+    and stallCode = #{stallCode,jdbcType=VARCHAR} and sGoodsCode = #{sGoodsCode,jdbcType=VARCHAR}
+  </delete>
+
+  <update id="updateNullCateringTimeCode" parameterType="map">
+    update packageattshopgoodsref set cateringTimeCode = NUll where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, entId, erpCode, pCode, cateringTimeCode, selfNotShow, shopCode, stallCode, goodsCode, barNo, `status`, sGoodsCode , lang, creator, createDate, modifier, updateDate
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from packageattshopgoodsref
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from packageattshopgoodsref
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.efuture.omdmain.model.PackageAttShopGoodsRef">
+    <!--@mbg.generated-->
+    insert into packageattshopgoodsref (id, entId, erpCode,
+    pCode, cateringTimeCode, selfNotShow,
+    shopCode, stallCode, goodsCode,
+    barNo, `status`, sGoodsCode,
+    lang, creator, createDate,
+    modifier, updateDate)
+    values (#{id,jdbcType=BIGINT}, #{entId,jdbcType=BIGINT}, #{erpCode,jdbcType=VARCHAR},
+    #{pCode,jdbcType=VARCHAR}, #{cateringTimeCode,jdbcType=VARCHAR}, #{selfNotShow,jdbcType=CHAR},
+    #{shopCode,jdbcType=VARCHAR}, #{stallCode,jdbcType=VARCHAR}, #{goodsCode,jdbcType=VARCHAR},
+    #{barNo,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT}, #{sGoodsCode,jdbcType=VARCHAR},
+    #{lang,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+    #{modifier,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="upsert" parameterType="map">
+    <!--@mbg.generated-->
+    replace into packageattshopgoodsref
+    (id, entId, erpCode, pCode, cateringTimeCode, selfNotShow, shopCode, stallCode, goodsCode, barNo, `status`, sGoodsCode, lang,
+    creator, createDate, modifier, updateDate)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT}, #{item.erpCode,jdbcType=VARCHAR},
+      #{item.pCode,jdbcType=VARCHAR}, #{item.cateringTimeCode,jdbcType=VARCHAR},#{item.selfNotShow,jdbcType=VARCHAR},#{item.shopCode,jdbcType=VARCHAR}, #{item.stallCode,jdbcType=VARCHAR},
+      #{item.goodsCode,jdbcType=VARCHAR}, #{item.barNo,jdbcType=VARCHAR}, #{item.status,jdbcType=SMALLINT}, #{item.sGoodsCode,jdbcType=VARCHAR},
+      #{item.lang,jdbcType=VARCHAR}, #{item.creator,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP},
+      #{item.modifier,jdbcType=VARCHAR}, #{item.updateDate,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+
+  <delete id="delete" parameterType="com.efuture.omdmain.model.PackageAttShopGoodsRef">
+    delete from packageattshopgoodsref where erpCode = #{erpCode,jdbcType=VARCHAR} and entId = #{entId,jdbcType=BIGINT} and shopCode = #{shopCode,jdbcType=VARCHAR}
+    and stallCode = #{stallCode,jdbcType=VARCHAR} and goodsCode = #{goodsCode,jdbcType=VARCHAR} and barNo = #{barNo,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteBatch" parameterType="map">
+    delete from packageattshopgoodsref where (entId, erpCode,shopCode, stallCode, goodsCode, barNo) in
+    <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+    (
+      #{item.entId,jdbcType=BIGINT}, #{item.erpCode,jdbcType=VARCHAR},
+      #{item.shopCode,jdbcType=VARCHAR}, #{item.stallCode,jdbcType=VARCHAR},
+      #{item.goodsCode,jdbcType=VARCHAR}, #{item.barNo,jdbcType=VARCHAR}
+    )
+   </foreach>
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.efuture.omdmain.model.PackageAttShopGoodsRef">
+    <!--@mbg.generated-->
+    insert into packageattshopgoodsref
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="entId != null">
+        entId,
+      </if>
+      <if test="erpCode != null">
+        erpCode,
+      </if>
+      <if test="pCode != null">
+        pCode,
+      </if>
+      <if test="cateringTimeCode != null">
+        cateringTimeCode,
+      </if>
+      <if test="selfNotShow != null">
+        selfNotShow,
+      </if>
+      <if test="shopCode != null">
+        shopCode,
+      </if>
+      <if test="stallCode != null">
+        stallCode,
+      </if>
+      <if test="goodsCode != null">
+        goodsCode,
+      </if>
+      <if test="barNo != null">
+        barNo,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="sGoodsCode != null">
+        sGoodsCode,
+      </if>
+      <if test="lang != null">
+        lang,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createDate != null">
+        createDate,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="updateDate != null">
+        updateDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=BIGINT},
+      </if>
+      <if test="erpCode != null">
+        #{erpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null">
+        #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cateringTimeCode != null">
+        #{cateringTimeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="selfNotShow != null">
+        #{selfNotShow,jdbcType=CHAR},
+      </if>
+      <if test="shopCode != null">
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stallCode != null">
+        #{stallCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="barNo != null">
+        #{barNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="sGoodsCode != null">
+        #{sGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lang != null">
+        #{lang,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.efuture.omdmain.model.PackageAttShopGoodsRef">
+    <!--@mbg.generated-->
+    update packageattshopgoodsref
+    <set>
+      <if test="entId != null">
+        entId = #{entId,jdbcType=BIGINT},
+      </if>
+      <if test="erpCode != null">
+        erpCode = #{erpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null">
+        pCode = #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cateringTimeCode != null">
+        cateringTimeCode = #{cateringTimeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="selfNotShow != null">
+        selfNotShow = #{selfNotShow,jdbcType=CHAR},
+      </if>
+      <if test="shopCode != null">
+        shopCode = #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stallCode != null">
+        stallCode = #{stallCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null">
+        goodsCode = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="barNo != null">
+        barNo = #{barNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="sGoodsCode != null">
+        sGoodsCode = #{sGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lang != null">
+        lang = #{lang,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        createDate = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        updateDate = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.efuture.omdmain.model.PackageAttShopGoodsRef">
+    <!--@mbg.generated-->
+    update packageattshopgoodsref
+    set entId = #{entId,jdbcType=BIGINT},
+    erpCode = #{erpCode,jdbcType=VARCHAR},
+    pCode = #{pCode,jdbcType=VARCHAR},
+    cateringTimeCode = #{cateringTimeCode,jdbcType=VARCHAR},
+    selfNotShow = #{selfNotShow,jdbcType=CHAR},
+    shopCode = #{shopCode,jdbcType=VARCHAR},
+    stallCode = #{stallCode,jdbcType=VARCHAR},
+    goodsCode = #{goodsCode,jdbcType=VARCHAR},
+    barNo = #{barNo,jdbcType=VARCHAR},
+    `status` = #{status,jdbcType=SMALLINT},
+    sGoodsCode = #{sGoodsCode,jdbcType=VARCHAR},
+    lang = #{lang,jdbcType=VARCHAR},
+    creator = #{creator,jdbcType=VARCHAR},
+    createDate = #{createDate,jdbcType=TIMESTAMP},
+    modifier = #{modifier,jdbcType=VARCHAR},
+    updateDate = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update packageattshopgoodsref
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="entId = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.entId,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="erpCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.erpCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="pCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.pCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="cateringTimeCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.cateringTimeCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="selfNotShow = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.selfNotShow,jdbcType=CHAR}
+        </foreach>
+      </trim>
+      <trim prefix="shopCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.shopCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="stallCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.stallCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.goodsCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="barNo = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.barNo,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=SMALLINT}
+        </foreach>
+      </trim>
+      <trim prefix="sGoodsCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.sGoodsCode,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="lang = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.lang,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="creator = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.creator,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="createDate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="modifier = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.modifier,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="updateDate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateDate,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update packageattshopgoodsref
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="entId = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.entId != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.entId,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="erpCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.erpCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.erpCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="pCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.pCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.pCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="cateringTimeCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.cateringTimeCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.cateringTimeCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="selfNotShow = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.selfNotShow != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.selfNotShow,jdbcType=CHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="shopCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.shopCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.shopCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="stallCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.stallCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.stallCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="goodsCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.goodsCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.goodsCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="barNo = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.barNo != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.barNo,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=SMALLINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sGoodsCode = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sGoodsCode != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.sGoodsCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="lang = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.lang != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.lang,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="creator = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.creator != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.creator,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="createDate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createDate != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="modifier = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.modifier != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.modifier,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="updateDate = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateDate != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateDate,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into packageattshopgoodsref
+    (id, entId, erpCode, pCode, cateringTimeCode, selfNotShow, shopCode, stallCode, goodsCode,
+    barNo, `status`, sGoodsCode, lang, creator, createDate, modifier, updateDate)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT}, #{item.erpCode,jdbcType=VARCHAR},
+      #{item.pCode,jdbcType=VARCHAR}, #{item.cateringTimeCode,jdbcType=VARCHAR}, #{item.selfNotShow,jdbcType=CHAR},
+      #{item.shopCode,jdbcType=VARCHAR}, #{item.stallCode,jdbcType=VARCHAR}, #{item.goodsCode,jdbcType=VARCHAR},
+      #{item.barNo,jdbcType=VARCHAR}, #{item.status,jdbcType=SMALLINT}, #{item.sGoodsCode,jdbcType=VARCHAR},
+      #{item.lang,jdbcType=VARCHAR}, #{item.creator,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP},
+      #{item.modifier,jdbcType=VARCHAR}, #{item.updateDate,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <delete id="deleteByPrimaryKeyIn">
+    <!--@mbg.generated-->
+    delete from packageattshopgoodsref where id in
+    <foreach close=")" collection="list" item="id" open="(" separator=", ">
+      #{id,jdbcType=BIGINT}
+    </foreach>
+  </delete>
+  <update id="updateBatchUseMultiQuery" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    <foreach collection="list" item="item" separator=";">
+      update packageattshopgoodsref
+      <set>
+        <if test="item.entId != null">
+          entId = #{item.entId,jdbcType=BIGINT},
+        </if>
+        <if test="item.erpCode != null">
+          erpCode = #{item.erpCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.pCode != null">
+          pCode = #{item.pCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.cateringTimeCode != null">
+          cateringTimeCode = #{item.cateringTimeCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.selfNotShow != null">
+          selfNotShow = #{item.selfNotShow,jdbcType=CHAR},
+        </if>
+        <if test="item.shopCode != null">
+          shopCode = #{item.shopCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.stallCode != null">
+          stallCode = #{item.stallCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.goodsCode != null">
+          goodsCode = #{item.goodsCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.barNo != null">
+          barNo = #{item.barNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.status != null">
+          `status` = #{item.status,jdbcType=SMALLINT},
+        </if>
+        <if test="item.sGoodsCode != null">
+          sGoodsCode = #{item.sGoodsCode,jdbcType=VARCHAR},
+        </if>
+        <if test="item.lang != null">
+          lang = #{item.lang,jdbcType=VARCHAR},
+        </if>
+        <if test="item.creator != null">
+          creator = #{item.creator,jdbcType=VARCHAR},
+        </if>
+        <if test="item.createDate != null">
+          createDate = #{item.createDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="item.modifier != null">
+          modifier = #{item.modifier,jdbcType=VARCHAR},
+        </if>
+        <if test="item.updateDate != null">
+          updateDate = #{item.updateDate,jdbcType=TIMESTAMP},
+        </if>
+      </set>
+      where id = #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsertSelectiveUseDefaultForNull" parameterType="map">
+    <!--@mbg.generated-->
+    insert into packageattshopgoodsref
+    (id, entId, erpCode, pCode, cateringTimeCode, selfNotShow, shopCode, stallCode, goodsCode,
+    barNo, `status`, sGoodsCode, lang, creator, createDate, modifier, updateDate)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (
+      <choose>
+        <when test="item.id != null">
+          #{item.id,jdbcType=BIGINT},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.entId != null">
+          #{item.entId,jdbcType=BIGINT},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.erpCode != null">
+          #{item.erpCode,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.pCode != null">
+          #{item.pCode,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.cateringTimeCode != null">
+          #{item.cateringTimeCode,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.selfNotShow != null">
+          #{item.selfNotShow,jdbcType=CHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.shopCode != null">
+          #{item.shopCode,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.stallCode != null">
+          #{item.stallCode,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.goodsCode != null">
+          #{item.goodsCode,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.barNo != null">
+          #{item.barNo,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.status != null">
+          #{item.status,jdbcType=SMALLINT},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.sGoodsCode != null">
+          #{item.sGoodsCode,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.lang != null">
+          #{item.lang,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.creator != null">
+          #{item.creator,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.createDate != null">
+          #{item.createDate,jdbcType=TIMESTAMP},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.modifier != null">
+          #{item.modifier,jdbcType=VARCHAR},
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT,
+        </otherwise>
+      </choose>
+      <choose>
+        <when test="item.updateDate != null">
+          #{item.updateDate,jdbcType=TIMESTAMP}
+        </when>
+        <!--@ignoreSql-->
+        <otherwise>
+          DEFAULT
+        </otherwise>
+      </choose>
+      )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.efuture.omdmain.model.PackageAttShopGoodsRef">
+    <!--@mbg.generated-->
+    insert into packageattshopgoodsref
+    (id, entId, erpCode, pCode, cateringTimeCode, selfNotShow, shopCode, stallCode, goodsCode,
+    barNo, `status`, sGoodsCode, lang, creator, createDate, modifier, updateDate)
+    values
+    (#{id,jdbcType=BIGINT}, #{entId,jdbcType=BIGINT}, #{erpCode,jdbcType=VARCHAR}, #{pCode,jdbcType=VARCHAR},
+    #{cateringTimeCode,jdbcType=VARCHAR}, #{selfNotShow,jdbcType=CHAR}, #{shopCode,jdbcType=VARCHAR},
+    #{stallCode,jdbcType=VARCHAR}, #{goodsCode,jdbcType=VARCHAR}, #{barNo,jdbcType=VARCHAR},
+    #{status,jdbcType=SMALLINT}, #{sGoodsCode,jdbcType=VARCHAR}, #{lang,jdbcType=VARCHAR},
+    #{creator,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR},
+    #{updateDate,jdbcType=TIMESTAMP})
+    on duplicate key update
+    id = #{id,jdbcType=BIGINT},
+    entId = #{entId,jdbcType=BIGINT},
+    erpCode = #{erpCode,jdbcType=VARCHAR},
+    pCode = #{pCode,jdbcType=VARCHAR},
+    cateringTimeCode = #{cateringTimeCode,jdbcType=VARCHAR},
+    selfNotShow = #{selfNotShow,jdbcType=CHAR},
+    shopCode = #{shopCode,jdbcType=VARCHAR},
+    stallCode = #{stallCode,jdbcType=VARCHAR},
+    goodsCode = #{goodsCode,jdbcType=VARCHAR},
+    barNo = #{barNo,jdbcType=VARCHAR},
+    `status` = #{status,jdbcType=SMALLINT},
+    sGoodsCode = #{sGoodsCode,jdbcType=VARCHAR},
+    lang = #{lang,jdbcType=VARCHAR},
+    creator = #{creator,jdbcType=VARCHAR},
+    createDate = #{createDate,jdbcType=TIMESTAMP},
+    modifier = #{modifier,jdbcType=VARCHAR},
+    updateDate = #{updateDate,jdbcType=TIMESTAMP}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.efuture.omdmain.model.PackageAttShopGoodsRef">
+    <!--@mbg.generated-->
+    insert into packageattshopgoodsref
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="entId != null">
+        entId,
+      </if>
+      <if test="erpCode != null">
+        erpCode,
+      </if>
+      <if test="pCode != null">
+        pCode,
+      </if>
+      <if test="cateringTimeCode != null">
+        cateringTimeCode,
+      </if>
+      <if test="selfNotShow != null">
+        selfNotShow,
+      </if>
+      <if test="shopCode != null">
+        shopCode,
+      </if>
+      <if test="stallCode != null">
+        stallCode,
+      </if>
+      <if test="goodsCode != null">
+        goodsCode,
+      </if>
+      <if test="barNo != null">
+        barNo,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="sGoodsCode != null">
+        sGoodsCode,
+      </if>
+      <if test="lang != null">
+        lang,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createDate != null">
+        createDate,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="updateDate != null">
+        updateDate,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="entId != null">
+        #{entId,jdbcType=BIGINT},
+      </if>
+      <if test="erpCode != null">
+        #{erpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null">
+        #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cateringTimeCode != null">
+        #{cateringTimeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="selfNotShow != null">
+        #{selfNotShow,jdbcType=CHAR},
+      </if>
+      <if test="shopCode != null">
+        #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stallCode != null">
+        #{stallCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="barNo != null">
+        #{barNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="sGoodsCode != null">
+        #{sGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lang != null">
+        #{lang,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="entId != null">
+        entId = #{entId,jdbcType=BIGINT},
+      </if>
+      <if test="erpCode != null">
+        erpCode = #{erpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pCode != null">
+        pCode = #{pCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cateringTimeCode != null">
+        cateringTimeCode = #{cateringTimeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="selfNotShow != null">
+        selfNotShow = #{selfNotShow,jdbcType=CHAR},
+      </if>
+      <if test="shopCode != null">
+        shopCode = #{shopCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stallCode != null">
+        stallCode = #{stallCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCode != null">
+        goodsCode = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="barNo != null">
+        barNo = #{barNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="sGoodsCode != null">
+        sGoodsCode = #{sGoodsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lang != null">
+        lang = #{lang,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        createDate = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        updateDate = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

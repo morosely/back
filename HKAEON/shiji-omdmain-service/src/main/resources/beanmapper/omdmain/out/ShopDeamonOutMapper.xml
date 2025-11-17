@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.out.ShopDeamonOutMapper">
+  <resultMap id="BaseResultMap" type="java.util.Map">
+    <id column="shopId" jdbcType="BIGINT" property="oid" />
+    <result column="entId" jdbcType="BIGINT" property="ent_id" />
+    <result column="shopCode" jdbcType="VARCHAR" property="code" />
+    <result column="shopName" jdbcType="VARCHAR" property="name" />
+    <result column="parentCode" jdbcType="BIGINT" property="parent_id" />
+    <result column="leafFlag" jdbcType="VARCHAR" property="lastflag" />
+     <result column="erpCode" jdbcType="VARCHAR" property="jygs" />
+  </resultMap>
+  
+  <select id="search" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		b.entId,b.erpCode,b.shopCode,b.shopName,b.shopId,b.parentCode,
+		CASE
+		WHEN b.leafFlag = 1 THEN
+			'Y'
+		WHEN b.leafFlag = 0 THEN
+			'N' ELSE NULL
+		END AS leafFlag
+		FROM
+		shop b where b.entId=#{entId}
+		<if test="code != null">
+			AND b.shopCode = #{code}
+		</if>
+		<if test="name != null">
+			AND b.shopName = #{name}
+		</if>
+		<if test="jygs != null">
+			AND b.erpCode = #{jygs}
+		</if>
+		<if test="oid != null">
+			AND b.shopId = #{oid}
+		</if>
+		<if test="lastflag != null">
+			AND b.leafFlag = #{lastflag}
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<select id="count" parameterType="map" resultType="long">
+		SELECT
+		count(1)
+		FROM
+		shop b where b.entId=#{entId}
+		<if test="code != null">
+			AND b.shopCode = #{code}
+		</if>
+		<if test="name != null">
+			AND b.shopName = #{name}
+		</if>
+		<if test="jygs != null">
+			AND b.erpCode = #{jygs}
+		</if>
+		<if test="oid != null">
+			AND b.shopId = #{oid}
+		</if>
+		<if test="lastflag != null">
+			AND b.leafFlag = #{lastflag}
+		</if>
+	</select>
+</mapper>

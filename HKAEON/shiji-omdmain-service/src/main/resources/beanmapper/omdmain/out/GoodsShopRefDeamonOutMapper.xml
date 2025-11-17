@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.out.GoodsShopRefDeamonOutMapper">
+  <resultMap id="BaseResultMap" type="java.util.Map">
+    <!-- <id column="gsrid" jdbcType="BIGINT" property="gsrid" /> -->
+    <result column="entId" jdbcType="BIGINT" property="ent_id" />
+    <result column="erpCode" jdbcType="VARCHAR" property="jygs" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="item_name" />
+    <!-- 条码 -->
+    <result column="barNo" jdbcType="VARCHAR" property="barcode" />
+    <!-- 名称 -->
+    <result column="goodsName" jdbcType="VARCHAR" property="item_name" />
+    <!-- 商品类型 -->
+    <result column="goodsType" jdbcType="VARCHAR" property="typeid" />
+    <!--类别编码  -->
+    <result column="categoryCode" jdbcType="VARCHAR" property="cat_code" />
+    <!-- 类别名称 -->
+    <result column="categoryName" jdbcType="VARCHAR" property="cat_name" />
+    <!--品牌编码  -->
+    <result column="brandCode" jdbcType="VARCHAR" property="brand_code" />
+    <!--品牌名称  -->
+    <result column="brandName" jdbcType="VARCHAR" property="brand_name" />
+    <!-- 规格型号 -->
+    <result column="saleSpec" jdbcType="VARCHAR" property="spec" />
+    <!-- 单位 -->
+    <result column="saleUnit" jdbcType="VARCHAR" property="unit" />
+    <!-- 售价 -->
+    <result column="salePrice" jdbcType="VARCHAR" property="sale_price" />
+    <!-- 门店编码 -->
+    <result column="shopCode" jdbcType="VARCHAR" property="org_code" />
+    <!--门店名称  -->
+    <result column="shopName" jdbcType="VARCHAR" property="org_name" />
+    <!-- 状态 -->
+    <result column="goodstatus" jdbcType="VARCHAR" property="status" />
+    <!--供应商编码  -->
+    <result column="vid" jdbcType="VARCHAR" property="vendor_id" />
+    <!-- 进价 -->
+    <result column="contractCost" jdbcType="VARCHAR" property="purchase_price" />
+    <!--进项税率  -->
+    <result column="costTaxRate" jdbcType="VARCHAR" property="purchase_tax" />
+    <!-- 扣率 -->
+    <result column="gross_margin" jdbcType="VARCHAR" property="gross_margin" />
+    <!-- 经营方式 -->
+    <result column="operateFlag" jdbcType="VARCHAR" property="trading_term" />
+    <!--是否母码  -->
+    <result column="mattype" jdbcType="VARCHAR" property="mattype" />
+    <!-- 对应母码 -->
+    <result column="parentGoodsCode" jdbcType="VARCHAR" property="spucode" />
+    <!-- 供应商名称 -->
+    <result column="vendersName" jdbcType="VARCHAR" property="vendor_name" />
+  </resultMap>
+  
+  <select id="search" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+			s.entId,s.erpCode,s.goodsCode,s.barNo,s.goodsName,
+			s.goodsType,s.categoryName,s.brandName,s.saleSpec,s.saleUnit,
+			s.salePrice,s.goodsstatus,b.brandCode,c.categoryCode,g.costTaxRate,g.operateFlag,
+			s.vendersName,s.parentGoodsCode,"00" AS mattype,g.contractCost,s.vid,s.shopCode,
+			"0" AS gross_margin
+		FROM
+			saleGoods s
+		LEFT JOIN
+			goodsShopRef g
+		ON  
+			s.goodsCode=g.goodsCode 
+		AND 
+			s.entId=g.entId
+		LEFT JOIN
+			brandInfo b
+		ON  
+			s.brandId=b.brandId 
+		AND 
+			s.entId=b.entId
+		LEFT JOIN
+			category c
+		ON  
+			s.categoryId=c.categoryId 
+		AND 
+			s.entId=c.entId 
+		WHERE 
+			s.entId=#{entId}
+		
+		<if test="jygs != null">
+			AND s.erpCode = #{jygs}
+		</if>
+		<if test="item_name != null">
+			AND s.goodsCode = #{item_name}
+		</if>
+		<if test="barcode != null">
+			AND s.barNo = #{barcode}
+		</if>
+		<if test="typeid != null">
+			AND s.goodsType = #{typeid}
+		</if>
+		<if test="status != null">
+			AND s.goodsstatus = #{status}
+		</if>
+		<if test="vendor_id != null">
+			AND s.vid = #{vendor_id}
+		</if>
+		<if test="cat_code != null">
+			AND c.categoryCode = #{cat_code}
+		</if>
+		<if test="brand_code != null">
+			AND b.brandCode = #{brand_code}
+		</if>
+		<if test="org_code != null">
+			AND g.shopCode = #{org_code}
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<select id="count" parameterType="map" resultType="long">
+		SELECT
+			count(1)
+		FROM
+			saleGoods s
+		LEFT JOIN
+			goodsShopRef g
+		ON  
+			s.goodsCode=g.goodsCode 
+		AND 
+			s.entId=g.entId
+		LEFT JOIN
+			brandInfo b
+		ON  
+			s.brandId=b.brandId 
+		AND 
+			s.entId=b.entId
+		LEFT JOIN
+			category c
+		ON  
+			s.categoryId=c.categoryId 
+		AND 
+			s.entId=c.entId 
+		WHERE 
+			s.entId=#{entId}
+		<if test="code != null">
+			AND s.ssgid = #{code}
+		</if>
+		<if test="item_name != null">
+			AND s.goodsCode = #{item_name}
+		</if>
+		<if test="barcode != null">
+			AND s.barNo = #{barcode}
+		</if>
+		<if test="typeid != null">
+			AND s.goodsType = #{typeid}
+		</if>
+		<if test="status != null">
+			AND s.goodsstatus = #{status}
+		</if>
+		<if test="vendor_id != null">
+			AND s.vid = #{vendor_id}
+		</if>
+		<if test="cat_code != null">
+			AND c.categoryCode = #{cat_code}
+		</if>
+		<if test="brand_code != null">
+			AND b.brandCode = #{brand_code}
+		</if>
+		<if test="org_code != null">
+			AND g.shopCode = #{org_code}
+		</if>
+	</select>
+  
+</mapper>

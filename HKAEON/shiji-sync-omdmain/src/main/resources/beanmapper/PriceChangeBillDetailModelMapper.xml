@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PriceChangeBillDetailModelMapper">
+
+    <update id="update" parameterType="JSONObject">
+        update pricechangebilldetail
+        <set>
+          <if test="pcbid != null">
+	        pcbid = #{pcbid,jdbcType=BIGINT}
+	      </if>
+	      <if test="pcBillno != null">
+	        pcBillno = #{pcBillno,jdbcType=VARCHAR}
+	      </if>
+	      <if test="entId != null">
+	        entId = #{entId,jdbcType=BIGINT}
+	      </if>
+	      <if test="erpCode != null">
+	        erpCode = #{erpCode,jdbcType=VARCHAR}
+	      </if>
+	      <if test="sgid != null">
+	        sgid = #{sgid,jdbcType=BIGINT}
+	      </if>
+	      <if test="goodsCode != null">
+	        goodsCode = #{goodsCode,jdbcType=VARCHAR}
+	      </if>
+	      <if test="goodsName != null">
+	        goodsName = #{goodsName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="barNo != null">
+	        barNo = #{barNo,jdbcType=VARCHAR}
+	      </if>
+	      <if test="originPrice != null">
+	        originPrice = #{originPrice,jdbcType=VARCHAR}
+	      </if>
+	      <if test="nowPrice != null">
+	        nowPrice = #{nowPrice,jdbcType=VARCHAR}
+	      </if>
+	      <if test="recieveDate != null">
+	        recieveDate = #{recieveDate,jdbcType=VARCHAR}
+	      </if>
+	      <if test="pcDate != null">
+	        pcDate = #{pcDate,jdbcType=VARCHAR}
+	      </if>
+	      <if test="errorMsg != null">
+	        errorMsg = #{errorMsg,jdbcType=VARCHAR}
+	      </if>
+	      <if test="lang != null">
+	        lang = #{lang,jdbcType=VARCHAR}
+	      </if>
+	      <if test="creator != null">
+	        creator = #{creator,jdbcType=VARCHAR}
+	      </if>
+	      <if test="createDate != null">
+	        createDate = #{createDate,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="modifier != null">
+	        modifier = #{modifier,jdbcType=VARCHAR}
+	      </if>
+	      <if test="updateDate != null">
+	        updateDate = #{updateDate,jdbcType=TIMESTAMP}
+	      </if>
+        </set>
+        where entId = #{entId} and erpCode = #{erpCode} and pcBillno = #{pcBillno} and goodsCode = #{goodsCode}
+    </update>
+
+    <select id="count" parameterType="JSONObject" resultType="long">
+        select count(*)
+        from pricechangebilldetail
+        where entId = #{entId} and erpCode = #{erpCode} and pcBillno = #{pcBillno} and goodsCode = #{goodsCode}
+    </select>
+
+    <insert id="insertAll" parameterType="JSONObject">
+        insert into pricechangebilldetail (pcbdid, entId, erpCode,
+        pcbid, pcBillno, sgid,
+        goodsCode, goodsName, barNo,
+        originPrice, nowPrice, recieveDate,
+        pcDate, errorMsg, lang,
+        creator, createDate, modifier,
+        updateDate)
+        values
+        <foreach collection="list" separator="," item="item">
+            (#{item.pcbdid,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT}, #{item.erpCode,jdbcType=VARCHAR},
+            #{item.pcbid,jdbcType=BIGINT}, #{item.pcBillno,jdbcType=VARCHAR}, #{item.sgid,jdbcType=BIGINT},
+            #{item.goodsCode,jdbcType=VARCHAR}, #{item.goodsName,jdbcType=VARCHAR}, #{item.barNo,jdbcType=VARCHAR},
+            #{item.originPrice,jdbcType=VARCHAR}, #{item.nowPrice,jdbcType=VARCHAR},#{item.recieveDate,jdbcType=VARCHAR},
+            #{item.pcDate,jdbcType=VARCHAR}, #{item.errorMsg,jdbcType=VARCHAR}, #{item.lang,jdbcType=VARCHAR},
+            #{item.creator,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP}, #{item.modifier,jdbcType=VARCHAR},
+            #{item.updateDate,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+    
+    <insert id="insert" parameterType="JSONObject">
+	    insert into pricechangebilldetail (pcbdid, entId, erpCode,
+	        pcbid, pcBillno, sgid,
+	        goodsCode, goodsName, barNo,
+	        originPrice, nowPrice, recieveDate,
+	        pcDate, errorMsg, lang,
+	        creator, createDate, modifier,
+	        updateDate)
+	        values
+	        (#{pcbdid,jdbcType=BIGINT}, #{entId,jdbcType=BIGINT}, #{erpCode,jdbcType=VARCHAR},
+	        #{pcbid,jdbcType=BIGINT}, #{pcBillno,jdbcType=VARCHAR}, #{sgid,jdbcType=BIGINT},
+	        #{goodsCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{barNo,jdbcType=VARCHAR},
+	        #{originPrice,jdbcType=VARCHAR}, #{nowPrice,jdbcType=VARCHAR},#{recieveDate,jdbcType=VARCHAR},
+	        #{pcDate,jdbcType=VARCHAR}, #{errorMsg,jdbcType=VARCHAR}, #{lang,jdbcType=VARCHAR},
+	        #{creator,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR},
+	        #{updateDate,jdbcType=TIMESTAMP})
+    </insert>
+    
+    <update id="updateAll" parameterType="JSONObject">
+		<foreach collection="list" item="item" separator=";">
+			update pricechangebilldetail
+	        <set>
+	          <if test="item.pcbid != null">
+		        pcbid = #{item.pcbid,jdbcType=BIGINT}
+		      </if>
+		      <if test="item.pcBillno != null">
+		        pcBillno = #{item.pcBillno,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.entId != null">
+		        entId = #{item.entId,jdbcType=BIGINT}
+		      </if>
+		      <if test="item.erpCode != null">
+		        erpCode = #{item.erpCode,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.sgid != null">
+		        sgid = #{item.sgid,jdbcType=BIGINT}
+		      </if>
+		      <if test="item.goodsCode != null">
+		        goodsCode = #{item.goodsCode,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.goodsName != null">
+		        goodsName = #{item.goodsName,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.barNo != null">
+		        barNo = #{item.barNo,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.originPrice != null">
+		        originPrice = #{item.originPrice,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.nowPrice != null">
+		        nowPrice = #{item.nowPrice,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.recieveDate != null">
+		        recieveDate = #{item.recieveDate,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.pcDate != null">
+		        pcDate = #{item.pcDate,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.errorMsg != null">
+		        errorMsg = #{item.errorMsg,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.lang != null">
+		        lang = #{item.lang,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.creator != null">
+		        creator = #{item.creator,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.createDate != null">
+		        createDate = #{item.createDate,jdbcType=TIMESTAMP}
+		      </if>
+		      <if test="item.modifier != null">
+		        modifier = #{item.modifier,jdbcType=VARCHAR}
+		      </if>
+		      <if test="item.updateDate != null">
+		        updateDate = #{item.updateDate,jdbcType=TIMESTAMP}
+		      </if>
+	        </set>
+	        where entId = #{item.entId} and erpCode = #{item.erpCode} and pcBillno = #{item.pcBillno} and goodsCode = #{item.goodsCode}
+		</foreach>
+	</update>
+
+</mapper>

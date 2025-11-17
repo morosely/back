@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ExtSaleOrgModelMapper">
+  <update id="update" parameterType="JSONObject">
+    update extsaleorg
+    <set>
+      <if test="entId != null">
+        entId = #{entId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null">
+        shopId = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="orgCode != null">
+        orgCode = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        orgName = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgEnName != null">
+        orgEnName = #{orgEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgSname != null">
+        orgSname = #{orgSname,jdbcType=VARCHAR},
+      </if>
+      <!--<if test="parentId != null">
+        parentId = #{parentId,jdbcType=BIGINT},
+      </if>-->
+      <if test="parentCode != null">
+        parentCode = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shopForm != null">
+        shopForm = #{shopForm,jdbcType=VARCHAR},
+      </if>
+      <if test="shopTypex != null">
+        shopTypex = #{shopTypex,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseTypex != null">
+        purchaseTypex = #{purchaseTypex,jdbcType=VARCHAR},
+      </if>
+      <if test="commerceCircle != null">
+        commerceCircle = #{commerceCircle,jdbcType=VARCHAR},
+      </if>
+      <if test="league != null">
+        league = #{league,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="priceGroup != null">
+        priceGroup = #{priceGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="shopZonex != null">
+        shopZonex = #{shopZonex,jdbcType=VARCHAR},
+      </if>
+      <if test="openningTime != null">
+        openningTime = #{openningTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookNo != null">
+        bookNo = #{bookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="erpCode != null">
+        erpCode = #{erpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        companyName = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCode != null">
+        deliveryCode = #{deliveryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryName != null">
+        deliveryName = #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="busiAreage != null">
+        busiAreage = #{busiAreage,jdbcType=DOUBLE},
+      </if>
+      <if test="buildAreage != null">
+        buildAreage = #{buildAreage,jdbcType=DOUBLE},
+      </if>
+      <if test="rent != null">
+        rent = #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryCycle != null">
+        deliveryCycle = #{deliveryCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="safeStockDays != null">
+        safeStockDays = #{safeStockDays,jdbcType=INTEGER},
+      </if>
+      <if test="orderCycle != null">
+        orderCycle = #{orderCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="recordDate != null">
+        recordDate = #{recordDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="industry != null">
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCode != null">
+        accountCode = #{accountCode,jdbcType=VARCHAR},
+      </if>
+      <if test="manageArea != null">
+        manageArea = #{manageArea,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineFlag != null">
+        onlineFlag = #{onlineFlag,jdbcType=BIT},
+      </if>
+      <if test="wareType != null">
+        wareType = #{wareType,jdbcType=INTEGER},
+      </if>
+      <if test="chainType != null">
+        chainType = #{chainType,jdbcType=INTEGER},
+      </if>
+      <if test="upDeliveryFlag != null">
+        upDeliveryFlag = #{upDeliveryFlag,jdbcType=BIT},
+      </if>
+      <if test="raiseRate != null">
+        raiseRate = #{raiseRate,jdbcType=DOUBLE},
+      </if>
+      <if test="defaultSettlebasi != null">
+        defaultSettlebasi = #{defaultSettlebasi,jdbcType=INTEGER},
+      </if>
+      <if test="zssFlag != null">
+        zssFlag = #{zssFlag,jdbcType=BIT},
+      </if>
+      <if test="multiVendorFlag != null">
+        multiVendorFlag = #{multiVendorFlag,jdbcType=BIT},
+      </if>
+      <if test="kindPrincipal != null">
+        kindPrincipal = #{kindPrincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null">
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="planGrossProfit != null">
+        planGrossProfit = #{planGrossProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="flatRate != null">
+        flatRate = #{flatRate,jdbcType=DECIMAL},
+      </if>
+      <if test="changeRate != null">
+        changeRate = #{changeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="realBusinessArea != null">
+        realBusinessArea = #{realBusinessArea,jdbcType=DOUBLE},
+      </if>
+      <if test="postGroup != null">
+        postGroup = #{postGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="businessCompany != null">
+        businessCompany = #{businessCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="dstoreManageFlag != null">
+        dstoreManageFlag = #{dstoreManageFlag,jdbcType=BIT},
+      </if>
+      <if test="categoryCode != null">
+        categoryCode = #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="containShareArea != null">
+        containShareArea = #{containShareArea,jdbcType=DOUBLE},
+      </if>
+      <if test="shareRate != null">
+        shareRate = #{shareRate,jdbcType=REAL},
+      </if>
+      <if test="pmkcMin != null">
+        pmkcMin = #{pmkcMin,jdbcType=DECIMAL},
+      </if>
+      <if test="pmkcMax != null">
+        pmkcMax = #{pmkcMax,jdbcType=DECIMAL},
+      </if>
+      <if test="purchaseCycle != null">
+        purchaseCycle = #{purchaseCycle,jdbcType=INTEGER},
+      </if>
+      <if test="assistCode != null">
+        assistCode = #{assistCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orientation != null">
+        orientation = #{orientation,jdbcType=VARCHAR},
+      </if>
+      <if test="sharp != null">
+        sharp = #{sharp,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        length = #{length,jdbcType=VARCHAR},
+      </if>
+      <if test="rentHardLevel != null">
+        rentHardLevel = #{rentHardLevel,jdbcType=CHAR},
+      </if>
+      <if test="advType != null">
+        advType = #{advType,jdbcType=VARCHAR},
+      </if>
+      <if test="advMedia != null">
+        advMedia = #{advMedia,jdbcType=VARCHAR},
+      </if>
+      <if test="storeType != null">
+        storeType = #{storeType,jdbcType=VARCHAR},
+      </if>
+      <if test="rentArea != null">
+        rentArea = #{rentArea,jdbcType=DOUBLE},
+      </if>
+      <if test="repossessionFlag != null">
+        repossessionFlag = #{repossessionFlag,jdbcType=CHAR},
+      </if>
+      <if test="unitRent != null">
+        unitRent = #{unitRent,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRent != null">
+        totalRent = #{totalRent,jdbcType=DECIMAL},
+      </if>
+      <if test="lesseeCoor != null">
+        lesseeCoor = #{lesseeCoor,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAssistInfo != null">
+        storeAssistInfo = #{storeAssistInfo,jdbcType=CHAR},
+      </if>
+      <if test="contractNo != null">
+        contractNo = #{contractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="build != null">
+        build = #{build,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null">
+        floor = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="busiType != null">
+        busiType = #{busiType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiPlace != null">
+        busiPlace = #{busiPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="leafFlag != null">
+        leafFlag = #{leafFlag,jdbcType=BIT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lang != null">
+        lang = #{lang,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        createDate = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        updateDate = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealStatus != null">
+        dealStatus = #{dealStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orgCode = #{orgCode} and erpCode = #{erpCode} and entId = #{entId}
+  </update>
+
+
+  <select id="count" parameterType="JSONObject" resultType="long">
+    select count(*) from extsaleorg
+    where orgCode = #{orgCode} and erpCode = #{erpCode} and entId = #{entId}
+  </select>
+
+  <insert id="insertAll" parameterType="JSONObject">
+    insert into extsaleorg (saleOrgId, entId, shopId,
+                            orgCode, orgName, orgEnName,
+                            orgSname, parentId, parentCode,
+                            shopForm, shopTypex, purchaseTypex,
+                            commerceCircle, league, brand,
+                            priceGroup, shopZonex, openningTime,
+                            bookNo, subject, erpCode,
+                            companyName, deliveryCode, deliveryName,
+                            telephone, busiAreage, buildAreage,
+                            rent, deliveryCycle, safeStockDays,
+                            orderCycle, recordDate, industry,
+                            accountCode, manageArea, onlineFlag,
+                            wareType, chainType, upDeliveryFlag,
+                            raiseRate, defaultSettlebasi, zssFlag,
+                            multiVendorFlag, kindPrincipal, fax,
+                            email, planGrossProfit, flatRate,
+                            changeRate, realBusinessArea, postGroup,
+                            businessCompany, dstoreManageFlag, categoryCode,
+                            containShareArea, shareRate, pmkcMin,
+                            pmkcMax, purchaseCycle, assistCode,
+                            orientation, sharp, length,
+                            rentHardLevel, advType, advMedia,
+                            storeType, rentArea, repossessionFlag,
+                            unitRent, totalRent, lesseeCoor,
+                            storeAssistInfo, contractNo, source,
+                            build, floor, busiType,
+                            busiPlace, area, level,
+                            leafFlag, status, lang,
+                            creator, createDate, modifier,
+                            updateDate, dealStatus)
+    values
+      <foreach collection="list" item="item" separator=",">
+        (#{item.saleOrgId,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT}, #{item.shopId,jdbcType=BIGINT},
+        #{item.orgCode,jdbcType=VARCHAR}, #{item.orgName,jdbcType=VARCHAR}, #{item.orgEnName,jdbcType=VARCHAR},
+        #{item.orgSname,jdbcType=VARCHAR}, #{item.parentId,jdbcType=BIGINT}, #{item.parentCode,jdbcType=VARCHAR},
+        #{item.shopForm,jdbcType=VARCHAR}, #{item.shopTypex,jdbcType=VARCHAR}, #{item.purchaseTypex,jdbcType=VARCHAR},
+        #{item.commerceCircle,jdbcType=VARCHAR}, #{item.league,jdbcType=VARCHAR}, #{item.brand,jdbcType=VARCHAR},
+        #{item.priceGroup,jdbcType=VARCHAR}, #{item.shopZonex,jdbcType=VARCHAR}, #{item.openningTime,jdbcType=TIMESTAMP},
+        #{item.bookNo,jdbcType=VARCHAR}, #{item.subject,jdbcType=VARCHAR}, #{item.erpCode,jdbcType=VARCHAR},
+        #{item.companyName,jdbcType=VARCHAR}, #{item.deliveryCode,jdbcType=VARCHAR}, #{item.deliveryName,jdbcType=VARCHAR},
+        #{item.telephone,jdbcType=VARCHAR}, #{item.busiAreage,jdbcType=DOUBLE}, #{item.buildAreage,jdbcType=DOUBLE},
+        #{item.rent,jdbcType=DECIMAL}, #{item.deliveryCycle,jdbcType=VARCHAR}, #{item.safeStockDays,jdbcType=INTEGER},
+        #{item.orderCycle,jdbcType=VARCHAR}, #{item.recordDate,jdbcType=TIMESTAMP}, #{item.industry,jdbcType=VARCHAR},
+        #{item.accountCode,jdbcType=VARCHAR}, #{item.manageArea,jdbcType=VARCHAR}, #{item.onlineFlag,jdbcType=BIT},
+        #{item.wareType,jdbcType=INTEGER}, #{item.chainType,jdbcType=INTEGER}, #{item.upDeliveryFlag,jdbcType=BIT},
+        #{item.raiseRate,jdbcType=DOUBLE}, #{item.defaultSettlebasi,jdbcType=INTEGER}, #{item.zssFlag,jdbcType=BIT},
+        #{item.multiVendorFlag,jdbcType=BIT}, #{item.kindPrincipal,jdbcType=VARCHAR}, #{item.fax,jdbcType=VARCHAR},
+        #{item.email,jdbcType=VARCHAR}, #{item.planGrossProfit,jdbcType=DECIMAL}, #{item.flatRate,jdbcType=DECIMAL},
+        #{item.changeRate,jdbcType=DECIMAL}, #{item.realBusinessArea,jdbcType=DOUBLE}, #{item.postGroup,jdbcType=VARCHAR},
+        #{item.businessCompany,jdbcType=VARCHAR}, #{item.dstoreManageFlag,jdbcType=BIT}, #{item.categoryCode,jdbcType=VARCHAR},
+        #{item.containShareArea,jdbcType=DOUBLE}, #{item.shareRate,jdbcType=REAL}, #{item.pmkcMin,jdbcType=DECIMAL},
+        #{item.pmkcMax,jdbcType=DECIMAL}, #{item.purchaseCycle,jdbcType=INTEGER}, #{item.assistCode,jdbcType=VARCHAR},
+        #{item.orientation,jdbcType=VARCHAR}, #{item.sharp,jdbcType=VARCHAR}, #{item.length,jdbcType=VARCHAR},
+        #{item.rentHardLevel,jdbcType=CHAR}, #{item.advType,jdbcType=VARCHAR}, #{item.advMedia,jdbcType=VARCHAR},
+        #{item.storeType,jdbcType=VARCHAR}, #{item.rentArea,jdbcType=DOUBLE}, #{item.repossessionFlag,jdbcType=CHAR},
+        #{item.unitRent,jdbcType=DECIMAL}, #{item.totalRent,jdbcType=DECIMAL}, #{item.lesseeCoor,jdbcType=VARCHAR},
+        #{item.storeAssistInfo,jdbcType=CHAR}, #{item.contractNo,jdbcType=VARCHAR}, #{item.source,jdbcType=INTEGER},
+        #{item.build,jdbcType=VARCHAR}, #{item.floor,jdbcType=VARCHAR}, #{item.busiType,jdbcType=VARCHAR},
+        #{item.busiPlace,jdbcType=VARCHAR}, #{item.area,jdbcType=VARCHAR}, #{item.level,jdbcType=INTEGER},
+        #{item.leafFlag,jdbcType=BIT}, #{item.status,jdbcType=INTEGER}, #{item.lang,jdbcType=VARCHAR},
+        #{item.creator,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP}, #{item.modifier,jdbcType=VARCHAR},
+        #{item.updateDate,jdbcType=TIMESTAMP}, #{item.dealStatus,jdbcType=INTEGER})
+      </foreach>
+  </insert>
+
+  <insert id="insert" parameterType="JSONObject">
+      insert into extsaleorg (saleOrgId, entId, shopId,
+        orgCode, orgName, orgEnName,
+        orgSname, parentId, parentCode,
+        shopForm, shopTypex, purchaseTypex,
+        commerceCircle, league, brand,
+        priceGroup, shopZonex, openningTime,
+        bookNo, subject, erpCode,
+        companyName, deliveryCode, deliveryName,
+        telephone, busiAreage, buildAreage,
+        rent, deliveryCycle, safeStockDays,
+        orderCycle, recordDate, industry,
+        accountCode, manageArea, onlineFlag,
+        wareType, chainType, upDeliveryFlag,
+        raiseRate, defaultSettlebasi, zssFlag,
+        multiVendorFlag, kindPrincipal, fax,
+        email, planGrossProfit, flatRate,
+        changeRate, realBusinessArea, postGroup,
+        businessCompany, dstoreManageFlag, categoryCode,
+        containShareArea, shareRate, pmkcMin,
+        pmkcMax, purchaseCycle, assistCode,
+        orientation, sharp, length,
+        rentHardLevel, advType, advMedia,
+        storeType, rentArea, repossessionFlag,
+        unitRent, totalRent, lesseeCoor,
+        storeAssistInfo, contractNo, source,
+        build, floor, busiType,
+        busiPlace, area, level,
+        leafFlag, status, lang,
+        creator, createDate, modifier,
+        updateDate, dealStatus)
+      values (#{saleOrgId,jdbcType=BIGINT}, #{entId,jdbcType=BIGINT}, #{shopId,jdbcType=BIGINT},
+        #{orgCode,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{orgEnName,jdbcType=VARCHAR},
+        #{orgSname,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{parentCode,jdbcType=VARCHAR},
+        #{shopForm,jdbcType=VARCHAR}, #{shopTypex,jdbcType=VARCHAR}, #{purchaseTypex,jdbcType=VARCHAR},
+        #{commerceCircle,jdbcType=VARCHAR}, #{league,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR},
+        #{priceGroup,jdbcType=VARCHAR}, #{shopZonex,jdbcType=VARCHAR}, #{openningTime,jdbcType=TIMESTAMP},
+        #{bookNo,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{erpCode,jdbcType=VARCHAR},
+        #{companyName,jdbcType=VARCHAR}, #{deliveryCode,jdbcType=VARCHAR}, #{deliveryName,jdbcType=VARCHAR},
+        #{telephone,jdbcType=VARCHAR}, #{busiAreage,jdbcType=DOUBLE}, #{buildAreage,jdbcType=DOUBLE},
+        #{rent,jdbcType=DECIMAL}, #{deliveryCycle,jdbcType=VARCHAR}, #{safeStockDays,jdbcType=INTEGER},
+        #{orderCycle,jdbcType=VARCHAR}, #{recordDate,jdbcType=TIMESTAMP}, #{industry,jdbcType=VARCHAR},
+        #{accountCode,jdbcType=VARCHAR}, #{manageArea,jdbcType=VARCHAR}, #{onlineFlag,jdbcType=BIT},
+        #{wareType,jdbcType=INTEGER}, #{chainType,jdbcType=INTEGER}, #{upDeliveryFlag,jdbcType=BIT},
+        #{raiseRate,jdbcType=DOUBLE}, #{defaultSettlebasi,jdbcType=INTEGER}, #{zssFlag,jdbcType=BIT},
+        #{multiVendorFlag,jdbcType=BIT}, #{kindPrincipal,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR}, #{planGrossProfit,jdbcType=DECIMAL}, #{flatRate,jdbcType=DECIMAL},
+        #{changeRate,jdbcType=DECIMAL}, #{realBusinessArea,jdbcType=DOUBLE}, #{postGroup,jdbcType=VARCHAR},
+        #{businessCompany,jdbcType=VARCHAR}, #{dstoreManageFlag,jdbcType=BIT}, #{categoryCode,jdbcType=VARCHAR},
+        #{containShareArea,jdbcType=DOUBLE}, #{shareRate,jdbcType=REAL}, #{pmkcMin,jdbcType=DECIMAL},
+        #{pmkcMax,jdbcType=DECIMAL}, #{purchaseCycle,jdbcType=INTEGER}, #{assistCode,jdbcType=VARCHAR},
+        #{orientation,jdbcType=VARCHAR}, #{sharp,jdbcType=VARCHAR}, #{length,jdbcType=VARCHAR},
+        #{rentHardLevel,jdbcType=CHAR}, #{advType,jdbcType=VARCHAR}, #{advMedia,jdbcType=VARCHAR},
+        #{storeType,jdbcType=VARCHAR}, #{rentArea,jdbcType=DOUBLE}, #{repossessionFlag,jdbcType=CHAR},
+        #{unitRent,jdbcType=DECIMAL}, #{totalRent,jdbcType=DECIMAL}, #{lesseeCoor,jdbcType=VARCHAR},
+        #{storeAssistInfo,jdbcType=CHAR}, #{contractNo,jdbcType=VARCHAR}, #{source,jdbcType=SMALLINT},
+        #{build,jdbcType=VARCHAR}, #{floor,jdbcType=VARCHAR}, #{busiType,jdbcType=VARCHAR},
+        #{busiPlace,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
+        #{leafFlag,jdbcType=BIT}, #{status,jdbcType=INTEGER}, #{lang,jdbcType=VARCHAR},
+        #{creator,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR},
+        #{updateDate,jdbcType=TIMESTAMP}, #{dealStatus,jdbcType=INTEGER})
+    </insert>
+    
+    <update id="updateAll" parameterType="JSONObject" >
+	  	<foreach collection="list" item="item" separator=";" >
+	  	 update extsaleorg
+		    <set>
+		      <if test="item.entId != null">
+		        entId = #{item.entId,jdbcType=BIGINT},
+		      </if>
+		      <if test="item.shopId != null">
+		        shopId = #{item.shopId,jdbcType=BIGINT},
+		      </if>
+		      <if test="item.orgCode != null">
+		        orgCode = #{item.orgCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.orgName != null">
+		        orgName = #{item.orgName,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.orgEnName != null">
+		        orgEnName = #{item.orgEnName,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.orgSname != null">
+		        orgSname = #{item.orgSname,jdbcType=VARCHAR},
+		      </if>
+		      <!--<if test="item.parentId != null">
+		        parentId = #{item.parentId,jdbcType=BIGINT},
+		      </if>-->
+		      <if test="item.parentCode != null">
+		        parentCode = #{item.parentCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.shopForm != null">
+		        shopForm = #{item.shopForm,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.shopTypex != null">
+		        shopTypex = #{item.shopTypex,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.purchaseTypex != null">
+		        purchaseTypex = #{item.purchaseTypex,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.commerceCircle != null">
+		        commerceCircle = #{item.commerceCircle,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.league != null">
+		        league = #{item.league,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.brand != null">
+		        brand = #{item.brand,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.priceGroup != null">
+		        priceGroup = #{item.priceGroup,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.shopZonex != null">
+		        shopZonex = #{item.shopZonex,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.openningTime != null">
+		        openningTime = #{item.openningTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="item.bookNo != null">
+		        bookNo = #{item.bookNo,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.subject != null">
+		        subject = #{item.subject,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.erpCode != null">
+		        erpCode = #{item.erpCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.companyName != null">
+		        companyName = #{item.companyName,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.deliveryCode != null">
+		        deliveryCode = #{item.deliveryCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.deliveryName != null">
+		        deliveryName = #{item.deliveryName,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.telephone != null">
+		        telephone = #{item.telephone,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.busiAreage != null">
+		        busiAreage = #{item.busiAreage,jdbcType=DOUBLE},
+		      </if>
+		      <if test="item.buildAreage != null">
+		        buildAreage = #{item.buildAreage,jdbcType=DOUBLE},
+		      </if>
+		      <if test="item.rent != null">
+		        rent = #{item.rent,jdbcType=DECIMAL},
+		      </if>
+		      <if test="item.deliveryCycle != null">
+		        deliveryCycle = #{item.deliveryCycle,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.safeStockDays != null">
+		        safeStockDays = #{item.safeStockDays,jdbcType=INTEGER},
+		      </if>
+		      <if test="item.orderCycle != null">
+		        orderCycle = #{item.orderCycle,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.recordDate != null">
+		        recordDate = #{item.recordDate,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="item.industry != null">
+		        industry = #{item.industry,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.accountCode != null">
+		        accountCode = #{item.accountCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.manageArea != null">
+		        manageArea = #{item.manageArea,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.onlineFlag != null">
+		        onlineFlag = #{item.onlineFlag,jdbcType=BIT},
+		      </if>
+		      <if test="item.wareType != null">
+		        wareType = #{item.wareType,jdbcType=INTEGER},
+		      </if>
+		      <if test="item.chainType != null">
+		        chainType = #{item.chainType,jdbcType=INTEGER},
+		      </if>
+		      <if test="item.upDeliveryFlag != null">
+		        upDeliveryFlag = #{item.upDeliveryFlag,jdbcType=BIT},
+		      </if>
+		      <if test="item.raiseRate != null">
+		        raiseRate = #{item.raiseRate,jdbcType=DOUBLE},
+		      </if>
+		      <if test="item.defaultSettlebasi != null">
+		        defaultSettlebasi = #{item.defaultSettlebasi,jdbcType=INTEGER},
+		      </if>
+		      <if test="item.zssFlag != null">
+		        zssFlag = #{item.zssFlag,jdbcType=BIT},
+		      </if>
+		      <if test="item.multiVendorFlag != null">
+		        multiVendorFlag = #{item.multiVendorFlag,jdbcType=BIT},
+		      </if>
+		      <if test="item.kindPrincipal != null">
+		        kindPrincipal = #{item.kindPrincipal,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.fax != null">
+		        fax = #{item.fax,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.email != null">
+		        email = #{item.email,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.planGrossProfit != null">
+		        planGrossProfit = #{item.planGrossProfit,jdbcType=DECIMAL},
+		      </if>
+		      <if test="item.flatRate != null">
+		        flatRate = #{item.flatRate,jdbcType=DECIMAL},
+		      </if>
+		      <if test="item.changeRate != null">
+		        changeRate = #{item.changeRate,jdbcType=DECIMAL},
+		      </if>
+		      <if test="item.realBusinessArea != null">
+		        realBusinessArea = #{item.realBusinessArea,jdbcType=DOUBLE},
+		      </if>
+		      <if test="item.postGroup != null">
+		        postGroup = #{item.postGroup,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.businessCompany != null">
+		        businessCompany = #{item.businessCompany,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.dstoreManageFlag != null">
+		        dstoreManageFlag = #{item.dstoreManageFlag,jdbcType=BIT},
+		      </if>
+		      <if test="item.categoryCode != null">
+		        categoryCode = #{item.categoryCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.containShareArea != null">
+		        containShareArea = #{item.containShareArea,jdbcType=DOUBLE},
+		      </if>
+		      <if test="item.shareRate != null">
+		        shareRate = #{item.shareRate,jdbcType=REAL},
+		      </if>
+		      <if test="item.pmkcMin != null">
+		        pmkcMin = #{item.pmkcMin,jdbcType=DECIMAL},
+		      </if>
+		      <if test="item.pmkcMax != null">
+		        pmkcMax = #{item.pmkcMax,jdbcType=DECIMAL},
+		      </if>
+		      <if test="item.purchaseCycle != null">
+		        purchaseCycle = #{item.purchaseCycle,jdbcType=INTEGER},
+		      </if>
+		      <if test="item.assistCode != null">
+		        assistCode = #{item.assistCode,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.orientation != null">
+		        orientation = #{item.orientation,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.sharp != null">
+		        sharp = #{item.sharp,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.length != null">
+		        length = #{item.length,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.rentHardLevel != null">
+		        rentHardLevel = #{item.rentHardLevel,jdbcType=CHAR},
+		      </if>
+		      <if test="item.advType != null">
+		        advType = #{item.advType,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.advMedia != null">
+		        advMedia = #{item.advMedia,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.storeType != null">
+		        storeType = #{item.storeType,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.rentArea != null">
+		        rentArea = #{item.rentArea,jdbcType=DOUBLE},
+		      </if>
+		      <if test="item.repossessionFlag != null">
+		        repossessionFlag = #{item.repossessionFlag,jdbcType=CHAR},
+		      </if>
+		      <if test="item.unitRent != null">
+		        unitRent = #{item.unitRent,jdbcType=DECIMAL},
+		      </if>
+		      <if test="item.totalRent != null">
+		        totalRent = #{item.totalRent,jdbcType=DECIMAL},
+		      </if>
+		      <if test="item.lesseeCoor != null">
+		        lesseeCoor = #{item.lesseeCoor,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.storeAssistInfo != null">
+		        storeAssistInfo = #{item.storeAssistInfo,jdbcType=CHAR},
+		      </if>
+		      <if test="item.contractNo != null">
+		        contractNo = #{item.contractNo,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.source != null">
+		        source = #{item.source,jdbcType=INTEGER},
+		      </if>
+		      <if test="item.build != null">
+		        build = #{item.build,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.floor != null">
+		        floor = #{item.floor,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.busiType != null">
+		        busiType = #{item.busiType,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.busiPlace != null">
+		        busiPlace = #{item.busiPlace,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.area != null">
+		        area = #{item.area,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.level != null">
+		        level = #{item.level,jdbcType=INTEGER},
+		      </if>
+		      <if test="item.leafFlag != null">
+		        leafFlag = #{item.leafFlag,jdbcType=BIT},
+		      </if>
+		      <if test="item.status != null">
+		        status = #{item.status,jdbcType=INTEGER},
+		      </if>
+		      <if test="item.lang != null">
+		        lang = #{item.lang,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.creator != null">
+		        creator = #{item.creator,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.createDate != null">
+		        createDate = #{item.createDate,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="item.modifier != null">
+		        modifier = #{item.modifier,jdbcType=VARCHAR},
+		      </if>
+		      <if test="item.updateDate != null">
+		        updateDate = #{item.updateDate,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="item.dealStatus != null">
+		        dealStatus = #{item.dealStatus,jdbcType=INTEGER},
+		      </if>
+		    </set>
+		    where orgCode = #{item.orgCode} and erpCode = #{item.erpCode} and entId = #{item.entId}
+     	</foreach>
+    </update>
+    
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.GoodsSpecModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.GoodsSpecModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="gsid" jdbcType="BIGINT" property="gsid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="shopId" jdbcType="BIGINT" property="shopId" />
+    <result column="sgid" jdbcType="BIGINT" property="sgid" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="spurNum" jdbcType="INTEGER" property="spurNum" />
+    <result column="spurSpec" jdbcType="VARCHAR" property="spurSpec" />
+    <result column="spurUnit" jdbcType="VARCHAR" property="spurUnit" />
+    <result column="mpurNum" jdbcType="INTEGER" property="mpurNum" />
+    <result column="mpurSpec" jdbcType="VARCHAR" property="mpurSpec" />
+    <result column="mpurUnit" jdbcType="VARCHAR" property="mpurUnit" />
+    <result column="lpurNum" jdbcType="INTEGER" property="lpurNum" />
+    <result column="lpurSpec" jdbcType="VARCHAR" property="lpurSpec" />
+    <result column="lpurUnit" jdbcType="VARCHAR" property="lpurUnit" />
+    <result column="purNum" jdbcType="INTEGER" property="purNum" />
+    <result column="minPurNum" jdbcType="INTEGER" property="minPurNum" />
+    <result column="minPurUnit" jdbcType="VARCHAR" property="minPurUnit" />
+    <result column="sDeliveryNum" jdbcType="INTEGER" property="sDeliveryNum" />
+    <result column="sDeliverySpec" jdbcType="VARCHAR" property="sDeliverySpec" />
+    <result column="sDeliveryUnit" jdbcType="VARCHAR" property="sDeliveryUnit" />
+    <result column="mDeliveryNum" jdbcType="INTEGER" property="mDeliveryNum" />
+    <result column="mDeliverySpec" jdbcType="VARCHAR" property="mDeliverySpec" />
+    <result column="mDeliveryUnit" jdbcType="VARCHAR" property="mDeliveryUnit" />
+    <result column="lDeliveryNum" jdbcType="INTEGER" property="lDeliveryNum" />
+    <result column="lDeliverySpec" jdbcType="VARCHAR" property="lDeliverySpec" />
+    <result column="lDeliveryUnit" jdbcType="VARCHAR" property="lDeliveryUnit" />
+    <result column="deliveryNum" jdbcType="INTEGER" property="deliveryNum" />
+    <result column="minDeliveryNum" jdbcType="INTEGER" property="minDeliveryNum" />
+    <result column="minDeliveryUnit" jdbcType="VARCHAR" property="minDeliveryUnit" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  
+  <select id="searchByState" parameterType="map" resultType="java.util.Map">
+  	SELECT s.*, g.goodsName, g.goodsCode
+  	FROM GoodsSpec s, Goods as g
+  	WHERE 1=1 AND s.entId = g.entId AND s.erpCode = g.erpCode AND s.sgid = g.sgid
+  	<if test="sgid != null">
+  		AND s.sgid = #{sgid}
+  	</if>
+  	<if test="erpCode != null">
+  		AND s.erpCode = #{erpCode}
+  	</if>
+  	<if test="entId != null">
+  		AND s.entId = #{entId}
+  	</if>
+  </select>
+  
+  <select id="searchByStateCount" parameterType="map" resultType="long">
+  	SELECT COUNT(1)
+  	FROM GoodsSpec s, Goods as g
+  	WHERE 1=1 AND s.entId = g.entId AND s.erpCode = g.erpCode AND s.sgid = g.sgid
+  	<if test="sgid != null">
+  		AND s.sgid = #{sgid}
+  	</if>
+  	<if test="erpCode != null">
+  		AND s.erpCode = #{erpCode}
+  	</if>
+  	<if test="entId != null">
+  		AND s.entId = #{entId}
+  	</if>
+  </select>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.ExtCategoryModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.ExtCategoryModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ecategoryId" jdbcType="BIGINT" property="ecategoryId" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="categoryCode" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="categoryName" jdbcType="VARCHAR" property="categoryName" />
+    <result column="categorLevel" jdbcType="VARCHAR" property="categorLevel" />
+    <result column="parentId" jdbcType="BIGINT" property="parentId" />
+    <result column="parentCode" jdbcType="VARCHAR" property="parentCode" />
+    <result column="categoryStatus" jdbcType="INTEGER" property="categoryStatus" />
+    <result column="dmsValue" jdbcType="DOUBLE" property="dmsValue" />
+    <result column="saleQuotaDays" jdbcType="INTEGER" property="saleQuotaDays" />
+    <result column="standardSaleDays" jdbcType="INTEGER" property="standardSaleDays" />
+    <result column="trySaleDays" jdbcType="INTEGER" property="trySaleDays" />
+    <result column="safeStockDays" jdbcType="INTEGER" property="safeStockDays" />
+    <result column="minStockDays" jdbcType="INTEGER" property="minStockDays" />
+    <result column="maxStockDays" jdbcType="INTEGER" property="maxStockDays" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="leafFlag" jdbcType="BIT" property="leafFlag" />
+    <result column="sourceFromCode" jdbcType="VARCHAR" property="sourceFromCode" />
+    <result column="dealStatus" jdbcType="INTEGER" property="dealStatus" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+</mapper>

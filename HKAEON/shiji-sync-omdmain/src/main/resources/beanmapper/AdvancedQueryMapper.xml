@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdvancedQueryMapper">
+
+	<resultMap id="advancedQueryMap" type="HashMap">
+		<result property="key" column="mapkey" />
+		<result property="value" column="mapvalue" />
+	</resultMap>
+
+	<!-- 通过Code源表查询ID add by yihaitao 2022-12-09
+	select goodsCode,sgid from goods where goodsCode in (select distinct goodsCode from goodsshopref where sgid is null)
+	select ${sourceCode} as mapkey,${sourceId} as mapvalue from ${sourceTable} where goodsCode in (select ${sourceCode} from ${targetTable} where ${sourceId} is null）
+	update goodshopref set sgid = 1 where goodsCode = '12345' and sgid is null;
+	-->
+	<select id="selectIdByCode" parameterType="map" resultMap="advancedQueryMap" statementType="STATEMENT">
+		select ${sourceCode} as mapkey, ${sourceId} as mapvalue from ${sourceTable}
+			where ${targetCode} in (select distinct ${sourceCode} from ${targetTable} where ${sourceId} is null)
+	</select>
+	<update id="singleUpdateIdByCode" parameterType="map" statementType="STATEMENT">
+		update ${targetTable} set ${targetId} = ${value}, updateDate = now() where ${targetCode} = '${key}' and ${targetId} is null
+	</update>
+
+	<select id="classCodeMinDiscount" parameterType="map" resultMap="advancedQueryMap">
+		select categoryCode as mapkey,minDiscount as mapvalue from mindiscount m where m.`level` = 5
+	</select>
+
+	<select id="artiCodeMinDiscount" parameterType="map" resultMap="advancedQueryMap">
+		select c.categoryCode as mapkey,m.minDiscount as mapvalue from mindiscount m join category c on m.categoryCode = c.parentCode and m.level = 4 and c.`level` = 5
+	</select>
+	<!--
+		SELECT
+		  partition_name part, 
+		  partition_expression expr, 
+		  partition_description descr, 
+		  table_rows 
+		FROM
+		  INFORMATION_SCHEMA.partitions 
+		WHERE
+		  TABLE_SCHEMA = schema() 
+		  AND TABLE_NAME='goodsshopref'   
+	-->
+	<select id="distinctShopCode" parameterType="map" resultType="map">
+		SELECT DISTINCT shopCode FROM shop
+	</select>
+	
+	<select id="selectPartitions" parameterType="map" resultType="map">
+		SELECT
+		  partition_description shopcode
+		FROM
+		  INFORMATION_SCHEMA.partitions 
+		WHERE
+		  TABLE_SCHEMA = schema() 
+		  AND TABLE_NAME='goodsshopref'
+	</select>
+	
+	<!-- 插入日志表 -->
+	<insert id="insertSyncDataTime" parameterType="map">
+        insert into syncdatatime (syncId, startTime, endTime, finishFlag, modelName, returnMsg)
+        values (#{syncId,jdbcType=BIGINT},
+                #{startTime,jdbcType=TIMESTAMP},
+                #{endTime,jdbcType=TIMESTAMP},
+                #{finishFlag,jdbcType=BIT},
+                #{modelName,jdbcType=VARCHAR},
+                #{returnMsg,jdbcType=VARCHAR})
+    </insert>
+    
+	<!-- 通用设置ID通过Code -->
+	<!-- update category c1 join category c2 
+			on c1.parentCode = c2.categoryCode and c1.entId = c2.entId  and c1.erpCode = c2.erpCode  
+			set c1.parentId = c2.categoryId 
+		where c1.parentId is null -->
+	<update id="updateIdByCode" parameterType="map" statementType="STATEMENT">
+		update ${targetTable} t1 join ${sourceTable} t2 
+			on t1.${targetCode} = t2.${sourceCode} and t1.entId = t2.entId  and t1.erpCode = t2.erpCode  
+			set t1.${targetId} = t2.${sourceId} 
+		where t1.${targetId} is null
+	</update>
+
+	<!--动态查询,返回key value键值对 -->
+	<select id="selectMap" parameterType="map" resultMap="advancedQueryMap" statementType="STATEMENT">
+		SELECT ${field} FROM ${table} WHERE (${key}) IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+           (${item})       
+       	</foreach>  
+    </select>
+
+	<!-- 据根据业务规则唯一性批量查询(通用接口) -->
+	<select id="queryDataByUnique" parameterType="map"
+		resultType="map" statementType="STATEMENT">
+		SELECT * FROM ${table} WHERE (${key}) IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+			(${item})
+		</foreach>
+	</select>
+	
+	<!--动态删除 (批量)-->
+	<delete id="deleteModel" parameterType="map" statementType="STATEMENT">
+		DELETE FROM	${table} WHERE ${key} IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+           ${item}       
+       	</foreach>  
+	</delete>
+	
+	<!--动态查询(批量) -->
+	<select id="selectModel" parameterType="map" resultType="map" statementType="STATEMENT">
+		SELECT * FROM ${table} WHERE ${key} IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+           ${item}       
+       	</foreach>  
+	</select>
+	
+	<!--动态更新(批量) -->
+	<update id="updateModel" parameterType="map"  statementType="STATEMENT">
+		UPDATE ${table} SET ${setField} = ${setFieldValue} WHERE ${key} IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+           ${item}    
+       	</foreach>
+       	<if test="erpCode != null">
+       		AND erpCode = '${erpCode}'
+       	</if>
+       	<if test="entId != null">
+       		AND entId = ${entId}
+       	</if>
+	</update>
+
+	<!--删除999门店数据-->
+	<delete id="deleteShop" parameterType="map" statementType="STATEMENT">
+		DELETE FROM shop WHERE shopCode = '999'
+	</delete>
+</mapper>
+  

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.SaleGoodsItemsModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.SaleGoodsItemsModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+   <id column="sgiid" jdbcType="BIGINT" property="sgiid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="goodsType" jdbcType="INTEGER" property="goodsType" />
+    <result column="gsgid" jdbcType="BIGINT" property="gsgid" />
+    <result column="ggoodsCode" jdbcType="VARCHAR" property="ggoodsCode" />
+    <result column="ssgid" jdbcType="BIGINT" property="ssgid" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="barNo" jdbcType="VARCHAR" property="barNo" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="discountShareRate" jdbcType="REAL" property="discountShareRate" />
+    <result column="salePrice" jdbcType="DECIMAL" property="salePrice" />
+    <result column="sortFlag" jdbcType="INTEGER" property="sortFlag" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  
+  <select id="selectParentGoodsByChildGoodsCodes" parameterType="map" resultMap = "BaseResultMap">
+	SELECT s.*
+	FROM SaleGoodsItems s
+	WHERE 1=1
+	<if test = "entId != null">
+		AND s.entId = #{entId}
+	</if>
+	<if test = "goodsType != null">
+		AND s.goodsType = #{goodsType}
+	</if>
+	<if test = "goodsCode != null">
+		AND s.goodsCode = #{goodsCode}
+	</if>
+  </select>
+</mapper>

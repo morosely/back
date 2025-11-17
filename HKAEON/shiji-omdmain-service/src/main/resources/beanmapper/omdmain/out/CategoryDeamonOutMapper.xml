@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.out.CategoryDeamonOutMapper">
+  <resultMap id="BaseResultMap" type="java.util.Map">
+  	<id column="categoryId" jdbcType="BIGINT" property="cid" />
+    <result column="entId" jdbcType="BIGINT" property="ent_id" />
+    <result column="categorycode" jdbcType="VARCHAR" property="code" />
+    <result column="categoryname" jdbcType="VARCHAR" property="name" />
+    <result column="parentId" jdbcType="BIGINT" property="parent_id" />
+    <result column="parentcode" jdbcType="VARCHAR" property="parent_code" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="level" jdbcType="INTEGER" property="mcclass" />
+    <result column="leafFlag" jdbcType="BIT" property="is_parent" />
+    <result column="erpcode" jdbcType="VARCHAR" property="jygs" />
+  </resultMap>
+  
+  <select id="search" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		c.categoryId,c.entId,c.categorycode,c.categoryname,c.parentId,c.parentcode,c.level,c.erpcode,
+		CASE
+		WHEN c.leafFlag = 1 THEN
+			0
+		WHEN c.leafFlag = 0 THEN
+			1 ELSE NULL
+		END AS leafFlag
+		FROM
+		category c WHERE c.entId=#{entId}
+		<if test="cid != null">
+			AND c.categoryId = #{cid}
+		</if>
+		<if test="code != null">
+			AND c.categorycode = #{code}
+		</if>
+		<if test="name != null">
+			AND c.categoryname = #{name}
+		</if>
+		<if test="parent_code != null">
+			AND c.parentcode = #{parent_code}
+		</if>
+		<if test="mcclass != null">
+			AND c.level = #{mcclass}
+		</if>
+		<if test="is_parent != null">
+			AND c.leafFlag = #{is_parent}
+		</if>
+		<if test="jygs != null">
+			AND c.erpcode = #{jygs}
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<select id="count" parameterType="map" resultType="long">
+		SELECT
+		count(1)
+		FROM
+		category c where c.entId=#{entId}
+		<if test="cid != null">
+			AND c.categoryId = #{cid}
+		</if>
+		<if test="code != null">
+			AND c.categorycode = #{code}
+		</if>
+		<if test="name != null">
+			AND c.categoryname = #{name}
+		</if>
+		<if test="parent_code != null">
+			AND c.parentcode = #{parent_code}
+		</if>
+		<if test="mcclass != null">
+			AND c.level = #{mcclass}
+		</if>
+		<if test="is_parent != null">
+			AND c.leafFlag = #{is_parent}
+		</if>
+		<if test="jygs != null">
+			AND c.erpcode = #{jygs}
+		</if>
+	</select>
+  
+</mapper>

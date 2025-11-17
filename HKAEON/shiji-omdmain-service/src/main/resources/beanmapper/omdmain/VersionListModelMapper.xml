@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.VersionListModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.VersionListModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="vlid" jdbcType="BIGINT" property="vlid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="serialNo" jdbcType="VARCHAR" property="serialNo" />
+    <result column="tableName" jdbcType="VARCHAR" property="tableName" />
+    <result column="versionNo" jdbcType="VARCHAR" property="versionNo" />
+    <result column="rowsCount" jdbcType="BIGINT" property="rowsCount" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="statusFlag" jdbcType="INTEGER" property="statusFlag" />
+  </resultMap>
+</mapper>

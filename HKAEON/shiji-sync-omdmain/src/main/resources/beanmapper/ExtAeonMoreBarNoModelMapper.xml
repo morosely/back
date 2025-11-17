@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ExtAeonMoreBarNoModelMapper">
+
+    <insert id="insert" parameterType="com.efuture.model.ExtAeonMoreBarNoModel">
+        insert into extaeonmorebarno (mbid, goodsCode, barNo, groupCode, dealStatus,createDate,updateDate,mainBarcodeFlag,barNoStatus)
+        values (#{mbid,jdbcType=BIGINT},
+                #{goodsCode,jdbcType=VARCHAR},
+                #{barNo,jdbcType=VARCHAR},
+                #{groupCode,jdbcType=VARCHAR},
+                #{dealStatus,jdbcType=INTEGER},
+                #{createDate,jdbcType=TIMESTAMP},
+                #{updateDate,jdbcType=TIMESTAMP},
+                #{mainBarcodeFlag,jdbcType=SMALLINT},
+                #{barNoStatus,jdbcType=SMALLINT})
+    </insert>
+
+    <insert id="insertAll" parameterType="com.efuture.model.ExtAeonMoreBarNoModel">
+        insert into extaeonmorebarno (mbid, goodsCode, barNo, groupCode, dealStatus,createDate,updateDate,mainBarcodeFlag,barNoStatus)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.mbid,jdbcType=BIGINT},
+            #{item.goodsCode,jdbcType=VARCHAR},
+            #{item.barNo,jdbcType=VARCHAR},
+            #{item.groupCode,jdbcType=VARCHAR},
+            #{item.dealStatus,jdbcType=INTEGER},
+            #{item.createDate,jdbcType=TIMESTAMP},
+            #{item.updateDate,jdbcType=TIMESTAMP},
+            #{item.mainBarcodeFlag,jdbcType=SMALLINT},
+            #{item.barNoStatus,jdbcType=SMALLINT})
+        </foreach>
+    </insert>
+
+
+    <update id="updateAll" parameterType="com.efuture.model.ExtAeonMoreBarNoModel">
+        <foreach collection="list" item="item" separator=";">
+            update extaeonmorebarno
+            <set>
+                <!-- <if test="item.goodsCode != null">
+                    goodsCode = #{item.goodsCode,jdbcType=VARCHAR},
+                </if> -->
+                <if test="item.dealStatus != null">
+                    dealStatus = #{item.dealStatus,jdbcType=INTEGER},
+                </if>
+                <if test="item.updateDate != null">
+					updateDate = #{item.updateDate,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.mainBarcodeFlag != null">
+					mainBarcodeFlag = #{item.mainBarcodeFlag,jdbcType=SMALLINT},
+				</if>
+				<if test="item.barNoStatus != null">
+					barNoStatus = #{item.barNoStatus,jdbcType=SMALLINT},
+				</if>
+            </set>
+            where groupCode = #{item.groupCode,jdbcType=VARCHAR} and barNo = #{item.barNo,jdbcType=VARCHAR} and goodsCode = #{item.goodsCode,jdbcType=VARCHAR}
+        </foreach>
+    </update>
+
+    <update id="update" parameterType="com.efuture.model.ExtAeonMoreBarNoModel">
+         update extaeonmorebarno
+         <set>
+             <!-- <if test="goodsCode != null">
+                 goodsCode = #{goodsCode,jdbcType=VARCHAR},
+             </if> -->
+             <if test="dealStatus != null">
+                 dealStatus = #{dealStatus,jdbcType=INTEGER},
+             </if>
+             <if test="updateDate != null">
+				 updateDate = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mainBarcodeFlag != null">
+				 mainBarcodeFlag = #{mainBarcodeFlag,jdbcType=SMALLINT},
+			</if>
+			<if test="barNoStatus != null">
+				 barNoStatus = #{barNoStatus,jdbcType=SMALLINT},
+			</if>
+         </set>
+		where groupCode = #{groupCode,jdbcType=VARCHAR} and barNo = #{barNo,jdbcType=VARCHAR} and goodsCode = #{goodsCode,jdbcType=VARCHAR}
+	</update>
+</mapper>

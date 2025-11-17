@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.SaleGoodsImageModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.SaleGoodsImageModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="saleImageId" jdbcType="BIGINT" property="saleImageId" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="fileName" jdbcType="VARCHAR" property="fileName" />
+    <result column="imageType" jdbcType="INTEGER" property="imageType" />
+    <result column="showTerm" jdbcType="INTEGER" property="showTerm" />
+    <result column="imageUrl" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+</mapper>

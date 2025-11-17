@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.ExtPriceChangeBillDetailModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.ExtPriceChangeBillDetailModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="epcbdid" jdbcType="BIGINT" property="epcbdid" />
+    <result column="pcbid" jdbcType="BIGINT" property="pcbid" />
+    <result column="pcBillno" jdbcType="VARCHAR" property="pcBillno" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="sgid" jdbcType="BIGINT" property="sgid" />
+    <result column="goodsCode" jdbcType="BIGINT" property="goodsCode" />
+    <result column="goodsName" jdbcType="VARCHAR" property="goodsName" />
+    <result column="originPrice" jdbcType="VARCHAR" property="originPrice" />
+    <result column="nowPrice" jdbcType="VARCHAR" property="nowPrice" />
+    <result column="recieveDate" jdbcType="VARCHAR" property="recieveDate" />
+    <result column="pcDate" jdbcType="VARCHAR" property="pcDate" />
+    <result column="errorMsg" jdbcType="VARCHAR" property="errorMsg" />
+    <result column="sourceFromCode" jdbcType="VARCHAR" property="sourceFromCode" />
+    <result column="dealStatus" jdbcType="INTEGER" property="dealStatus" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+</mapper>

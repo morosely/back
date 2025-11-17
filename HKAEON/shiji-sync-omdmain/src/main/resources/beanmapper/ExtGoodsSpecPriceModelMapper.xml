@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ExtGoodsSpecPriceModelMapper">
+	<update id="update" parameterType="JSONObject">
+		update extgoodsspecprice
+		<set>
+			<if test="shopId != null">
+				shopId = #{shopId,jdbcType=BIGINT},
+			</if>
+			<if test="sgid != null">
+				sgid = #{sgid,jdbcType=BIGINT},
+			</if>
+			<if test="goodsName != null">
+				goodsName = #{goodsName,jdbcType=VARCHAR},
+			</if>
+			<if test="codeType != null">
+				codeType = #{codeType,jdbcType=SMALLINT},
+			</if>
+			<if test="partsNum != null">
+				partsNum = #{partsNum,jdbcType=DOUBLE},
+			</if>
+			<if test="partsUnit != null">
+				partsUnit = #{partsUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="salePrice != null">
+				salePrice = #{salePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="customPrice != null">
+				customPrice = #{customPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="bulkPrice != null">
+				bulkPrice = #{bulkPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="sortLevel != null">
+				sortLevel = #{sortLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="lang != null">
+				lang = #{lang,jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				creator = #{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				createDate = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				modifier = #{modifier,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				updateDate = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where goodsCode = #{goodsCode,jdbcType=VARCHAR} and
+		barNo=#{barNo,jdbcType=VARCHAR} and shopCode =
+		#{shopCode,jdbcType=VARCHAR} and entId = #{entId,jdbcType=BIGINT} and
+		erpCode = #{erpCode,jdbcType=VARCHAR}
+	</update>
+
+	<insert id="insert" parameterType="JSONObject">
+		insert into extgoodsspecprice (egspid, entId, erpCode,
+		shopId, shopCode, sgid,
+		goodsCode, goodsName, codeType,
+		barNo, partsNum, partsUnit,
+		salePrice, customPrice, bulkPrice,
+		sortLevel, lang, creator,
+		createDate, modifier, updateDate
+		)
+		values (#{egspid,jdbcType=BIGINT}, #{entId,jdbcType=BIGINT},
+		#{erpCode,jdbcType=VARCHAR},
+		#{shopId,jdbcType=BIGINT}, #{shopCode,jdbcType=VARCHAR}, #{sgid,jdbcType=BIGINT},
+		#{goodsCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR},
+		#{codeType,jdbcType=SMALLINT},
+		#{barNo,jdbcType=VARCHAR}, #{partsNum,jdbcType=DOUBLE}, #{partsUnit,jdbcType=VARCHAR},
+		#{salePrice,jdbcType=DECIMAL}, #{customPrice,jdbcType=DECIMAL},
+		#{bulkPrice,jdbcType=DECIMAL},
+		#{sortLevel,jdbcType=VARCHAR}, #{lang,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR},
+		#{updateDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+	<insert id="insertAll" parameterType="JSONObject">
+		insert into extgoodsspecprice (egspid, entId, erpCode,
+		shopId, shopCode, sgid,
+		goodsCode, goodsName, codeType,
+		barNo, partsNum, partsUnit,
+		salePrice, customPrice, bulkPrice,
+		sortLevel, lang, creator,
+		createDate, modifier, updateDate
+		)
+		<foreach collection="list" separator="," item="item">
+			values (#{item.egspid,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT},
+			#{item.erpCode,jdbcType=VARCHAR},
+			#{item.shopId,jdbcType=BIGINT}, #{item.shopCode,jdbcType=VARCHAR}, #{item.sgid,jdbcType=BIGINT},
+			#{item.goodsCode,jdbcType=VARCHAR},
+			#{item.goodsName,jdbcType=VARCHAR},
+			#{item.codeType,jdbcType=SMALLINT},
+			#{item.barNo,jdbcType=VARCHAR}, #{item.partsNum,jdbcType=DOUBLE},
+			#{item.partsUnit,jdbcType=VARCHAR},
+			#{item.salePrice,jdbcType=DECIMAL},
+			#{item.customPrice,jdbcType=DECIMAL},
+			#{item.bulkPrice,jdbcType=DECIMAL},
+			#{item.sortLevel,jdbcType=VARCHAR}, #{item.lang,jdbcType=VARCHAR},
+			#{item.creator,jdbcType=VARCHAR},
+			#{item.createDate,jdbcType=TIMESTAMP},
+			#{item.modifier,jdbcType=VARCHAR},
+			#{item.updateDate,jdbcType=TIMESTAMP}
+			)
+		</foreach>
+	</insert>
+
+	<update id="updateAll" parameterType="JSONObject">
+		<foreach collection="list" item="item" separator=";">
+			update extgoodsspecprice
+			<set>
+				<if test="item.shopId != null">
+					shopId = #{item.shopId,jdbcType=BIGINT},
+				</if>
+				<if test="item.sgid != null">
+					sgid = #{item.sgid,jdbcType=BIGINT},
+				</if>
+				<if test="item.goodsName != null">
+					goodsName = #{item.goodsName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.codeType != null">
+					codeType = #{item.codeType,jdbcType=SMALLINT},
+				</if>
+				<if test="item.partsNum != null">
+					partsNum = #{item.partsNum,jdbcType=DOUBLE},
+				</if>
+				<if test="item.partsUnit != null">
+					partsUnit = #{item.partsUnit,jdbcType=VARCHAR},
+				</if>
+				<if test="item.salePrice != null">
+					salePrice = #{item.salePrice,jdbcType=DECIMAL},
+				</if>
+				<if test="item.customPrice != null">
+					customPrice = #{item.customPrice,jdbcType=DECIMAL},
+				</if>
+				<if test="item.bulkPrice != null">
+					bulkPrice = #{item.bulkPrice,jdbcType=DECIMAL},
+				</if>
+				<if test="item.sortLevel != null">
+					sortLevel = #{item.sortLevel,jdbcType=VARCHAR},
+				</if>
+				<if test="item.lang != null">
+					lang = #{item.lang,jdbcType=VARCHAR},
+				</if>
+				<if test="item.creator != null">
+					creator = #{item.creator,jdbcType=VARCHAR},
+				</if>
+				<if test="item.createDate != null">
+					createDate = #{item.createDate,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.modifier != null">
+					modifier = #{item.modifier,jdbcType=VARCHAR},
+				</if>
+				<if test="item.updateDate != null">
+					updateDate = #{item.updateDate,jdbcType=TIMESTAMP},
+				</if>
+			</set>
+			where goodsCode = #{item.goodsCode,jdbcType=VARCHAR} and
+			barNo=#{item.barNo,jdbcType=VARCHAR} and shopCode =
+			#{item.shopCode,jdbcType=VARCHAR} and entId =
+			#{item.entId,jdbcType=BIGINT} and erpCode =
+			#{item.erpCode,jdbcType=VARCHAR}
+		</foreach>
+	</update>
+</mapper>

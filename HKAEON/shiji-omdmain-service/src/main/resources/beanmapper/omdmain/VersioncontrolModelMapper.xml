@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.VersioncontrolModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.VersioncontrolModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="vcid" jdbcType="BIGINT" property="vcid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="tableName" jdbcType="VARCHAR" property="tableName" />
+    <result column="currentVersionNo" jdbcType="VARCHAR" property="currentVersionNo" />
+  </resultMap>
+</mapper>

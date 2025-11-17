@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.out.SyncSaleGoodsModelMapper">
+	<resultMap id="SyncSaleGoodsResultMap" type="com.efuture.omdmain.model.out.SyncSaleGoodsModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ssgid" jdbcType="BIGINT" property="ssgid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="shopId" jdbcType="BIGINT" property="shopId" />
+    <result column="shopCode" jdbcType="VARCHAR" property="shopCode" />
+    <result column="saleOrgId" jdbcType="BIGINT" property="saleOrgId" />
+    <result column="orgCode" jdbcType="VARCHAR" property="orgCode" />
+    <result column="siid" jdbcType="BIGINT" property="siid" />
+    <result column="stallCode" jdbcType="VARCHAR" property="stallCode" />
+    <result column="goodsType" jdbcType="SMALLINT" property="goodsType" />
+    <result column="directFromErp" jdbcType="BIT" property="directFromErp" />
+    <result column="singleItemFlag" jdbcType="BIT" property="singleItemFlag" />
+    <result column="sgid" jdbcType="BIGINT" property="sgid" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="psgid" jdbcType="BIGINT" property="psgid" />
+    <result column="parentGoodsCode" jdbcType="VARCHAR" property="parentGoodsCode" />
+    <result column="goodsName" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goodsDisplayName" jdbcType="VARCHAR" property="goodsDisplayName" />
+    <result column="enSname" jdbcType="VARCHAR" property="enSname" />
+    <result column="barNo" jdbcType="VARCHAR" property="barNo" />
+    <result column="mainBarcodeFlag" jdbcType="BIT" property="mainBarcodeFlag" />
+    <result column="salePrice" jdbcType="DECIMAL" property="salePrice" />
+    <result column="refPrice" jdbcType="DECIMAL" property="refPrice" />
+    <result column="memberPrice" jdbcType="DECIMAL" property="memberPrice" />
+    <result column="minDiscount" jdbcType="REAL" property="minDiscount" />
+    <result column="minSalePrice" jdbcType="DECIMAL" property="minSalePrice" />
+    <result column="bulkPrice" jdbcType="DECIMAL" property="bulkPrice" />
+    <result column="pcs" jdbcType="INTEGER" property="pcs" />
+    <result column="primeCost" jdbcType="DECIMAL" property="primeCost" />
+    <result column="goodsFromCode" jdbcType="VARCHAR" property="goodsFromCode" />
+    <result column="artNo" jdbcType="VARCHAR" property="artNo" />
+    <result column="saleUnit" jdbcType="VARCHAR" property="saleUnit" />
+    <result column="partsNum" jdbcType="DOUBLE" property="partsNum" />
+    <result column="rweight" jdbcType="DOUBLE" property="rweight" />
+    <result column="categoryId" jdbcType="BIGINT" property="categoryId" />
+    <result column="categoryCode" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="brandId" jdbcType="BIGINT" property="brandId" />
+    <result column="brandCode" jdbcType="VARCHAR" property="brandCode" />
+    <result column="saleSpec" jdbcType="VARCHAR" property="saleSpec" />
+    <result column="outputTax" jdbcType="REAL" property="outputTax" />
+    <result column="consumpTax" jdbcType="REAL" property="consumpTax" />
+    <result column="goodsGrade" jdbcType="VARCHAR" property="goodsGrade" />
+    <result column="isPercious" jdbcType="BIT" property="isPercious" />
+    <result column="coldTransFlag" jdbcType="BIT" property="coldTransFlag" />
+    <result column="escaleFlag" jdbcType="BIT" property="escaleFlag" />
+    <result column="timesFlag" jdbcType="SMALLINT" property="timesFlag" />
+    <result column="season" jdbcType="VARCHAR" property="season" />
+    <result column="isBatch" jdbcType="BIT" property="isBatch" />
+    <result column="multiUnitFlag" jdbcType="BIT" property="multiUnitFlag" />
+    <result column="goodsStatus" jdbcType="SMALLINT" property="goodsStatus" />
+    <result column="vid" jdbcType="BIGINT" property="vid" />
+    <result column="venderCode" jdbcType="VARCHAR" property="venderCode" />
+    <result column="stepDiff" jdbcType="REAL" property="stepDiff" />
+    <result column="controlFlag" jdbcType="BIT" property="controlFlag" />
+    <result column="recycleFee" jdbcType="DECIMAL" property="recycleFee" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="prtDuplFlag" jdbcType="BIT" property="prtDuplFlag" />
+    <result column="enFname" jdbcType="VARCHAR" property="enFname" />
+    <result column="partsUnit" jdbcType="VARCHAR" property="partsUnit" />
+    <result column="prcutMode" jdbcType="CHAR" property="prcutMode" />
+    
+    <result column="barCodeType" jdbcType="SMALLINT" property="barCodeType" />
+    </resultMap>
+    
+    <!--方式一  同步方式前提：按照商品基础表为主条码，多条码表为从条码 -->
+	<!-- 1.1 商品基础和经营配置 同步到 可售商品表 -->
+	<select id="searchSaveOrUpdateGoodsShopRef" parameterType="map" resultMap="SyncSaleGoodsResultMap">
+		SELECT
+			s.ssgid, 
+			ifnull(r.goodsName,g.goodsName) as goodsName,
+			ifnull(g.barNo,g.goodsCode) as barNo,
+			g.goodsStatus as status4Goods,
+			r.goodStatus as status4Ref,
+			r.entId,
+			r.erpCode,
+			r.shopId,
+			r.shopCode,
+			r.saleOrgId,
+			r.orgCode,
+			r.siid,
+			r.stallCode,
+			g.sgid,
+			r.goodsCode,
+			r.salePrice,
+			r.bulkPrice,
+			r.pcs,
+			r.partsNum,
+			r.vid,
+			r.venderCode,
+			r.stepDiff,
+			r.lang,
+			r.prcutMode,
+			g.goodsType,
+			g.directFromErp,
+			g.singleItemFlag,
+			g.parentGoodsCode,
+			g.goodsDisplayName,
+			g.enSname,
+			g.refPrice,
+			g.memberPrice,
+			g.minDiscount,
+			g.minSalePrice,
+			g.primeCost,
+			g.goodsFromCode,
+			g.artNo,
+			g.saleUnit,
+			g.partsNum,
+			g.rweight,
+			g.categoryId,
+			g.categoryCode,
+			g.brandId,
+			g.brandCode,
+			g.saleSpec,
+			g.outputTax,
+			g.consumpTax,
+			g.goodsGrade,
+			g.isPercious,
+			g.coldTransFlag,
+			g.escaleFlag,
+			g.timesFlag,
+			g.season,
+			g.isBatch,
+			g.multiUnitFlag,
+			g.goodsStatus,
+			g.controlFlag,
+			g.recycleFee,
+			g.enFname,
+			g.partsUnit 
+		FROM
+			goodsshopref r
+			JOIN goods g ON r.goodsCode = g.goodsCode
+			AND r.erpCode = g.erpCode 
+			AND r.entId = g.entId
+			
+			LEFT JOIN salegoods s ON r.goodsCode = s.goodsCode
+			AND ifnull(g.barNo,0) = ifnull(s.barNo,0)
+			AND ifnull(r.orgCode,0) = ifnull(s.orgCode,0) 
+			AND r.shopCode = s.shopCode 
+			AND r.erpCode = s.erpCode 
+			AND r.entId = s.entId
+		<if test="startTime != null">
+			AND ( r.erpUpdateDate >= #{startTime} OR g.erpUpdateDate >= #{startTime} ) 
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit #{page_no},#{page_size}
+		</if>
+	</select>
+
+	<select id="countSaveOrUpdateGoodsShopRef" parameterType="map" resultType="long">
+		SELECT
+			 count(1) 
+		FROM
+			goodsshopref r
+			JOIN goods g ON r.goodsCode = g.goodsCode
+			AND r.erpCode = g.erpCode 
+			AND r.entId = g.entId
+			
+			LEFT JOIN salegoods s ON r.goodsCode = s.goodsCode 
+			AND ifnull(g.barNo,0) = ifnull(s.barNo,0)
+			AND ifnull(r.orgCode,0) = ifnull(s.orgCode,0)
+			AND r.shopCode = s.shopCode 
+			AND r.erpCode = s.erpCode 
+			AND r.entId = s.entId
+		<if test="startTime != null">
+			AND ( r.erpUpdateDate >= #{startTime} OR g.erpUpdateDate >= #{startTime} ) 
+		</if>
+	</select>
+	
+	
+	 <!--1.2 商品基础和经营配置 多条码表 同步到 可售商品表-->
+    <select id="searchGoodsShopRefMoreBarNo" parameterType="map" resultMap="SyncSaleGoodsResultMap">
+    	SELECT
+			s.ssgid,
+			m.barNo,
+			m.barCodeType,
+			ifnull(r.goodsName,g.goodsName) as goodsName,
+			g.goodsStatus as status4Goods,
+			r.goodStatus as status4Ref,
+			m.status as status4More,
+			r.entId,
+			r.erpCode,
+			r.shopId,
+			r.shopCode,
+			r.saleOrgId,
+			r.orgCode,
+			r.siid,
+			r.stallCode,
+			g.sgid,
+			r.goodsCode,
+			r.salePrice,
+			r.bulkPrice,
+			r.pcs,
+			r.partsNum,
+			r.vid,
+			r.venderCode,
+			r.stepDiff,
+			r.lang,
+			r.prcutMode,
+			g.goodsType,
+			g.directFromErp,
+			g.singleItemFlag,
+			g.parentGoodsCode,
+			g.goodsDisplayName,
+			g.enSname,
+			g.refPrice,
+			g.memberPrice,
+			g.minDiscount,
+			g.minSalePrice,
+			g.primeCost,
+			g.goodsFromCode,
+			g.artNo,
+			g.saleUnit,
+			g.partsNum,
+			g.rweight,
+			g.categoryId,
+			g.categoryCode,
+			g.brandId,
+			g.brandCode,
+			g.saleSpec,
+			g.outputTax,
+			g.consumpTax,
+			g.goodsGrade,
+			g.isPercious,
+			g.coldTransFlag,
+			g.escaleFlag,
+			g.timesFlag,
+			g.season,
+			g.isBatch,
+			g.multiUnitFlag,
+			g.goodsStatus,
+			g.controlFlag,
+			g.recycleFee,
+			g.enFname,
+			g.partsUnit 
+		FROM
+			goodsmorebarcode m
+			JOIN goods g ON m.goodsCode = g.goodsCode
+		    AND m.erpCode = g.erpCode 
+		    AND m.entId = g.entId
+		    
+			JOIN goodsshopref r ON g.goodsCode = r.goodsCode 
+			AND r.erpCode = g.erpCode 
+			AND r.entId = g.entId
+			
+			LEFT JOIN goodsspecprice mp ON m.barNo = mp.barNo
+			AND r.erpCode = mp.erpCode 
+			AND r.entId = mp.entId
+			AND r.goodsCode = mp.goodsCode
+			AND r.shopCode = mp.shopCode
+			
+			LEFT JOIN salegoods s ON r.goodsCode = s.goodsCode
+			AND ifnull(m.barNo,0) = ifnull(s.barNo,0)
+			AND ifnull(r.orgCode,0) = ifnull(s.orgCode,0)
+			AND r.shopCode = s.shopCode 
+			AND r.erpCode = s.erpCode 
+			AND r.entId = s.entId
+		<where>
+			<if test="startTime != null">
+				AND ( r.erpUpdateDate >= #{startTime} OR g.erpUpdateDate >= #{startTime} OR m.erpUpdateDate >= #{startTime} OR mp.erpUpdateDate >= #{startTime})
+			</if>
+		</where>
+		<if test="page_no != null and page_size != null">
+			limit #{page_no},#{page_size}
+		</if>
+    </select>
+    
+    <select id="countGoodsShopRefMoreBarNo" parameterType="map" resultType="long">
+		SELECT count(1) 
+		FROM
+			goodsmorebarcode m
+			JOIN goods g ON m.goodsCode = g.goodsCode
+		    AND m.erpCode = g.erpCode 
+		    AND m.entId = g.entId
+		    
+			JOIN goodsshopref r ON g.goodsCode = r.goodsCode 
+			AND r.erpCode = g.erpCode 
+			AND r.entId = g.entId
+			
+			LEFT JOIN goodsspecprice mp ON m.barNo = mp.barNo
+			AND r.erpCode = mp.erpCode 
+			AND r.entId = mp.entId
+			AND r.goodsCode = mp.goodsCode
+			AND r.shopCode = mp.shopCode
+
+			LEFT JOIN salegoods s ON r.goodsCode = s.goodsCode
+			AND ifnull(m.barNo,0) = ifnull(s.barNo,0)
+			AND ifnull(r.orgCode,0) = ifnull(s.orgCode,0)
+			AND r.shopCode = s.shopCode 
+			AND r.erpCode = s.erpCode 
+			AND r.entId = s.entId
+		<where>
+			<if test="startTime != null">
+				AND ( r.erpUpdateDate >= #{startTime} OR g.erpUpdateDate >= #{startTime} OR m.erpUpdateDate >= #{startTime} OR mp.erpUpdateDate >= #{startTime})
+			</if>
+		</where>
+	</select>
+	
+	<!--方式二 同步方式前提：主从条码全部在多条码表 -->
+	<select id="searchGoodsShopRefMoreBarNoAeon" parameterType="map" resultMap="SyncSaleGoodsResultMap">
+    	SELECT
+			ifnull(m.barCodeType,1) as barCodeType,
+			ifnull(m.barNo, ifnull(g.barNo,g.goodsCode)) as barNo,
+			ifnull(r.goodsName,g.goodsName) as goodsName,
+			s.ssgid,
+			g.goodsStatus as status4Goods,
+			r.goodStatus as status4Ref,
+			m.status as status4More,
+			r.entId,
+			r.erpCode,
+			r.shopId,
+			r.shopCode,
+			r.saleOrgId,
+			r.orgCode,
+			r.siid,
+			r.stallCode,
+			g.sgid,
+			r.goodsCode,
+			r.salePrice,
+			r.bulkPrice,
+			r.pcs,
+			r.partsNum,
+			r.vid,
+			r.venderCode,
+			r.stepDiff,
+			r.lang,
+			r.prcutMode,
+			g.goodsType,
+			g.directFromErp,
+			g.singleItemFlag,
+			g.parentGoodsCode,
+			g.goodsDisplayName,
+			g.enSname,
+			g.refPrice,
+			g.memberPrice,
+			g.minDiscount,
+			g.minSalePrice,
+			g.primeCost,
+			g.goodsFromCode,
+			g.artNo,
+			g.saleUnit,
+			g.partsNum,
+			g.rweight,
+			g.categoryId,
+			g.categoryCode,
+			g.brandId,
+			g.brandCode,
+			g.saleSpec,
+			g.outputTax,
+			g.consumpTax,
+			g.goodsGrade,
+			g.isPercious,
+			g.coldTransFlag,
+			g.escaleFlag,
+			g.timesFlag,
+			g.season,
+			g.isBatch,
+			g.multiUnitFlag,
+			g.goodsStatus,
+			g.controlFlag,
+			g.recycleFee,
+			g.enFname,
+			g.partsUnit 
+		FROM
+			goodsshopref r
+			JOIN goods g ON r.goodsCode = g.goodsCode 
+			AND r.erpCode = g.erpCode 
+			AND r.entId = g.entId
+			
+			LEFT JOIN goodsmorebarcode m  ON m.goodsCode = g.goodsCode
+		    AND m.erpCode = g.erpCode 
+		    AND m.entId = g.entId
+			
+			LEFT JOIN salegoods s ON r.goodsCode = s.goodsCode
+			AND ifnull( m.barNo, ifnull(g.barNo,ifnull(g.goodsCode,0))) = ifnull(s.barNo, 0) 
+			AND ifnull(r.orgCode,0) = ifnull(s.orgCode,0)
+			AND r.shopCode = s.shopCode 
+			AND r.erpCode = s.erpCode 
+			AND r.entId = s.entId
+		<where>
+			<if test="shopCode != null">
+				r.shopCode = #{shopCode} and s.shopCode = #{shopCode}
+       		</if>
+			<if test="startTime != null">
+				AND ( r.erpUpdateDate >= #{startTime} OR g.erpUpdateDate >= #{startTime} OR m.erpUpdateDate >= #{startTime})
+			</if>
+		</where>
+		<if test="page_no != null and page_size != null">
+			limit #{page_no},#{page_size}
+		</if>
+    </select>
+    
+    <select id="countGoodsShopRefMoreBarNoAeon" parameterType="map" resultType="long">
+		SELECT count(1) 
+		FROM
+			goodsshopref r
+			JOIN goods g ON r.goodsCode = g.goodsCode 
+			AND r.erpCode = g.erpCode 
+			AND r.entId = g.entId
+			
+			LEFT JOIN goodsmorebarcode m  ON m.goodsCode = g.goodsCode
+		    AND m.erpCode = g.erpCode 
+		    AND m.entId = g.entId
+			
+			LEFT JOIN salegoods s ON r.goodsCode = s.goodsCode
+			AND ifnull( m.barNo, ifnull(g.barNo,ifnull(g.goodsCode,0))) = ifnull(s.barNo, 0)
+			AND ifnull(r.orgCode,0) = ifnull(s.orgCode,0)
+			AND r.shopCode = s.shopCode 
+			AND r.erpCode = s.erpCode 
+			AND r.entId = s.entId
+		<where>
+			<if test="shopCode != null">
+				r.shopCode = #{shopCode} and s.shopCode = #{shopCode}
+       		</if>
+			<if test="startTime != null">
+				AND ( r.erpUpdateDate >= #{startTime} OR g.erpUpdateDate >= #{startTime} OR m.erpUpdateDate >= #{startTime}) 
+			</if>
+		</where>
+	</select>	
+	
+	
+	<!-- （首次直接插入）ADD 同步方式前提：主从条码全部在多条码表 -->
+	<select id="searchGoodsShopRefMoreBarNoAeonAdd" parameterType="map" resultMap="SyncSaleGoodsResultMap">
+    	SELECT
+			ifnull(m.barCodeType,1) as barCodeType,
+			ifnull(m.barNo, ifnull(g.barNo,g.goodsCode)) as barNo,
+			ifnull(r.goodsName,g.goodsName) as goodsName,
+			g.goodsStatus as status4Goods,
+			r.goodStatus as status4Ref,
+			m.status as status4More,
+			r.entId,
+			r.erpCode,
+			r.shopId,
+			r.shopCode,
+			r.saleOrgId,
+			r.orgCode,
+			r.siid,
+			r.stallCode,
+			g.sgid,
+			r.goodsCode,
+			r.salePrice,
+			r.bulkPrice,
+			r.pcs,
+			r.partsNum,
+			r.vid,
+			r.venderCode,
+			r.stepDiff,
+			r.lang,
+			r.prcutMode,
+			g.goodsType,
+			g.directFromErp,
+			g.singleItemFlag,
+			g.parentGoodsCode,
+			g.goodsDisplayName,
+			g.enSname,
+			g.refPrice,
+			g.memberPrice,
+			g.minDiscount,
+			g.minSalePrice,
+			g.primeCost,
+			g.goodsFromCode,
+			g.artNo,
+			g.saleUnit,
+			g.partsNum,
+			g.rweight,
+			g.categoryId,
+			g.categoryCode,
+			g.brandId,
+			g.brandCode,
+			g.saleSpec,
+			g.outputTax,
+			g.consumpTax,
+			g.goodsGrade,
+			g.isPercious,
+			g.coldTransFlag,
+			g.escaleFlag,
+			g.timesFlag,
+			g.season,
+			g.isBatch,
+			g.multiUnitFlag,
+			g.goodsStatus,
+			g.controlFlag,
+			g.recycleFee,
+			g.enFname,
+			g.partsUnit 
+		FROM
+			goodsshopref r
+			JOIN goods g ON r.goodsCode = g.goodsCode 
+			AND r.erpCode = g.erpCode 
+			AND r.entId = g.entId
+			
+			LEFT JOIN goodsmorebarcode m  ON m.goodsCode = g.goodsCode
+		    AND m.erpCode = g.erpCode 
+		    AND m.entId = g.entId
+		<where>
+			<if test="fields != null and fields.size > 0">
+				(r.shopcode,r.entId,r.erpCode) in 
+				 <foreach collection="fields" index="index" item="item" open="(" separator="," close=")">
+		           ${item}       
+		       	 </foreach>
+	       	 </if>
+	       	 <if test="fields == null or fields.size == 0">
+				1 = 2
+	       	 </if>
+       	</where>
+		<if test="page_no != null and page_size != null">
+			limit #{page_no},#{page_size}
+		</if>
+    </select>
+    
+    <select id="countGoodsShopRefMoreBarNoAeonAdd" parameterType="map" resultType="long">
+		SELECT count(1) 
+		FROM
+			goodsshopref r
+			JOIN goods g ON r.goodsCode = g.goodsCode 
+			AND r.erpCode = g.erpCode 
+			AND r.entId = g.entId
+			
+			LEFT JOIN goodsmorebarcode m  ON m.goodsCode = g.goodsCode
+		    AND m.erpCode = g.erpCode 
+		    AND m.entId = g.entId
+		<where>
+			<if test="fields != null and fields.size > 0">
+				(r.shopCode,r.entId,r.erpCode) in 
+				 <foreach collection="fields" index="index" item="item" open="(" separator="," close=")">
+		           ${item}       
+		       	 </foreach>
+	       	 </if>
+	       	 <if test="fields == null or fields.size == 0">
+				1 = 2
+	       	 </if>
+       	</where>
+	</select>
+	
+	<!-- 查询新增新门店的所有商品首次插入的数据 -->
+	<select id="searchNewShopGoods" parameterType="map" resultType="map">
+		select r.shopCode,r.entId,r.erpCode from goodsshopref r where (r.shopcode,r.entId,r.erpCode) not in 
+		(select s.shopCode,s.entId,s.erpCode from salegoods s group by s.shopCode,s.entId,s.erpCode) 
+		group by r.shopCode,r.entId,r.erpCode
+	</select>
+	
+	
+	<!-- 优化 I 查询经营配置所有门店-->
+	<select id="searAllShopRef" parameterType="map" resultMap="SyncSaleGoodsResultMap">
+		SELECT r.shopCode, r.entId, r.erpCode
+			FROM goodsshopref r
+			GROUP BY r.shopCode, r.entId, r.erpCode
+	</select>
+	
+	<!-- 优化 II 查询SaleGoods门店-->
+	<select id="searchAllSaleShop" parameterType="map" resultMap="SyncSaleGoodsResultMap">
+		SELECT s.shopCode, s.entId, s.erpCode
+		  FROM salegoods s
+		GROUP BY s.shopCode, s.entId, s.erpCode
+	</select>
+	
+	<!-- 永旺 后插入条码表 数据清洗功能  -->
+    <select id="searchDirtyDataBarNoAeon" parameterType="map" resultMap="SyncSaleGoodsResultMap">
+    	select * from salegoods 
+    		where (goodsCode,shopCode,entId,erpCode,orgCode) in 
+	    		(select goodsCode,shopCode,entId,erpCode,orgCode from salegoods where mainBarcodeFlag = 1 
+	    			group by goodsCode,shopCode,entId,erpCode,orgCode having count(1) > 1) 
+    		and mainBarcodeFlag = 1 order by goodsCode,updateDate desc
+    </select>
+	
+	
+	<!-- 批量插入 -->
+	<insert id="batchInsert" parameterType="java.util.Map">  
+        insert into salegoods (ssgid, entId, erpCode, 
+	      shopId, shopCode, saleOrgId, 
+	      orgCode, siid, stallCode, 
+	      goodsType, directFromErp, singleItemFlag, 
+	      sgid, goodsCode, psgid, 
+	      parentGoodsCode, goodsName, goodsDisplayName, 
+	      enSname, barNo, mainBarcodeFlag, 
+	      salePrice, refPrice, memberPrice, 
+	      minDiscount, minSalePrice, bulkPrice, 
+	      pcs, primeCost, goodsFromCode, 
+	      artNo, saleUnit, partsNum, 
+	      rweight, categoryId, categoryCode, 
+	      brandId, brandCode, saleSpec, 
+	      outputTax, consumpTax, goodsGrade, 
+	      isPercious, coldTransFlag, escaleFlag, 
+	      timesFlag, season, isBatch, 
+	      multiUnitFlag, goodsStatus, vid, 
+	      venderCode, stepDiff, controlFlag, 
+	      recycleFee, lang, createDate, 
+	      updateDate,enFname,partsUnit,prcutMode) values  
+        <foreach collection="value" item="item" separator=",">  
+	      (#{item.ssgid,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT}, #{item.erpCode,jdbcType=VARCHAR}, 
+	      #{item.shopId,jdbcType=BIGINT}, #{item.shopCode,jdbcType=VARCHAR}, #{item.saleOrgId,jdbcType=BIGINT}, 
+	      #{item.orgCode,jdbcType=VARCHAR}, #{item.siid,jdbcType=BIGINT}, #{item.stallCode,jdbcType=VARCHAR}, 
+	      #{item.goodsType,jdbcType=SMALLINT}, #{item.directFromErp,jdbcType=BIT}, #{item.singleItemFlag,jdbcType=BIT}, 
+	      #{item.sgid,jdbcType=BIGINT}, #{item.goodsCode,jdbcType=VARCHAR}, #{item.psgid,jdbcType=BIGINT}, 
+	      #{item.parentGoodsCode,jdbcType=VARCHAR}, #{item.goodsName,jdbcType=VARCHAR}, #{item.goodsDisplayName,jdbcType=VARCHAR}, 
+	      #{item.enSname,jdbcType=VARCHAR}, #{item.barNo,jdbcType=VARCHAR}, #{item.mainBarcodeFlag,jdbcType=BIT}, 
+	      #{item.salePrice,jdbcType=DECIMAL}, #{item.refPrice,jdbcType=DECIMAL}, #{item.memberPrice,jdbcType=DECIMAL}, 
+	      #{item.minDiscount,jdbcType=REAL}, #{item.minSalePrice,jdbcType=DECIMAL}, #{item.bulkPrice,jdbcType=DECIMAL}, 
+	      #{item.pcs,jdbcType=INTEGER}, #{item.primeCost,jdbcType=DECIMAL}, #{item.goodsFromCode,jdbcType=VARCHAR}, 
+	      #{item.artNo,jdbcType=VARCHAR}, #{item.saleUnit,jdbcType=VARCHAR}, #{item.partsNum,jdbcType=DOUBLE}, 
+	      #{item.rweight,jdbcType=DOUBLE}, #{item.categoryId,jdbcType=BIGINT}, #{item.categoryCode,jdbcType=VARCHAR}, 
+	      #{item.brandId,jdbcType=BIGINT}, #{item.brandCode,jdbcType=VARCHAR}, #{item.saleSpec,jdbcType=VARCHAR}, 
+	      #{item.outputTax,jdbcType=REAL}, #{item.consumpTax,jdbcType=REAL}, #{item.goodsGrade,jdbcType=VARCHAR}, 
+	      #{item.isPercious,jdbcType=BIT}, #{item.coldTransFlag,jdbcType=BIT}, #{item.escaleFlag,jdbcType=BIT}, 
+	      #{item.timesFlag,jdbcType=SMALLINT}, #{item.season,jdbcType=VARCHAR}, #{item.isBatch,jdbcType=BIT}, 
+	      #{item.multiUnitFlag,jdbcType=BIT}, #{item.goodsStatus,jdbcType=SMALLINT}, #{item.vid,jdbcType=BIGINT}, 
+	      #{item.venderCode,jdbcType=VARCHAR}, #{item.stepDiff,jdbcType=REAL}, #{item.controlFlag,jdbcType=BIT}, 
+	      #{item.recycleFee,jdbcType=DECIMAL}, #{item.lang,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP}, 
+	      #{item.updateDate,jdbcType=TIMESTAMP},#{item.enFname,jdbcType=VARCHAR},#{item.partsUnit,jdbcType=DECIMAL},
+	      #{item.prcutMode,jdbcType=CHAR})
+        </foreach>  
+    </insert> 
+    
+    <!--批量更新  不需要更新字段
+	    siid 档口ID
+		stallCode 档口编码
+		prtDuplFlag 是否打印副单 0:否,1:是
+		psgid 母品ID
+		createDate创建时间
+     -->
+    <update id="batchUpdate" parameterType="java.util.Map">
+        <foreach collection="value" item="item" separator=";" >
+         update salegoods
+   		 set entId = #{item.entId,jdbcType=BIGINT},
+		      erpCode = #{item.erpCode,jdbcType=VARCHAR},
+		      shopId = #{item.shopId,jdbcType=BIGINT},
+		      shopCode = #{item.shopCode,jdbcType=VARCHAR},
+		      saleOrgId = #{item.saleOrgId,jdbcType=BIGINT},
+		      orgCode = #{item.orgCode,jdbcType=VARCHAR},
+		      goodsType = #{item.goodsType,jdbcType=SMALLINT},
+		      directFromErp = #{item.directFromErp,jdbcType=BIT},
+		      singleItemFlag = #{item.singleItemFlag,jdbcType=BIT},
+		      mainBarcodeFlag = #{item.mainBarcodeFlag,jdbcType=BIT},
+		      sgid = #{item.sgid,jdbcType=BIGINT},
+		      goodsCode = #{item.goodsCode,jdbcType=VARCHAR},
+		      parentGoodsCode = #{item.parentGoodsCode,jdbcType=VARCHAR},
+		      goodsName = #{item.goodsName,jdbcType=VARCHAR},
+		      goodsDisplayName = #{item.goodsDisplayName,jdbcType=VARCHAR},
+		      enSname = #{item.enSname,jdbcType=VARCHAR},
+		      barNo = #{item.barNo,jdbcType=VARCHAR},
+		      salePrice = #{item.salePrice,jdbcType=DECIMAL},
+		      refPrice = #{item.refPrice,jdbcType=DECIMAL},
+		      memberPrice = #{item.memberPrice,jdbcType=DECIMAL},
+		      minDiscount = #{item.minDiscount,jdbcType=REAL},
+		      minSalePrice = #{item.minSalePrice,jdbcType=DECIMAL},
+		      pcs = #{item.pcs,jdbcType=INTEGER},
+		      primeCost = #{item.primeCost,jdbcType=DECIMAL},
+		      goodsFromCode = #{item.goodsFromCode,jdbcType=VARCHAR},
+		      artNo = #{item.artNo,jdbcType=VARCHAR},
+		      saleUnit = #{item.saleUnit,jdbcType=VARCHAR},
+		      partsNum = #{item.partsNum,jdbcType=DOUBLE},
+		      rweight = #{item.rweight,jdbcType=DOUBLE},
+		      categoryId = #{item.categoryId,jdbcType=BIGINT},
+		      categoryCode = #{item.categoryCode,jdbcType=VARCHAR},
+		      brandId = #{item.brandId,jdbcType=BIGINT},
+		      brandCode = #{item.brandCode,jdbcType=VARCHAR},
+		      saleSpec = #{item.saleSpec,jdbcType=VARCHAR},
+		      outputTax = #{item.outputTax,jdbcType=REAL},
+		      consumpTax = #{item.consumpTax,jdbcType=REAL},
+		      goodsGrade = #{item.goodsGrade,jdbcType=VARCHAR},
+		      isPercious = #{item.isPercious,jdbcType=BIT},
+		      coldTransFlag = #{item.coldTransFlag,jdbcType=BIT},
+		      escaleFlag = #{item.escaleFlag,jdbcType=BIT},
+		      timesFlag = #{item.timesFlag,jdbcType=SMALLINT},
+		      season = #{item.season,jdbcType=VARCHAR},
+		      isBatch = #{item.isBatch,jdbcType=BIT},
+		      multiUnitFlag = #{item.multiUnitFlag,jdbcType=BIT},
+		      goodsStatus = #{item.goodsStatus,jdbcType=SMALLINT},
+		      vid = #{item.vid,jdbcType=BIGINT},
+		      venderCode = #{item.venderCode,jdbcType=VARCHAR},
+		      stepDiff = #{item.stepDiff,jdbcType=REAL},
+		      controlFlag = #{item.controlFlag,jdbcType=BIT},
+		      recycleFee = #{item.recycleFee,jdbcType=DECIMAL},
+		      lang = #{item.lang,jdbcType=VARCHAR},
+		      updateDate = #{item.updateDate,jdbcType=TIMESTAMP},
+		      enFname = #{item.enFname,jdbcType=VARCHAR},
+		      partsUnit = #{item.partsUnit,jdbcType=DECIMAL},
+		      prcutMode = #{item.prcutMode,jdbcType=CHAR}
+    	where ssgid = #{item.ssgid,jdbcType=BIGINT}
+        </foreach>
+    </update>
+
+    <!-- 单个插入（与批量插入的字段内容一样） -->
+    <insert id="insertOneSaleGoods" parameterType="java.util.Map">  
+        insert into salegoods (ssgid, entId, erpCode, 
+	      shopId, shopCode, saleOrgId, 
+	      orgCode, siid, stallCode, 
+	      goodsType, directFromErp, singleItemFlag, 
+	      sgid, goodsCode, psgid, 
+	      parentGoodsCode, goodsName, goodsDisplayName, 
+	      enSname, barNo, mainBarcodeFlag, 
+	      salePrice, refPrice, memberPrice, 
+	      minDiscount, minSalePrice, bulkPrice, 
+	      pcs, primeCost, goodsFromCode, 
+	      artNo, saleUnit, partsNum, 
+	      rweight, categoryId, categoryCode, 
+	      brandId, brandCode, saleSpec, 
+	      outputTax, consumpTax, goodsGrade, 
+	      isPercious, coldTransFlag, escaleFlag, 
+	      timesFlag, season, isBatch, 
+	      multiUnitFlag, goodsStatus, vid, 
+	      venderCode, stepDiff, controlFlag, 
+	      recycleFee, lang, createDate, 
+	      updateDate,enFname,partsUnit,prcutMode) values  
+	      (#{ssgid,jdbcType=BIGINT}, #{entId,jdbcType=BIGINT}, #{erpCode,jdbcType=VARCHAR}, 
+	      #{shopId,jdbcType=BIGINT}, #{shopCode,jdbcType=VARCHAR}, #{saleOrgId,jdbcType=BIGINT}, 
+	      #{orgCode,jdbcType=VARCHAR}, #{siid,jdbcType=BIGINT}, #{stallCode,jdbcType=VARCHAR}, 
+	      #{goodsType,jdbcType=SMALLINT}, #{directFromErp,jdbcType=BIT}, #{singleItemFlag,jdbcType=BIT}, 
+	      #{sgid,jdbcType=BIGINT}, #{goodsCode,jdbcType=VARCHAR}, #{psgid,jdbcType=BIGINT}, 
+	      #{parentGoodsCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{goodsDisplayName,jdbcType=VARCHAR}, 
+	      #{enSname,jdbcType=VARCHAR}, #{barNo,jdbcType=VARCHAR}, #{mainBarcodeFlag,jdbcType=BIT}, 
+	      #{salePrice,jdbcType=DECIMAL}, #{refPrice,jdbcType=DECIMAL}, #{memberPrice,jdbcType=DECIMAL}, 
+	      #{minDiscount,jdbcType=REAL}, #{minSalePrice,jdbcType=DECIMAL}, #{bulkPrice,jdbcType=DECIMAL}, 
+	      #{pcs,jdbcType=INTEGER}, #{primeCost,jdbcType=DECIMAL}, #{goodsFromCode,jdbcType=VARCHAR}, 
+	      #{artNo,jdbcType=VARCHAR}, #{saleUnit,jdbcType=VARCHAR}, #{partsNum,jdbcType=DOUBLE}, 
+	      #{rweight,jdbcType=DOUBLE}, #{categoryId,jdbcType=BIGINT}, #{categoryCode,jdbcType=VARCHAR}, 
+	      #{brandId,jdbcType=BIGINT}, #{brandCode,jdbcType=VARCHAR}, #{saleSpec,jdbcType=VARCHAR}, 
+	      #{outputTax,jdbcType=REAL}, #{consumpTax,jdbcType=REAL}, #{goodsGrade,jdbcType=VARCHAR}, 
+	      #{isPercious,jdbcType=BIT}, #{coldTransFlag,jdbcType=BIT}, #{escaleFlag,jdbcType=BIT}, 
+	      #{timesFlag,jdbcType=SMALLINT}, #{season,jdbcType=VARCHAR}, #{isBatch,jdbcType=BIT}, 
+	      #{multiUnitFlag,jdbcType=BIT}, #{goodsStatus,jdbcType=SMALLINT}, #{vid,jdbcType=BIGINT}, 
+	      #{venderCode,jdbcType=VARCHAR}, #{stepDiff,jdbcType=REAL}, #{controlFlag,jdbcType=BIT}, 
+	      #{recycleFee,jdbcType=DECIMAL}, #{lang,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+	      #{updateDate,jdbcType=TIMESTAMP},#{enFname,jdbcType=VARCHAR},#{partsUnit,jdbcType=DECIMAL},
+	      #{prcutMode,jdbcType=CHAR})
+    </insert> 
+    
+    <!-- 单个更新（与批量更新的字段内容一样） --> 
+    <update id="updateOneSaleGoods" parameterType="java.util.Map" >
+        update salegoods
+   		 set entId = #{entId,jdbcType=BIGINT},
+		      erpCode = #{erpCode,jdbcType=VARCHAR},
+		      shopId = #{shopId,jdbcType=BIGINT},
+		      shopCode = #{shopCode,jdbcType=VARCHAR},
+		      saleOrgId = #{saleOrgId,jdbcType=BIGINT},
+		      orgCode = #{orgCode,jdbcType=VARCHAR},
+		      goodsType = #{goodsType,jdbcType=SMALLINT},
+		      directFromErp = #{directFromErp,jdbcType=BIT},
+		      singleItemFlag = #{singleItemFlag,jdbcType=BIT},
+		      mainBarcodeFlag = #{mainBarcodeFlag,jdbcType=BIT},
+		      sgid = #{sgid,jdbcType=BIGINT},
+		      goodsCode = #{goodsCode,jdbcType=VARCHAR},
+		      parentGoodsCode = #{parentGoodsCode,jdbcType=VARCHAR},
+		      goodsName = #{goodsName,jdbcType=VARCHAR},
+		      goodsDisplayName = #{goodsDisplayName,jdbcType=VARCHAR},
+		      enSname = #{enSname,jdbcType=VARCHAR},
+		      barNo = #{barNo,jdbcType=VARCHAR},
+		      salePrice = #{salePrice,jdbcType=DECIMAL},
+		      refPrice = #{refPrice,jdbcType=DECIMAL},
+		      memberPrice = #{memberPrice,jdbcType=DECIMAL},
+		      minDiscount = #{minDiscount,jdbcType=REAL},
+		      minSalePrice = #{minSalePrice,jdbcType=DECIMAL},
+		      pcs = #{pcs,jdbcType=INTEGER},
+		      primeCost = #{primeCost,jdbcType=DECIMAL},
+		      goodsFromCode = #{goodsFromCode,jdbcType=VARCHAR},
+		      artNo = #{artNo,jdbcType=VARCHAR},
+		      saleUnit = #{saleUnit,jdbcType=VARCHAR},
+		      partsNum = #{partsNum,jdbcType=DOUBLE},
+		      rweight = #{rweight,jdbcType=DOUBLE},
+		      categoryId = #{categoryId,jdbcType=BIGINT},
+		      categoryCode = #{categoryCode,jdbcType=VARCHAR},
+		      brandId = #{brandId,jdbcType=BIGINT},
+		      brandCode = #{brandCode,jdbcType=VARCHAR},
+		      saleSpec = #{saleSpec,jdbcType=VARCHAR},
+		      outputTax = #{outputTax,jdbcType=REAL},
+		      consumpTax = #{consumpTax,jdbcType=REAL},
+		      goodsGrade = #{goodsGrade,jdbcType=VARCHAR},
+		      isPercious = #{isPercious,jdbcType=BIT},
+		      coldTransFlag = #{coldTransFlag,jdbcType=BIT},
+		      escaleFlag = #{escaleFlag,jdbcType=BIT},
+		      timesFlag = #{timesFlag,jdbcType=SMALLINT},
+		      season = #{season,jdbcType=VARCHAR},
+		      isBatch = #{isBatch,jdbcType=BIT},
+		      multiUnitFlag = #{multiUnitFlag,jdbcType=BIT},
+		      goodsStatus = #{goodsStatus,jdbcType=SMALLINT},
+		      vid = #{vid,jdbcType=BIGINT},
+		      venderCode = #{venderCode,jdbcType=VARCHAR},
+		      stepDiff = #{stepDiff,jdbcType=REAL},
+		      controlFlag = #{controlFlag,jdbcType=BIT},
+		      recycleFee = #{recycleFee,jdbcType=DECIMAL},
+		      lang = #{lang,jdbcType=VARCHAR},
+		      updateDate = #{updateDate,jdbcType=TIMESTAMP},
+		      enFname = #{enFname,jdbcType=VARCHAR},
+		      partsUnit = #{partsUnit,jdbcType=DECIMAL},
+		      prcutMode = #{prcutMode,jdbcType=CHAR}
+		where ssgid = #{ssgid,jdbcType=BIGINT}
+	</update>
+</mapper>

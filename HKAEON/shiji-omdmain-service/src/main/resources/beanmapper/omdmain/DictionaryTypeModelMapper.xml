@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.DictionaryTypeModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.DictionaryTypeModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="dtid" jdbcType="BIGINT" property="dtid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="dictTypeCode" jdbcType="VARCHAR" property="dictTypeCode" />
+    <result column="dictTypeName" jdbcType="VARCHAR" property="dictTypeName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="autoCode" jdbcType="BIT" property="autoCode" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+</mapper>

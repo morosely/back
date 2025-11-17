@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.CategoryLabelModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.CategoryLabelModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="clid" jdbcType="BIGINT" property="clid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="catLabelCode" jdbcType="VARCHAR" property="catLabelCode" />
+    <result column="catLabelName" jdbcType="VARCHAR" property="catLabelName" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  
+  <select id="getCategoryLabelCheckbox" parameterType="java.util.Map" resultType="map">
+	SELECT
+		t1.*,
+	CASE
+		WHEN t2.categoryLabelId IS NULL THEN
+		0 ELSE 1 
+		END AS `isChecked` 
+	FROM
+		categorylabel t1
+	LEFT JOIN ( SELECT * FROM categorylabelref WHERE categoryId = #{categoryId} ) t2 ON t1.clid = t2.categoryLabelId
+	WHERE t1.status = 1
+  </select>
+  
+  <select id="selectByEntIdAndCategoryIds" parameterType="map" resultType="map">
+  	SELECT
+  		label.*, ref.categoryId
+  	FROM CategoryLabelRef ref, CategoryLabel label
+  	WHERE 1 = 1
+  	AND ref.entId = #{entId}
+  	<if test = "categoryIds != null and categoryIds.size() > 0">
+  		AND ref.categoryId IN 
+	  	<foreach collection="categoryIds" item="item" index="index" open="(" separator="," close=")">
+	  		#{item}
+	  	</foreach>
+  	</if>
+  	AND ref.categoryLabelId = label.clid
+  	AND label.status = 1
+  </select>
+</mapper>

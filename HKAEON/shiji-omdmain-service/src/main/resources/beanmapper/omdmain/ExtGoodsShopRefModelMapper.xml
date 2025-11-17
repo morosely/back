@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.ExtGoodsShopRefModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.ExtGoodsShopRefModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="egsrid" jdbcType="BIGINT" property="egsrid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="shopId" jdbcType="BIGINT" property="shopId" />
+    <result column="shopCode" jdbcType="VARCHAR" property="shopCode" />
+    <result column="saleOrgId" jdbcType="BIGINT" property="saleOrgId" />
+    <result column="orgCode" jdbcType="VARCHAR" property="orgCode" />
+    <result column="siid" jdbcType="BIGINT" property="siid" />
+    <result column="stallCode" jdbcType="VARCHAR" property="stallCode" />
+    <result column="sgid" jdbcType="BIGINT" property="sgid" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="venderCode" jdbcType="VARCHAR" property="venderCode" />
+    <result column="goodStatus" jdbcType="INTEGER" property="goodStatus" />
+    <result column="cost" jdbcType="DECIMAL" property="cost" />
+    <result column="contractCost" jdbcType="DECIMAL" property="contractCost" />
+    <result column="costTaxRate" jdbcType="REAL" property="costTaxRate" />
+    <result column="deductRate" jdbcType="DECIMAL" property="deductRate" />
+    <result column="salePrice" jdbcType="DECIMAL" property="salePrice" />
+    <result column="customPrice" jdbcType="DECIMAL" property="customPrice" />
+    <result column="bulkPrice" jdbcType="DECIMAL" property="bulkPrice" />
+    <result column="pcs" jdbcType="INTEGER" property="pcs" />
+    <result column="partsNum" jdbcType="REAL" property="partsNum" />
+    <result column="stepDiff" jdbcType="REAL" property="stepDiff" />
+    <result column="safeStockDays" jdbcType="INTEGER" property="safeStockDays" />
+    <result column="minStockDays" jdbcType="INTEGER" property="minStockDays" />
+    <result column="maxStockDays" jdbcType="INTEGER" property="maxStockDays" />
+    <result column="priceRight" jdbcType="SMALLINT" property="priceRight" />
+    <result column="continuePurFlag" jdbcType="SMALLINT" property="continuePurFlag" />
+    <result column="importantFlag" jdbcType="SMALLINT" property="importantFlag" />
+    <result column="returnFlag" jdbcType="SMALLINT" property="returnFlag" />
+    <result column="operateFlag" jdbcType="SMALLINT" property="operateFlag" />
+    <result column="orderFlag" jdbcType="SMALLINT" property="orderFlag" />
+    <result column="logistics" jdbcType="SMALLINT" property="logistics" />
+    <result column="dcshopId" jdbcType="VARCHAR" property="dcshopId" />
+    <result column="fdcShopId" jdbcType="VARCHAR" property="fdcShopId" />
+    <result column="inDate" jdbcType="TIMESTAMP" property="inDate" />
+    <result column="inOper" jdbcType="VARCHAR" property="inOper" />
+    <result column="offDate" jdbcType="TIMESTAMP" property="offDate" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+</mapper>

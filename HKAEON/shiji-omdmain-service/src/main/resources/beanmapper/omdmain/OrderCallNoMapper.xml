@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.OrderCallNoMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.OrderCallNo">
+    <!--@mbg.generated-->
+    <!--@Table ordercallno-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="shopCode" jdbcType="VARCHAR" property="shopCode" />
+    <result column="stallCode" jdbcType="VARCHAR" property="stallCode" />
+    <result column="stallName" jdbcType="VARCHAR" property="stallName" />
+    <result column="callNo" jdbcType="VARCHAR" property="callNo" />
+    <result column="orderId" jdbcType="VARCHAR" property="orderId" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+
+  <!--订单叫号的保存或者更新 start-->
+  <select id = "count" parameterType="map" resultMap="BaseResultMap">
+    <if test = "status in {1,2,3}">
+      select * from ordercallno where shopCode = #{shopCode,jdbcType=VARCHAR} and stallCode = #{stallCode,jdbcType=VARCHAR} and callNo = #{callNo,jdbcType=VARCHAR}
+    </if>
+    <if test = "status == 0">
+      select * from ordercallno where shopCode = #{shopCode,jdbcType=VARCHAR} and orderId = #{orderId,jdbcType=VARCHAR} and callNo = #{callNo,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <insert id="upsert" parameterType="map">
+    <!--
+    <selectKey keyProperty="count" resultType="int" order="BEFORE">
+      <if test = "status in {1,2,3}">
+        select count(1) as count from dual
+      </if>
+      <if test = "status == 0">
+        select count(1) as count from dual
+      </if>
+    </selectKey>
+    -->
+
+    <if test = "count == 0">
+      insert into ordercallno (id, erpCode, shopCode,
+      stallCode, stallName, callNo, orderId,
+      `status`, entId, lang,
+      creator, createDate, modifier,
+      updateDate)
+      values (#{id,jdbcType=BIGINT}, #{erpCode,jdbcType=VARCHAR}, #{shopCode,jdbcType=VARCHAR},
+      #{stallCode,jdbcType=VARCHAR},#{stallName,jdbcType=VARCHAR}, #{callNo,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR},
+      #{status,jdbcType=SMALLINT}, #{entId,jdbcType=BIGINT}, #{lang,jdbcType=VARCHAR},
+      #{creator,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR},
+      #{updateDate,jdbcType=TIMESTAMP});
+
+      insert into ordercallnohis select * from ordercallno  where shopCode = #{shopCode,jdbcType=VARCHAR} and stallCode = #{stallCode,jdbcType=VARCHAR} and callNo = #{callNo,jdbcType=VARCHAR}
+    </if>
+
+    <if test = "count > 0 and status in {1,2,3}">
+      update ordercallno
+      set
+      <if test = "orderId !=null and orderId !=''">
+        orderId = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test = "stallName !=null and stallName !=''">
+        stallName = #{stallName,jdbcType=VARCHAR},
+      </if>
+      `status` = #{status,jdbcType=SMALLINT},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      erpCode = #{erpCode,jdbcType=VARCHAR},
+      updateDate = #{updateDate,jdbcType=TIMESTAMP}
+      where shopCode = #{shopCode,jdbcType=VARCHAR} and stallCode = #{stallCode,jdbcType=VARCHAR} and callNo = #{callNo,jdbcType=VARCHAR};
+
+      insert into ordercallnohis select * from ordercallno  where shopCode = #{shopCode,jdbcType=VARCHAR} and stallCode = #{stallCode,jdbcType=VARCHAR} and callNo = #{callNo,jdbcType=VARCHAR}
+    </if>
+
+    <if test = "count > 0 and status == 0">
+      update ordercallno
+      set
+      `status` = #{status,jdbcType=SMALLINT},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      erpCode = #{erpCode,jdbcType=VARCHAR},
+      updateDate = #{updateDate,jdbcType=TIMESTAMP}
+      where shopCode = #{shopCode,jdbcType=VARCHAR} and orderId = #{orderId,jdbcType=VARCHAR} and callNo = #{callNo,jdbcType=VARCHAR};
+
+      insert into ordercallnohis select * from ordercallno  where shopCode = #{shopCode,jdbcType=VARCHAR} and orderId = #{orderId,jdbcType=VARCHAR} and callNo = #{callNo,jdbcType=VARCHAR}
+    </if>
+  </insert>
+  <!--订单叫号的保存或者更新 end-->
+
+</mapper>

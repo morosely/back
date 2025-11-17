@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.CategoryModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.CategoryModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="categoryId" jdbcType="BIGINT" property="categoryId" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="categoryCode" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="categoryName" jdbcType="VARCHAR" property="categoryName" />
+    <result column="categorLevel" jdbcType="VARCHAR" property="categorLevel" />
+    <result column="parentId" jdbcType="BIGINT" property="parentId" />
+    <result column="parentCode" jdbcType="VARCHAR" property="parentCode" />
+    <result column="categoryStatus" jdbcType="INTEGER" property="categoryStatus" />
+    <result column="dmsValue" jdbcType="DOUBLE" property="dmsValue" />
+    <result column="saleQuotaDays" jdbcType="INTEGER" property="saleQuotaDays" />
+    <result column="standardSaleDays" jdbcType="INTEGER" property="standardSaleDays" />
+    <result column="trySaleDays" jdbcType="INTEGER" property="trySaleDays" />
+    <result column="safeStockDays" jdbcType="INTEGER" property="safeStockDays" />
+    <result column="minStockDays" jdbcType="INTEGER" property="minStockDays" />
+    <result column="maxStockDays" jdbcType="INTEGER" property="maxStockDays" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="license" jdbcType="SMALLINT" property="license"/>
+    <result column="level" jdbcType="SMALLINT" property="level" />
+    <result column="leafFlag" jdbcType="BIT" property="leafFlag" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="manageCategoryCode" jdbcType="VARCHAR" property="manageCategoryCode" />
+    <result column="restricted" jdbcType="VARCHAR" property="restricted" />
+    <result column="shopSheetType" jdbcType="INTEGER" property="shopSheetType" />
+  </resultMap>
+  
+  
+  <!-- 通过末级查询上级编码和名称 -->
+  <select id = "selectLevelCateCode" parameterType="map" resultType="map">
+	  	SELECT
+		categoryCode,
+		categoryName,
+		`level`,
+		SUBSTRING_INDEX( SUBSTRING_INDEX( allPathCode, '->', #{selectLevel} ), '->',- 1 ) AS 'selectLevel',
+		SUBSTRING_INDEX( SUBSTRING_INDEX( allPathName, '->', #{selectLevel} ), '->',- 1 ) AS 'selectLevelName' 
+	FROM
+		allpathcategory 
+		WHERE `level` = #{categoryLevel}  AND
+		categoryCode IN
+		<foreach item="item" index="index" collection="categoryCodes" open="(" separator="," close=")">
+	  		#{item}
+	   </foreach>
+  </select>
+  
+  
+  <!-- 营销级次（任意级次）、编码、品称查询品类的AriticleCode，ClassCode的接口 -->
+  <select id = "categoryToMarket" parameterType="map" resultType="map">
+  	select categoryCode,categoryName,parentCode,level from allpathcategory where `level` =  #{returnLevel}  
+  		<if test = "categoryCode != null and categoryCode !='' and inputLevel != null">
+			and  SUBSTRING_INDEX(SUBSTRING_INDEX(allPathCode,'->',#{inputLevel}) ,'->',-1)  =  #{categoryCode}
+		</if>
+		<if test = "categoryName != null and categoryName !='' and inputLevel != null">
+			and  SUBSTRING_INDEX(SUBSTRING_INDEX(upper(allPathName),'->',#{inputLevel}) ,'->',-1)  like CONCAT('%',upper(#{categoryName}),'%')
+		</if>
+  </select>
+  
+  <select id="searchCategoryLabel" parameterType="java.lang.Long" resultType="java.util.Map">
+    SELECT catLabelName FROM categoryLabel as cat where cat.clid = (SELECT categoryLabelId FROM categoryLabelRef WHERE categoryId =  #{categoryId,jdbcType=BIGINT})
+  </select>
+  
+  <update id="updateCategoryProperty" parameterType="java.util.Map">
+    UPDATE categoryProperty SET status = #{status},updateDate=now() WHERE categoryId IN
+    <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
+  		#{item}
+   </foreach>
+  </update>
+  
+  <select id="selectInCategoryIds" parameterType="map" resultMap="BaseResultMap">
+  	SELECT c.*
+  	FROM category c
+  	WHERE 1=1
+  	<if test="categoryIds != null">
+	    AND c.categoryId IN
+		<foreach collection="categoryIds" index="index" item="item" open="(" separator="," close=")">
+	       #{item}       
+	    </foreach>
+	</if>
+  </select>
+  
+  <select id="search4Like" parameterType="map" resultMap="BaseResultMap">
+  	SELECT c.*
+  	FROM Category c
+  	WHERE 1=1
+  	<if test = "entId != null">
+  		AND c.entId = #{entId}
+  	</if>
+  	<if test = "erpCode != null">
+  		AND c.erpCode = #{erpCode}
+  	</if>
+  	<if test = "leafFlag != null">
+  		AND c.leafFlag = #{leafFlag}
+  	</if>
+  	<if test = "status != null">
+  		AND c.status = #{status}
+  	</if>
+  	<if test = "str != null">
+  		AND (c.categoryCode LIKE '${str}%' OR c.categoryName LIKE '${str}%')
+  	</if>
+  	<if test="page_no != null and page_size != null">
+		limit ${page_no},${page_size}
+	</if>
+  </select>
+  
+  <!-- 筛选部类,暂且忽略筛选erpCode -->
+  <select id="selectBuLei" parameterType="map" resultMap="BaseResultMap">
+  	SELECT c.*
+  	FROM Category c, CategoryManageLevel m
+  	WHERE  1 = 1
+  	<if test = "entId != null">
+  		AND m.entId = #{entId}
+  	</if>
+  	<if test = "erpCode != null">
+  		AND m.erpCode = #{erpCode}
+  	</if>
+  	AND c.entId = m.entId AND c.erpCode = m.erpCode AND c.level = m.level
+  </select>
+  
+  <!-- 筛选大类, 暂且忽略筛选erpCode -->
+  <select id="selectDaLei" parameterType="map" resultMap="BaseResultMap">
+  	SELECT c.*
+  	FROM Category c, CategoryManageLevel m
+  	WHERE  1 = 1
+  	<if test = "entId != null">
+  		AND m.entId = #{entId}
+  	</if>
+  	<if test = "erpCode != null">
+  		AND m.erpCode = #{erpCode}
+  	</if>
+  	AND c.entId = m.entId AND c.erpCode = m.erpCode
+  	AND c.level = (m.level + 1)
+  	<if test = "parentId != null">
+  		AND c.parentId = #{parentId}
+  	</if>
+  </select>
+  
+  <!--根据erpCode 和 categoryCode 逐级查类别 -->
+  <select id="getCategoryList" parameterType="map" resultType="map">
+		SELECT c.*,b.erpName
+		FROM category c
+		LEFT JOIN businesscompany b ON  c.erpCode=b.erpCode
+		WHERE 1=1
+		<if test="entId != null">
+			AND c.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND c.erpCode = #{erpCode}
+		</if>
+		<if test="parentCode != null">
+			AND c.parentCode = #{parentCode}
+		</if>
+  </select>
+  
+  <!-- 批量更新部类到叶子节点 -->
+  <update id="batchUpdateManageCategoryCode" parameterType="java.util.Map">
+        <foreach collection="value" item="item" separator=";" >
+        UPDATE category 
+			SET manageCategoryCode = #{item.manageCategoryCode,jdbcType=VARCHAR},
+			updateDate = now() 
+		WHERE
+			categoryId = #{item.categoryId,jdbcType=BIGINT}
+        </foreach>
+  </update>
+  
+  <!-- 批量设置打印黄色小票 -->
+  <update id="batchPrintYellowTicket" parameterType="java.util.Map">
+	UPDATE category set	license = #{license},updateDate = now() 
+	WHERE categoryId IN
+		<foreach collection="categoryIds" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+  </update>
+  
+  <!-- 批量设置类别库存策略 -->
+  <update id="batchUpdateShopSheetType" parameterType="java.util.Map">
+	UPDATE category set	shopSheetType = #{shopSheetType},updateDate = now() 
+	WHERE categoryId IN
+		<foreach collection="categoryIds" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+  </update>
+  
+   <!--导出库存策略管理部类 -->
+   <select id="shopSheetTypeCategory" parameterType="map" resultType="map">
+		SELECT m.erpCode,c.categoryId,c.categoryCode categoryCode,c.categoryName,c.shopSheetType,c.entId,c.leafFlag
+		FROM CategoryManageLevel m
+		LEFT JOIN category c ON c.level = m.level
+		WHERE  1=1
+		<if test="entId != null">
+			AND m.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND m.erpCode = #{erpCode}
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<!--统计管理部类数量 -->
+	<select id="countBLCategory" parameterType="map" resultType="long">
+		SELECT COUNT(1)
+		FROM CategoryManageLevel m
+		LEFT JOIN category c ON c.level = m.level
+		WHERE  1=1
+		<if test="entId != null">
+			AND m.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND m.erpCode = #{erpCode}
+		</if>
+	</select>
+  
+</mapper>

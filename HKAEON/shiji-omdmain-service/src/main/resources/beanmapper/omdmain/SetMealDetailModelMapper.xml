@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.SetMealDetailModelMapper">
+	<resultMap id="BaseResultMap" type="com.efuture.omdmain.model.SetMealDetailModel">
+		<!--
+		  WARNING - @mbg.generated
+		-->
+		<id column="smdid" jdbcType="BIGINT" property="smdid" />
+		<result column="entId" jdbcType="BIGINT" property="entId" />
+		<result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+		<result column="sgoodsId" jdbcType="BIGINT" property="sgoodsId" />
+		<result column="sgoodsCode" jdbcType="VARCHAR" property="sgoodsCode" />
+		<result column="typeName" jdbcType="VARCHAR" property="typeName" />
+		<result column="goodsId" jdbcType="BIGINT" property="goodsId" />
+		<result column="goodsCode" jdbcType="VARCHAR" property="goodsCode" />
+		<result column="lang" jdbcType="VARCHAR" property="lang" />
+		<result column="creator" jdbcType="VARCHAR" property="creator" />
+		<result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+		<result column="modifier" jdbcType="VARCHAR" property="modifier" />
+		<result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="shopCode" jdbcType="VARCHAR" property="shopCode" />
+		<result column="shopId" jdbcType="BIGINT" property="shopId" />
+	</resultMap>
+
+	<!-- 档口复制商品选择框-->
+	<select id="searchGoods" parameterType="JSONObject" resultType="JSONObject">
+		select sgoodsCode as goodsCode ,count(1) as num from setmealdetail where shopId = #{shopId} and sgoodsCode in
+		<foreach collection="goodsCode" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		group by sgoodsCode;
+	</select>
+
+	<!-- 复制数据：先删除旧数据，再复制新数据 -->
+	<!--1.先删除数据 -->
+	<delete id="deleteData" parameterType="map">
+		delete from setmealdetail where sgoodsId = #{toSsgid}
+	</delete>
+
+	<!--2.copy setmealdetail 數據-->
+	<insert id="copyData" parameterType="map">
+		insert into setmealdetail (`smdid`, `entId`, `erpCode`, `sgoodsId`, `sgoodsCode`, `typeName`, `goodsId`, `goodsCode`, `lang`, `creator`, `createDate`, `modifier`, `updateDate`, `shopCode`, `shopId`)
+		select uuid_short(), `entId`, `erpCode`, #{toSsgid}, #{toGoodsCode}, `typeName`, `goodsId`, `goodsCode`, `lang`, #{creator}, now(), #{creator}, now(), `shopCode`, `shopId` from setmealdetail where sgoodsId = #{fromSsgid}
+	</insert>
+
+	<!-- 更新虚拟商品的状态-->
+	<update id="updateStatus20" parameterType="map">
+		update salegoods set goodsStatus = -1 , updateDate = now() where
+		goodsCode in
+		<foreach collection="goodsCode" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		 and shopCode = #{shopCode} and mainBarcodeFlag = 1 and goodsType = 20
+	</update>
+
+	<!--查询档口下套餐明细虚拟商品-->
+	<select id="selectGoodsCode20" parameterType="map" resultType="string">
+		select s.goodsCode from setmealdetail s where s.erpCode = #{erpCode} and s.shopCode = #{shopCode} and s.sgoodsCode = #{goodsCode}
+	</select>
+
+	<select id="selectTCMealDetail" parameterType="map" resultType="map">
+		SELECT  s.sgoodsCode tcCode,s.goodsCode detailCode,sg.goodsName detailName,sg.barNo detailBarNo,
+		t.typeName tcTypeName,t.optionNum,sg.saleprice detailPrice
+		FROM setmealdetail s
+		left join saleGoods sg on s.goodsId=sg.sgid
+		left join setmealtyperef t on (t.entId=s.entId and t.typeName=s.typeName)
+		WHERE 1=1
+		<if test="entId != null">
+			AND s.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND s.erpCode = #{erpCode}
+		</if>
+		<if test="shopCode != null and shopCode != ''">
+			AND sg.shopCode = #{shopCode}
+		</if>
+		<if test="sgoodsId != null">
+			AND s.sgoodsId IN
+			<foreach collection="sgoodsId" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</select>
+
+	<delete id="deleteBySGoodsCodeShopCode" parameterType="java.util.List">
+		<foreach collection="value" item="item" open="" separator=";" close="">
+			DELETE FROM setMealDetail WHERE sGoodsCode = #{item.sGoodsCode} and shopCode = #{item.shopCode} AND erpCode = #{item.erpCode} AND entId = #{item.entId}
+		</foreach>
+	</delete>
+
+	<select id="selectByStateNew" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+				d.*,
+				t.*
+			FROM
+				setMealDetail d
+			  LEFT JOIN saleGoods t ON t.ssgid = d.goodsId
+			WHERE
+				1 = 1
+				<if test = "ssgid != null">
+				AND d.sgoodsId = #{ssgid}
+				</if>
+	</select>
+
+	<select id="selectByState" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			d.*,
+			t.goodsName,t.goodsDisplayName,t.salePrice,t.barNo,t.recycleFee, t.categoryId, t.categoryCode,
+			t.brandId, t.brandCode,
+			t.ssgid
+		FROM
+			saleGoods t INNER JOIN
+			setMealDetail d ON(t.entId = d.entId AND t.erpCode = d.erpCode AND t.ssgid = d.sGoodsId)
+		WHERE
+			1=1
+			<if test = "ssgid != null">
+				AND t.ssgid = #{ssgid}
+			</if>
+	</select>
+
+	<select id="selectByState2" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT
+			d.*,t.goodsName,t.goodsDisplayName,t.salePrice,t.barNo,t.recycleFee, t.categoryId, t.categoryCode,
+			t.brandId, t.brandCode
+		FROM
+			saleGoods t,
+			setMealDetail d
+		WHERE
+			1=1
+			AND t.entId = d.entId AND t.sgid = d.goodsId
+			<if test = "sgoodsId!= null">
+				AND d.sgoodsId = #{sgoodsId}
+			</if>
+	</select>
+
+	<insert id="batchInsert" parameterType="java.util.List">
+		<foreach collection="value" item="item" open="" separator=";" close="">
+			INSERT INTO setMealDetail(smdid, entId, erpCode, sGoodsId, sGoodsCode,
+			typeName, goodsId, goodsCode, lang, creator, createDate, modifier, updateDate,shopId,shopCode)
+			VALUES(#{item.smdid}, #{item.entId}, #{item.erpCode}, #{item.sgoodsId}, #{item.sgoodsCode},
+			#{item.typeName}, #{item.goodsId}, #{item.goodsCode}, #{item.lang},
+			#{item.creator}, #{item.createDate}, #{item.modifier}, #{item.updateDate}, #{item.shopId}, #{item.shopCode})
+		</foreach>
+	</insert>
+
+</mapper>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BrandInfoModelMapper">
+
+	<select id="queryDataByUnique" parameterType="map" resultType="map">
+		SELECT * FROM brandinfo WHERE brandCode IN
+		<foreach collection="values" index="index" item="item" open="(" separator="," close=")">
+			(#{item})
+		</foreach>
+	</select>
+
+	<select id="count" parameterType="JSONObject" resultType="long">
+		select
+		count(*) from brandinfo
+		where brandCode = #{brandCode,jdbcType=VARCHAR}
+		and erpCode=#{erpCode} and
+		entId=#{entId}
+	</select>
+
+	<insert id="insertAll" parameterType="JSONObject">
+		insert into brandinfo (brandId, entId, erpCode,
+		brandName, brandSCode,
+		brandCode,
+		brandTypeCode, brandLevelCode, brandEnName,
+		designer,
+		brandDesc, status,
+		lang, creator, createDate,
+		modifier, updateDate,brandOriginCountryCode
+		<foreach collection="@com.efuture.utils.BeanUtils@xmlList(list)" item="item" index="0">
+			<if test="item.dealType != null and item.dealType != ''">
+			,dealType
+			</if>
+			<if test="item.seqNum != null and item.seqNum != ''">
+			,seqNum
+			</if>
+		</foreach>
+		)
+		values
+		<foreach collection="list" separator="," item="item">
+			(#{item.brandId,jdbcType=BIGINT},
+			#{item.entId,jdbcType=BIGINT},
+			#{item.erpCode,jdbcType=VARCHAR},
+			#{item.brandName,jdbcType=VARCHAR},
+			#{item.brandSCode,jdbcType=VARCHAR},
+			#{item.brandCode,jdbcType=VARCHAR},
+			#{item.brandTypeCode,jdbcType=VARCHAR},
+			#{item.brandLevelCode,jdbcType=VARCHAR},
+			#{item.brandEnName,jdbcType=VARCHAR},
+			#{item.designer,jdbcType=VARCHAR},
+			#{item.brandDesc,jdbcType=VARCHAR},
+			#{item.status,jdbcType=SMALLINT},
+			#{item.lang,jdbcType=VARCHAR},
+			#{item.creator,jdbcType=VARCHAR},
+			#{item.createDate,jdbcType=TIMESTAMP},
+			#{item.modifier,jdbcType=VARCHAR},
+			#{item.updateDate,jdbcType=TIMESTAMP},
+			#{item.brandOriginCountryCode,jdbcType=VARCHAR}
+			<if test="item.dealType != null and item.dealType != ''">
+				,#{item.dealType,jdbcType=CHAR}
+			</if>
+			<if test="item.seqNum != null and item.seqNum != ''">
+				,#{item.seqNum,jdbcType=BIGINT}
+			</if>
+			)
+		</foreach>
+	</insert>
+
+	<update id="updateAll" parameterType="JSONObject">
+		<foreach collection="list" item="item" separator=";">
+			update brandinfo
+			<set>
+				<if test="item.entId != null">
+					entId = #{item.entId,jdbcType=BIGINT},
+				</if>
+				<if test="item.brandName != null">
+					brandName = #{item.brandName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.brandSCode != null">
+					brandSCode = #{item.brandSCode,jdbcType=VARCHAR},
+				</if>
+				<if test="item.brandCode != null">
+					brandCode = #{item.brandCode,jdbcType=VARCHAR},
+				</if>
+				<if test="item.brandTypeCode != null">
+					brandTypeCode = #{item.brandTypeCode,jdbcType=VARCHAR},
+				</if>
+				<if test="item.brandLevelCode != null">
+					brandLevelCode =
+					#{item.brandLevelCode,jdbcType=VARCHAR},
+				</if>
+				<if test="item.brandEnName != null">
+					brandEnName = #{item.brandEnName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.designer != null">
+					designer = #{item.designer,jdbcType=VARCHAR},
+				</if>
+				<if test="item.brandDesc != null">
+					brandDesc = #{item.brandDesc,jdbcType=VARCHAR},
+				</if>
+				<if test="item.erpCode != null">
+					erpCode = #{item.erpCode,jdbcType=VARCHAR},
+				</if>
+				<if test="item.erpName != null">
+					erpName = #{item.erpName,jdbcType=VARCHAR},
+				</if>
+				<if test="item.status != null">
+					status = #{item.status,jdbcType=INTEGER},
+				</if>
+				<if test="item.lang != null">
+					lang = #{item.lang,jdbcType=VARCHAR},
+				</if>
+				<if test="item.creator != null">
+					creator = #{item.creator,jdbcType=VARCHAR},
+				</if>
+				<if test="item.createDate != null">
+					createDate = #{item.createDate,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.modifier != null">
+					modifier = #{item.modifier,jdbcType=VARCHAR},
+				</if>
+				<if test="item.updateDate != null">
+					updateDate = #{item.updateDate,jdbcType=TIMESTAMP},
+				</if>
+				<if test="item.brandOriginCountryCode != null">
+					brandOriginCountryCode = #{item.brandOriginCountryCode,jdbcType=VARCHAR},
+				</if>
+				<if test="item.dealType != null and item.dealType != ''">
+					dealType = #{item.dealType,jdbcType=CHAR},
+				</if>
+				<if test="item.seqNum != null and item.seqNum != ''">
+					seqNum = #{item.seqNum,jdbcType=BIGINT},
+				</if>
+			</set>
+			where brandCode = #{item.brandCode,jdbcType=VARCHAR} and erpCode=#{item.erpCode} and entId=#{item.entId}
+				<if test="item.seqNum != null and item.seqNum != ''">
+					and #{item.seqNum,jdbcType=BIGINT} >= seqNum
+				</if>
+		</foreach>
+	</update>
+
+	<insert id="insert" parameterType="JSONObject">
+		insert into brandinfo
+		(brandId, entId, erpCode,
+		brandName, brandSCode, brandCode,
+		brandTypeCode, brandLevelCode, brandEnName,
+		designer, brandDesc,
+		status,
+		lang, creator, createDate,
+		modifier, updateDate,brandOriginCountryCode
+		<if test="dealType != null and dealType != ''">
+			,dealType
+		</if>
+		<if test="seqNum != null and seqNum != ''">
+			,seqNum
+		</if>
+		)
+		values
+		(#{brandId,jdbcType=BIGINT},#{entId,jdbcType=BIGINT},
+		#{erpCode,jdbcType=VARCHAR},
+		#{brandName,jdbcType=VARCHAR},
+		#{brandSCode,jdbcType=VARCHAR},#{brandCode,jdbcType=VARCHAR},
+		#{brandTypeCode,jdbcType=VARCHAR},#{brandLevelCode,jdbcType=VARCHAR},
+		#{brandEnName,jdbcType=VARCHAR},
+		#{designer,jdbcType=VARCHAR},
+		#{brandDesc,jdbcType=VARCHAR},#{status,jdbcType=SMALLINT},
+		#{lang,jdbcType=VARCHAR},#{creator,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{modifier,jdbcType=VARCHAR},
+		#{updateDate,jdbcType=TIMESTAMP},
+		#{brandOriginCountryCode,jdbcType=VARCHAR}
+		<if test="dealType != null and dealType != ''">
+			,#{dealType,jdbcType=CHAR}
+		</if>
+		<if test="seqNum != null and seqNum != ''">
+			,#{seqNum,jdbcType=BIGINT}
+		</if>
+		 )
+	</insert>
+
+	<update id="update" parameterType="JSONObject">
+		update brandinfo
+		<set>
+			<if test="entId != null">
+				entId = #{entId,jdbcType=BIGINT},
+			</if>
+			<if test="brandName != null">
+				brandName = #{brandName,jdbcType=VARCHAR},
+			</if>
+			<if test="brandSCode != null">
+				brandSCode = #{brandSCode,jdbcType=VARCHAR},
+			</if>
+			<if test="brandCode != null">
+				brandCode = #{brandCode,jdbcType=VARCHAR},
+			</if>
+			<if test="brandTypeCode != null">
+				brandTypeCode = #{brandTypeCode,jdbcType=VARCHAR},
+			</if>
+			<if test="brandLevelCode != null">
+				brandLevelCode = #{brandLevelCode,jdbcType=VARCHAR},
+			</if>
+			<if test="brandEnName != null">
+				brandEnName = #{brandEnName,jdbcType=VARCHAR},
+			</if>
+			<if test="designer != null">
+				designer = #{designer,jdbcType=VARCHAR},
+			</if>
+			<if test="brandDesc != null">
+				brandDesc = #{brandDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="erpCode != null">
+				erpCode = #{erpCode,jdbcType=VARCHAR},
+			</if>
+			<if test="erpName != null">
+				erpName = #{erpName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="lang != null">
+				lang = #{lang,jdbcType=VARCHAR},
+			</if>
+			<if test="creator != null">
+				creator = #{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				createDate = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifier != null">
+				modifier = #{modifier,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				updateDate = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="brandOriginCountryCode != null">
+				brandOriginCountryCode = #{brandOriginCountryCode,jdbcType=VARCHAR},
+			</if>
+			<if test="dealType != null and dealType != ''">
+				dealType = #{dealType,jdbcType=CHAR},
+			</if>
+			<if test="seqNum != null and seqNum != ''">
+				seqNum = #{seqNum,jdbcType=BIGINT},
+			</if>
+		</set>
+		where brandCode = #{brandCode,jdbcType=VARCHAR} and erpCode=#{erpCode} and entId=#{entId}
+			<if test="seqNum != null and seqNum != ''">
+				and #{seqNum,jdbcType=BIGINT} >= seqNum
+			</if>
+	</update>
+
+</mapper>

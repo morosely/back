@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ShopModelMapper">
+  <select id="count" parameterType="JSONObject" resultType="long">
+    select count(*) from shop
+    where shopCode = #{shopCode,jdbcType=VARCHAR} and entId = #{entId,jdbcType=BIGINT} and erpCode = #{erpCode,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insertAll" parameterType="com.efuture.model.ShopModel">
+    insert into shop (shopId, entId, erpCode,
+    shopCode, shopName, shopSName,shopEnName,
+    parentId, parentCode, shopForm,
+    shopTypex, purchaseTypex, owneShopIdx,
+    shopSize, shopLevel, commerceCircle,
+    league, brand, priceGroup,
+    shopZonex, openningTime, bookNo,
+    subject, companyName, deliveryCode,
+    deliveryName, telephone, busiAreage,
+    buildAreage, rent, deliveryCycle,
+    safeStockDays, orderCycle, recordDate,
+    regionId, regionCode, longitude,
+    latitude, serviceRadiu, address,
+    level, leafFlag, status,
+    lang, creator, createDate,
+    modifier, updateDate, groupCode
+    <foreach collection="@com.efuture.utils.BeanUtils@xmlList(list)" item="item" index="0">
+      <if test="item.comCode != null and item.comCode != ''">
+        ,comCode
+      </if>
+      <if test="item.dealType != null and item.dealType != ''">
+        ,dealType
+      </if>
+      <if test="item.seqNum != null and item.seqNum != ''">
+        ,seqNum
+      </if>
+    </foreach>
+    )
+    values
+    <foreach collection="list" separator="," item="item">
+      (#{item.shopId,jdbcType=BIGINT}, #{item.entId,jdbcType=BIGINT}, #{item.erpCode,jdbcType=VARCHAR},
+      #{item.shopCode,jdbcType=VARCHAR}, #{item.shopName,jdbcType=VARCHAR}, #{item.shopSName,jdbcType=VARCHAR}, #{item.shopEnName,jdbcType=VARCHAR},
+      #{item.parentId,jdbcType=BIGINT}, #{item.parentCode,jdbcType=VARCHAR}, #{item.shopForm,jdbcType=VARCHAR},
+      #{item.shopTypex,jdbcType=VARCHAR}, #{item.purchaseTypex,jdbcType=VARCHAR}, #{item.owneShopIdx,jdbcType=VARCHAR},
+      #{item.shopSize,jdbcType=VARCHAR}, #{item.shopLevel,jdbcType=VARCHAR}, #{item.commerceCircle,jdbcType=VARCHAR},
+      #{item.league,jdbcType=VARCHAR}, #{item.brand,jdbcType=VARCHAR}, #{item.priceGroup,jdbcType=VARCHAR},
+      #{item.shopZonex,jdbcType=VARCHAR}, #{item.openningTime,jdbcType=TIMESTAMP}, #{item.bookNo,jdbcType=VARCHAR},
+      #{item.subject,jdbcType=VARCHAR}, #{item.companyName,jdbcType=VARCHAR}, #{item.deliveryCode,jdbcType=VARCHAR},
+      #{item.deliveryName,jdbcType=VARCHAR}, #{item.telephone,jdbcType=VARCHAR}, #{item.busiAreage,jdbcType=DOUBLE},
+      #{item.buildAreage,jdbcType=DOUBLE}, #{item.rent,jdbcType=DECIMAL}, #{item.deliveryCycle,jdbcType=VARCHAR},
+      #{item.safeStockDays,jdbcType=INTEGER}, #{item.orderCycle,jdbcType=VARCHAR}, #{item.recordDate,jdbcType=TIMESTAMP},
+      #{item.regionId,jdbcType=BIGINT}, #{item.regionCode,jdbcType=VARCHAR}, #{item.longitude,jdbcType=VARCHAR},
+      #{item.latitude,jdbcType=VARCHAR}, #{item.serviceRadiu,jdbcType=INTEGER}, #{item.address,jdbcType=VARCHAR},
+      #{item.level,jdbcType=SMALLINT}, #{item.leafFlag,jdbcType=BIT}, #{item.status,jdbcType=SMALLINT},
+      #{item.lang,jdbcType=VARCHAR}, #{item.creator,jdbcType=VARCHAR}, #{item.createDate,jdbcType=TIMESTAMP},
+      #{item.modifier,jdbcType=VARCHAR}, #{item.updateDate,jdbcType=TIMESTAMP}, #{item.groupCode,jdbcType=VARCHAR}
+      <if test="item.comCode != null and item.comCode != ''">
+        ,#{item.comCode,jdbcType=VARCHAR}
+      </if>
+      <if test="item.dealType != null and item.dealType != ''">
+        ,#{item.dealType,jdbcType=CHAR}
+      </if>
+      <if test="item.seqNum != null and item.seqNum != ''">
+        ,#{item.seqNum,jdbcType=BIGINT}
+      </if>
+      )
+    </foreach>
+  </insert>
+
+  <update id="updateAll" parameterType="com.efuture.model.ShopModel" >
+        <foreach collection="list" item="item" separator=";" >
+          <if test="item.dealType != null and item.dealType != ''">
+            update shop
+            <set>
+              <if test="item.groupCode != null">
+                groupCode = #{item.groupCode,jdbcType=VARCHAR},
+              </if>
+              <if test="item.entId != null">
+                entId = #{item.entId,jdbcType=BIGINT},
+              </if>
+              <!--          <if test="item.erpCode != null">-->
+              <!--            erpCode = #{item.erpCode,jdbcType=VARCHAR},-->
+              <!--          </if>-->
+              <!--          <if test="item.shopCode != null">-->
+              <!--            shopCode = #{item.shopCode,jdbcType=VARCHAR},-->
+              <!--          </if>-->
+              <if test="item.shopName != null">
+                shopName = #{item.shopName,jdbcType=VARCHAR},
+              </if>
+              <if test="item.shopSName != null">
+                shopSName = #{item.shopSName,jdbcType=VARCHAR},
+              </if>
+              <if test="item.shopEnName != null">
+                shopEnName = #{item.shopEnName,jdbcType=VARCHAR},
+              </if>
+              <if test="item.parentId != null">
+                parentId = #{item.parentId,jdbcType=BIGINT},
+              </if>
+              <if test="item.parentCode != null">
+                parentCode = #{item.parentCode,jdbcType=VARCHAR},
+              </if>
+              <if test="item.shopTypex != null">
+                shopTypex = #{item.shopTypex,jdbcType=VARCHAR},
+              </if>
+              <if test="item.purchaseTypex != null">
+                purchaseTypex = #{item.purchaseTypex,jdbcType=VARCHAR},
+              </if>
+              <if test="item.owneShopIdx != null">
+                owneShopIdx = #{item.owneShopIdx,jdbcType=VARCHAR},
+              </if>
+              <if test="item.shopSize != null">
+                shopSize = #{item.shopSize,jdbcType=VARCHAR},
+              </if>
+              <if test="item.shopLevel != null">
+                shopLevel = #{item.shopLevel,jdbcType=VARCHAR},
+              </if>
+              <if test="item.commerceCircle != null">
+                commerceCircle = #{item.commerceCircle,jdbcType=VARCHAR},
+              </if>
+              <if test="item.league != null">
+                league = #{item.league,jdbcType=VARCHAR},
+              </if>
+              <if test="item.brand != null">
+                brand = #{item.brand,jdbcType=VARCHAR},
+              </if>
+              <if test="item.priceGroup != null">
+                priceGroup = #{item.priceGroup,jdbcType=VARCHAR},
+              </if>
+              <if test="item.shopZonex != null">
+                shopZonex = #{item.shopZonex,jdbcType=VARCHAR},
+              </if>
+              <if test="item.openningTime != null">
+                openningTime = #{item.openningTime,jdbcType=TIMESTAMP},
+              </if>
+              <if test="item.bookNo != null">
+                bookNo = #{item.bookNo,jdbcType=VARCHAR},
+              </if>
+              <if test="item.subject != null">
+                subject = #{item.subject,jdbcType=VARCHAR},
+              </if>
+              <if test="item.companyName != null">
+                companyName = #{item.companyName,jdbcType=VARCHAR},
+              </if>
+              <if test="item.deliveryCode != null">
+                deliveryCode = #{item.deliveryCode,jdbcType=VARCHAR},
+              </if>
+              <if test="item.deliveryName != null">
+                deliveryName = #{item.deliveryName,jdbcType=VARCHAR},
+              </if>
+              <if test="item.telephone != null">
+                telephone = #{item.telephone,jdbcType=VARCHAR},
+              </if>
+              <if test="item.busiAreage != null">
+                busiAreage = #{item.busiAreage,jdbcType=DOUBLE},
+              </if>
+              <if test="item.buildAreage != null">
+                buildAreage = #{item.buildAreage,jdbcType=DOUBLE},
+              </if>
+              <if test="item.rent != null">
+                rent = #{item.rent,jdbcType=DECIMAL},
+              </if>
+              <if test="item.deliveryCycle != null">
+                deliveryCycle = #{item.deliveryCycle,jdbcType=VARCHAR},
+              </if>
+              <if test="item.safeStockDays != null">
+                safeStockDays = #{item.safeStockDays,jdbcType=INTEGER},
+              </if>
+              <if test="item.orderCycle != null">
+                orderCycle = #{item.orderCycle,jdbcType=VARCHAR},
+              </if>
+              <if test="item.recordDate != null">
+                recordDate = #{item.recordDate,jdbcType=TIMESTAMP},
+              </if>
+              <if test="item.regionId != null">
+                regionId = #{item.regionId,jdbcType=BIGINT},
+              </if>
+              <if test="item.regionCode != null">
+                regionCode = #{item.regionCode,jdbcType=VARCHAR},
+              </if>
+              <if test="item.longitude != null">
+                longitude = #{item.longitude,jdbcType=VARCHAR},
+              </if>
+              <if test="item.latitude != null">
+                latitude = #{item.latitude,jdbcType=VARCHAR},
+              </if>
+              <if test="item.serviceRadiu != null">
+                serviceRadiu = #{item.serviceRadiu,jdbcType=INTEGER},
+              </if>
+              <!--
+              <if test="item.address != null">
+                address = #{item.address,jdbcType=VARCHAR},
+              </if>
+              -->
+              <if test="item.level != null">
+                level = #{item.level,jdbcType=SMALLINT},
+              </if>
+              <if test="item.leafFlag != null">
+                leafFlag = #{item.leafFlag,jdbcType=BIT},
+              </if>
+              <if test="item.lang != null">
+                lang = #{item.lang,jdbcType=VARCHAR},
+              </if>
+              <if test="item.creator != null">
+                creator = #{item.creator,jdbcType=VARCHAR},
+              </if>
+              <if test="item.createDate != null">
+                createDate = #{item.createDate,jdbcType=TIMESTAMP},
+              </if>
+              <if test="item.modifier != null">
+                modifier = #{item.modifier,jdbcType=VARCHAR},
+              </if>
+              <if test="item.shopForm != null">
+                shopForm = #{item.shopForm,jdbcType=VARCHAR},
+              </if>
+              <if test="item.status != null">
+                status = #{item.status,jdbcType=SMALLINT},
+              </if>
+              <if test="item.updateDate != null">
+                updateDate = #{item.updateDate,jdbcType=TIMESTAMP},
+              </if>
+              <if test="item.comCode != null and item.comCode != ''">
+                comCode = #{item.comCode,jdbcType=VARCHAR},
+              </if>
+              <if test="item.dealType != null and item.dealType != ''">
+                dealType = #{item.dealType,jdbcType=CHAR},
+              </if>
+              <if test="item.seqNum != null and item.seqNum != ''">
+                seqNum = #{item.seqNum,jdbcType=BIGINT},
+              </if>
+            </set>
+            where shopCode = #{item.shopCode,jdbcType=VARCHAR} and entId = #{item.entId,jdbcType=BIGINT} and erpCode = #{item.erpCode,jdbcType=VARCHAR}
+            <if test="item.seqNum != null and item.seqNum != ''">
+              and #{item.seqNum,jdbcType=BIGINT} >= seqNum
+            </if>
+          </if>
+
+          <if test="item.dealType == null or item.dealType == ''">
+              update shop
+              <set>
+                <if test="item.groupCode != null">
+                  groupCode = #{item.groupCode,jdbcType=VARCHAR},
+                </if>
+                <!-- <if test="item.entId != null">
+                  entId = #{item.entId,jdbcType=BIGINT},
+                </if>
+                <if test="item.erpCode != null">
+                  erpCode = #{item.erpCode,jdbcType=VARCHAR},
+                </if>
+                <if test="item.shopCode != null">
+                  shopCode = #{item.shopCode,jdbcType=VARCHAR},
+                </if>
+                <if test="item.shopName != null">
+                  shopName = #{item.shopName,jdbcType=VARCHAR},
+                </if>
+                <if test="item.shopSName != null">
+                  shopSName = #{item.shopSName,jdbcType=VARCHAR},
+                </if>
+                <if test="item.shopEnName != null">
+                  shopEnName = #{item.shopEnName,jdbcType=VARCHAR},
+                </if>
+                <if test="item.parentId != null">
+                  parentId = #{item.parentId,jdbcType=BIGINT},
+                </if>
+                <if test="item.parentCode != null">
+                  parentCode = #{item.parentCode,jdbcType=VARCHAR},
+                </if>
+                <if test="item.shopTypex != null">
+                  shopTypex = #{item.shopTypex,jdbcType=VARCHAR},
+                </if>
+                <if test="item.purchaseTypex != null">
+                  purchaseTypex = #{item.purchaseTypex,jdbcType=VARCHAR},
+                </if>
+                <if test="item.owneShopIdx != null">
+                  owneShopIdx = #{item.owneShopIdx,jdbcType=VARCHAR},
+                </if>
+                <if test="item.shopSize != null">
+                  shopSize = #{item.shopSize,jdbcType=VARCHAR},
+                </if>
+                <if test="item.shopLevel != null">
+                  shopLevel = #{item.shopLevel,jdbcType=VARCHAR},
+                </if>
+                <if test="item.commerceCircle != null">
+                  commerceCircle = #{item.commerceCircle,jdbcType=VARCHAR},
+                </if>
+                <if test="item.league != null">
+                  league = #{item.league,jdbcType=VARCHAR},
+                </if>
+                <if test="item.brand != null">
+                  brand = #{item.brand,jdbcType=VARCHAR},
+                </if>
+                <if test="item.priceGroup != null">
+                  priceGroup = #{item.priceGroup,jdbcType=VARCHAR},
+                </if>
+                <if test="item.shopZonex != null">
+                  shopZonex = #{item.shopZonex,jdbcType=VARCHAR},
+                </if>
+                <if test="item.openningTime != null">
+                  openningTime = #{item.openningTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.bookNo != null">
+                  bookNo = #{item.bookNo,jdbcType=VARCHAR},
+                </if>
+                <if test="item.subject != null">
+                  subject = #{item.subject,jdbcType=VARCHAR},
+                </if>
+                <if test="item.companyName != null">
+                  companyName = #{item.companyName,jdbcType=VARCHAR},
+                </if>
+                <if test="item.deliveryCode != null">
+                  deliveryCode = #{item.deliveryCode,jdbcType=VARCHAR},
+                </if>
+                <if test="item.deliveryName != null">
+                  deliveryName = #{item.deliveryName,jdbcType=VARCHAR},
+                </if>
+                <if test="item.telephone != null">
+                  telephone = #{item.telephone,jdbcType=VARCHAR},
+                </if>
+                <if test="item.busiAreage != null">
+                  busiAreage = #{item.busiAreage,jdbcType=DOUBLE},
+                </if>
+                <if test="item.buildAreage != null">
+                  buildAreage = #{item.buildAreage,jdbcType=DOUBLE},
+                </if>
+                <if test="item.rent != null">
+                  rent = #{item.rent,jdbcType=DECIMAL},
+                </if>
+                <if test="item.deliveryCycle != null">
+                  deliveryCycle = #{item.deliveryCycle,jdbcType=VARCHAR},
+                </if>
+                <if test="item.safeStockDays != null">
+                  safeStockDays = #{item.safeStockDays,jdbcType=INTEGER},
+                </if>
+                <if test="item.orderCycle != null">
+                  orderCycle = #{item.orderCycle,jdbcType=VARCHAR},
+                </if>
+                <if test="item.recordDate != null">
+                  recordDate = #{item.recordDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.regionId != null">
+                  regionId = #{item.regionId,jdbcType=BIGINT},
+                </if>
+                <if test="item.regionCode != null">
+                  regionCode = #{item.regionCode,jdbcType=VARCHAR},
+                </if>
+                <if test="item.longitude != null">
+                  longitude = #{item.longitude,jdbcType=VARCHAR},
+                </if>
+                <if test="item.latitude != null">
+                  latitude = #{item.latitude,jdbcType=VARCHAR},
+                </if>
+                <if test="item.serviceRadiu != null">
+                  serviceRadiu = #{item.serviceRadiu,jdbcType=INTEGER},
+                </if>
+                <if test="item.address != null">
+                  address = #{item.address,jdbcType=VARCHAR},
+                </if>
+                <if test="item.level != null">
+                  level = #{item.level,jdbcType=SMALLINT},
+                </if>
+                <if test="item.leafFlag != null">
+                  leafFlag = #{item.leafFlag,jdbcType=BIT},
+                </if>
+                <if test="item.lang != null">
+                  lang = #{item.lang,jdbcType=VARCHAR},
+                </if>
+                <if test="item.creator != null">
+                  creator = #{item.creator,jdbcType=VARCHAR},
+                </if>
+                <if test="item.createDate != null">
+                  createDate = #{item.createDate,jdbcType=TIMESTAMP},
+                </if>
+                <if test="item.modifier != null">
+                  modifier = #{item.modifier,jdbcType=VARCHAR},
+                </if> -->
+                <if test="item.shopForm != null">
+                  shopForm = #{item.shopForm,jdbcType=VARCHAR},
+                </if>
+                <if test="item.status != null">
+                  status = #{item.status,jdbcType=SMALLINT},
+                </if>
+                <if test="item.updateDate != null">
+                  updateDate = #{item.updateDate,jdbcType=TIMESTAMP},
+                </if>
+              </set>
+              where shopCode = #{item.shopCode,jdbcType=VARCHAR} and entId = #{item.entId,jdbcType=BIGINT} and erpCode = #{item.erpCode,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+    </update>
+
+  <insert id="insert" parameterType="com.efuture.model.ShopModel">
+    insert into shop (shopId, entId, erpCode,
+      shopCode, shopName, shopSName,shopEnName,
+      parentId, parentCode, shopForm,
+      shopTypex, groupCode, purchaseTypex,
+      owneShopIdx, shopSize, shopLevel,
+      commerceCircle, league, brand,
+      priceGroup, shopZonex, openningTime,
+      bookNo, subject, companyName,
+      deliveryCode, deliveryName, telephone,
+      busiAreage, buildAreage, rent,
+      deliveryCycle, safeStockDays, orderCycle,
+      recordDate, regionId, regionCode,
+      longitude, latitude, serviceRadiu,
+      address, level, leafFlag,
+      status, lang, creator,
+      createDate, modifier, updateDate
+    <if test="comCode != null and comCode != ''">
+      ,comCode
+    </if>
+    <if test="dealType != null and dealType != ''">
+      ,dealType
+    </if>
+    <if test="seqNum != null and seqNum != ''">
+      ,seqNum
+    </if>
+      )
+    values (#{shopId,jdbcType=BIGINT}, #{entId,jdbcType=BIGINT}, #{erpCode,jdbcType=VARCHAR},
+      #{shopCode,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{shopSName,jdbcType=VARCHAR}, #{shopEnName,jdbcType=VARCHAR},
+      #{parentId,jdbcType=BIGINT}, #{parentCode,jdbcType=VARCHAR}, #{shopForm,jdbcType=VARCHAR},
+      #{shopTypex,jdbcType=VARCHAR}, #{groupCode,jdbcType=VARCHAR}, #{purchaseTypex,jdbcType=VARCHAR},
+      #{owneShopIdx,jdbcType=VARCHAR}, #{shopSize,jdbcType=VARCHAR}, #{shopLevel,jdbcType=VARCHAR},
+      #{commerceCircle,jdbcType=VARCHAR}, #{league,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR},
+      #{priceGroup,jdbcType=VARCHAR}, #{shopZonex,jdbcType=VARCHAR}, #{openningTime,jdbcType=TIMESTAMP},
+      #{bookNo,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR},
+      #{deliveryCode,jdbcType=VARCHAR}, #{deliveryName,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR},
+      #{busiAreage,jdbcType=DOUBLE}, #{buildAreage,jdbcType=DOUBLE}, #{rent,jdbcType=DECIMAL},
+      #{deliveryCycle,jdbcType=VARCHAR}, #{safeStockDays,jdbcType=INTEGER}, #{orderCycle,jdbcType=VARCHAR},
+      #{recordDate,jdbcType=TIMESTAMP}, #{regionId,jdbcType=BIGINT}, #{regionCode,jdbcType=VARCHAR},
+      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{serviceRadiu,jdbcType=INTEGER},
+      #{address,jdbcType=VARCHAR}, #{level,jdbcType=SMALLINT}, #{leafFlag,jdbcType=BIT},
+      #{status,jdbcType=SMALLINT}, #{lang,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}
+      <if test="comCode != null and comCode != ''">
+        ,#{comCode,jdbcType=VARCHAR}
+      </if>
+      <if test="dealType != null and dealType != ''">
+        ,#{dealType,jdbcType=CHAR}
+      </if>
+      <if test="seqNum != null and seqNum != ''">
+        ,#{seqNum,jdbcType=BIGINT}
+      </if>
+      )
+  </insert>
+
+  <!--只更新业态groupCode-->
+  <update id="update" parameterType="com.efuture.model.ShopModel">
+    <if test="dealType != null and dealType != ''">
+      update shop
+      <set>
+        <if test="groupCode != null">
+          groupCode = #{groupCode,jdbcType=VARCHAR},
+        </if>
+        <if test="entId != null">
+          entId = #{entId,jdbcType=BIGINT},
+        </if>
+        <!--      <if test="erpCode != null">-->
+        <!--        erpCode = #{erpCode,jdbcType=VARCHAR},-->
+        <!--      </if>-->
+        <!--      <if test="shopCode != null">-->
+        <!--        shopCode = #{shopCode,jdbcType=VARCHAR},-->
+        <!--      </if>-->
+        <if test="shopName != null">
+          shopName = #{shopName,jdbcType=VARCHAR},
+        </if>
+        <if test="shopSName != null">
+          shopSName = #{shopSName,jdbcType=VARCHAR},
+        </if>
+        <if test="shopEnName != null">
+          shopEnName = #{shopEnName,jdbcType=VARCHAR},
+        </if>
+        <if test="parentId != null">
+          parentId = #{parentId,jdbcType=BIGINT},
+        </if>
+        <if test="parentCode != null">
+          parentCode = #{parentCode,jdbcType=VARCHAR},
+        </if>
+        <if test="shopTypex != null">
+          shopTypex = #{shopTypex,jdbcType=VARCHAR},
+        </if>
+        <if test="purchaseTypex != null">
+          purchaseTypex = #{purchaseTypex,jdbcType=VARCHAR},
+        </if>
+        <if test="owneShopIdx != null">
+          owneShopIdx = #{owneShopIdx,jdbcType=VARCHAR},
+        </if>
+        <if test="shopSize != null">
+          shopSize = #{shopSize,jdbcType=VARCHAR},
+        </if>
+        <if test="shopLevel != null">
+          shopLevel = #{shopLevel,jdbcType=VARCHAR},
+        </if>
+        <if test="commerceCircle != null">
+          commerceCircle = #{commerceCircle,jdbcType=VARCHAR},
+        </if>
+        <if test="league != null">
+          league = #{league,jdbcType=VARCHAR},
+        </if>
+        <if test="brand != null">
+          brand = #{brand,jdbcType=VARCHAR},
+        </if>
+        <if test="priceGroup != null">
+          priceGroup = #{priceGroup,jdbcType=VARCHAR},
+        </if>
+        <if test="shopZonex != null">
+          shopZonex = #{shopZonex,jdbcType=VARCHAR},
+        </if>
+        <if test="openningTime != null">
+          openningTime = #{openningTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="bookNo != null">
+          bookNo = #{bookNo,jdbcType=VARCHAR},
+        </if>
+        <if test="subject != null">
+          subject = #{subject,jdbcType=VARCHAR},
+        </if>
+        <if test="companyName != null">
+          companyName = #{companyName,jdbcType=VARCHAR},
+        </if>
+        <if test="deliveryCode != null">
+          deliveryCode = #{deliveryCode,jdbcType=VARCHAR},
+        </if>
+        <if test="deliveryName != null">
+          deliveryName = #{deliveryName,jdbcType=VARCHAR},
+        </if>
+        <if test="telephone != null">
+          telephone = #{telephone,jdbcType=VARCHAR},
+        </if>
+        <if test="busiAreage != null">
+          busiAreage = #{busiAreage,jdbcType=DOUBLE},
+        </if>
+        <if test="buildAreage != null">
+          buildAreage = #{buildAreage,jdbcType=DOUBLE},
+        </if>
+        <if test="rent != null">
+          rent = #{rent,jdbcType=DECIMAL},
+        </if>
+        <if test="deliveryCycle != null">
+          deliveryCycle = #{deliveryCycle,jdbcType=VARCHAR},
+        </if>
+        <if test="safeStockDays != null">
+          safeStockDays = #{safeStockDays,jdbcType=INTEGER},
+        </if>
+        <if test="orderCycle != null">
+          orderCycle = #{orderCycle,jdbcType=VARCHAR},
+        </if>
+        <if test="recordDate != null">
+          recordDate = #{recordDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="regionId != null">
+          regionId = #{regionId,jdbcType=BIGINT},
+        </if>
+        <if test="regionCode != null">
+          regionCode = #{regionCode,jdbcType=VARCHAR},
+        </if>
+        <if test="longitude != null">
+          longitude = #{longitude,jdbcType=VARCHAR},
+        </if>
+        <if test="latitude != null">
+          latitude = #{latitude,jdbcType=VARCHAR},
+        </if>
+        <if test="serviceRadiu != null">
+          serviceRadiu = #{serviceRadiu,jdbcType=INTEGER},
+        </if>
+        <!--
+        <if test="address != null">
+          address = #{address,jdbcType=VARCHAR},
+        </if>
+        -->
+        <if test="level != null">
+          level = #{level,jdbcType=SMALLINT},
+        </if>
+        <if test="leafFlag != null">
+          leafFlag = #{leafFlag,jdbcType=BIT},
+        </if>
+        <if test="lang != null">
+          lang = #{lang,jdbcType=VARCHAR},
+        </if>
+        <if test="creator != null">
+          creator = #{creator,jdbcType=VARCHAR},
+        </if>
+        <if test="createDate != null">
+          createDate = #{createDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="modifier != null">
+          modifier = #{modifier,jdbcType=VARCHAR},
+        </if>
+        <if test="shopForm != null">
+          shopForm = #{shopForm,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null">
+          status = #{status,jdbcType=SMALLINT},
+        </if>
+        <if test="updateDate != null">
+          updateDate = #{updateDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="comCode != null and comCode != ''">
+          comCode = #{comCode,jdbcType=VARCHAR},
+        </if>
+        <if test="dealType != null and dealType != ''">
+          dealType = #{dealType,jdbcType=CHAR},
+        </if>
+        <if test="seqNum != null and seqNum != ''">
+          seqNum = #{seqNum,jdbcType=BIGINT},
+        </if>
+      </set>
+      where shopCode = #{shopCode,jdbcType=VARCHAR} and entId = #{entId,jdbcType=BIGINT} and erpCode = #{erpCode,jdbcType=VARCHAR}
+      <if test="seqNum != null and seqNum != ''">
+        and #{seqNum,jdbcType=BIGINT} >= seqNum
+      </if>
+    </if>
+
+    <if test="dealType == null or dealType == ''">
+      update shop
+      <set>
+        <if test="groupCode != null">
+          groupCode = #{groupCode,jdbcType=VARCHAR},
+        </if>
+        <!--
+        <if test="entId != null">
+          entId = #{entId,jdbcType=BIGINT},
+        </if>
+        <if test="erpCode != null">
+          erpCode = #{erpCode,jdbcType=VARCHAR},
+        </if>
+        <if test="shopCode != null">
+          shopCode = #{shopCode,jdbcType=VARCHAR},
+        </if>
+        <if test="shopName != null">
+          shopName = #{shopName,jdbcType=VARCHAR},
+        </if>
+        <if test="shopSName != null">
+          shopSName = #{shopSName,jdbcType=VARCHAR},
+        </if>
+        <if test="shopEnName != null">
+          shopEnName = #{shopEnName,jdbcType=VARCHAR},
+        </if>
+        <if test="parentId != null">
+          parentId = #{parentId,jdbcType=BIGINT},
+        </if>
+        <if test="parentCode != null">
+          parentCode = #{parentCode,jdbcType=VARCHAR},
+        </if>
+        <if test="shopTypex != null">
+          shopTypex = #{shopTypex,jdbcType=VARCHAR},
+        </if>
+        <if test="purchaseTypex != null">
+          purchaseTypex = #{purchaseTypex,jdbcType=VARCHAR},
+        </if>
+        <if test="owneShopIdx != null">
+          owneShopIdx = #{owneShopIdx,jdbcType=VARCHAR},
+        </if>
+        <if test="shopSize != null">
+          shopSize = #{shopSize,jdbcType=VARCHAR},
+        </if>
+        <if test="shopLevel != null">
+          shopLevel = #{shopLevel,jdbcType=VARCHAR},
+        </if>
+        <if test="commerceCircle != null">
+          commerceCircle = #{commerceCircle,jdbcType=VARCHAR},
+        </if>
+        <if test="league != null">
+          league = #{league,jdbcType=VARCHAR},
+        </if>
+        <if test="brand != null">
+          brand = #{brand,jdbcType=VARCHAR},
+        </if>
+        <if test="priceGroup != null">
+          priceGroup = #{priceGroup,jdbcType=VARCHAR},
+        </if>
+        <if test="shopZonex != null">
+          shopZonex = #{shopZonex,jdbcType=VARCHAR},
+        </if>
+        <if test="openningTime != null">
+          openningTime = #{openningTime,jdbcType=TIMESTAMP},
+        </if>
+        <if test="bookNo != null">
+          bookNo = #{bookNo,jdbcType=VARCHAR},
+        </if>
+        <if test="subject != null">
+          subject = #{subject,jdbcType=VARCHAR},
+        </if>
+        <if test="companyName != null">
+          companyName = #{companyName,jdbcType=VARCHAR},
+        </if>
+        <if test="deliveryCode != null">
+          deliveryCode = #{deliveryCode,jdbcType=VARCHAR},
+        </if>
+        <if test="deliveryName != null">
+          deliveryName = #{deliveryName,jdbcType=VARCHAR},
+        </if>
+        <if test="telephone != null">
+          telephone = #{telephone,jdbcType=VARCHAR},
+        </if>
+        <if test="busiAreage != null">
+          busiAreage = #{busiAreage,jdbcType=DOUBLE},
+        </if>
+        <if test="buildAreage != null">
+          buildAreage = #{buildAreage,jdbcType=DOUBLE},
+        </if>
+        <if test="rent != null">
+          rent = #{rent,jdbcType=DECIMAL},
+        </if>
+        <if test="deliveryCycle != null">
+          deliveryCycle = #{deliveryCycle,jdbcType=VARCHAR},
+        </if>
+        <if test="safeStockDays != null">
+          safeStockDays = #{safeStockDays,jdbcType=INTEGER},
+        </if>
+        <if test="orderCycle != null">
+          orderCycle = #{orderCycle,jdbcType=VARCHAR},
+        </if>
+        <if test="recordDate != null">
+          recordDate = #{recordDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="regionId != null">
+          regionId = #{regionId,jdbcType=BIGINT},
+        </if>
+        <if test="regionCode != null">
+          regionCode = #{regionCode,jdbcType=VARCHAR},
+        </if>
+        <if test="longitude != null">
+          longitude = #{longitude,jdbcType=VARCHAR},
+        </if>
+        <if test="latitude != null">
+          latitude = #{latitude,jdbcType=VARCHAR},
+        </if>
+        <if test="serviceRadiu != null">
+          serviceRadiu = #{serviceRadiu,jdbcType=INTEGER},
+        </if>
+        <if test="address != null">
+          address = #{address,jdbcType=VARCHAR},
+        </if>
+        <if test="level != null">
+          level = #{level,jdbcType=SMALLINT},
+        </if>
+        <if test="leafFlag != null">
+          leafFlag = #{leafFlag,jdbcType=BIT},
+        </if>
+        <if test="lang != null">
+          lang = #{lang,jdbcType=VARCHAR},
+        </if>
+        <if test="creator != null">
+          creator = #{creator,jdbcType=VARCHAR},
+        </if>
+        <if test="createDate != null">
+          createDate = #{createDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="modifier != null">
+          modifier = #{modifier,jdbcType=VARCHAR},
+        </if>-->
+        <if test="shopForm != null">
+          shopForm = #{shopForm,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null">
+          status = #{status,jdbcType=SMALLINT},
+        </if>
+        <if test="updateDate != null">
+          updateDate = #{updateDate,jdbcType=TIMESTAMP},
+        </if>
+      </set>
+      where shopCode = #{shopCode,jdbcType=VARCHAR} and entId = #{entId,jdbcType=BIGINT} and erpCode = #{erpCode,jdbcType=VARCHAR}
+    </if>
+  </update>
+
+</mapper>

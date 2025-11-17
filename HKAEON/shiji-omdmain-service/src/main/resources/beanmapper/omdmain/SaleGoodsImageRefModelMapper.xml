@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.SaleGoodsImageRefModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.SaleGoodsImageRefModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="sgirid" jdbcType="BIGINT" property="sgirid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="sgid" jdbcType="BIGINT" property="sgid" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="imageType" jdbcType="SMALLINT" property="imageType" />
+    <result column="showTerm" jdbcType="SMALLINT" property="showTerm" />
+    <result column="imageUrl" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  
+  <select id="selectSinglePictureInSGID" parameterType="map" resultMap="BaseResultMap">
+  	SELECT f.*
+  	FROM SaleGoodsImageRef f
+  	WHERE 1=1
+  	<if test = "entId != null">
+  		AND f.entId = #{entId}
+  	</if>
+  	<if test = "erpCode != null">
+  		AND f.erpCode = #{erpCode}
+  	</if>
+  	<if test="sgids != null">
+	    AND f.sgid IN
+		<foreach collection="sgids" index="index" item="item" open="(" separator="," close=")">
+	        #{item}       
+	    </foreach>
+	</if>
+  	<if test = "imageType != null">
+  		AND f.imageType = #{imageType}
+  	</if>
+  	<if test = "showTerm != null">
+  	    AND f.showTerm = #{showTerm}
+  	</if>
+  </select>
+</mapper>

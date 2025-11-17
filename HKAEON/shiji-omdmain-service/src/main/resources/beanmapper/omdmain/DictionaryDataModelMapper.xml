@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.DictionaryDataModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.DictionaryDataModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="dictDataId" jdbcType="BIGINT" property="dictDataId" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="dictId" jdbcType="BIGINT" property="dictId" />
+    <result column="dictCode" jdbcType="VARCHAR" property="dictCode" />
+    <result column="dictDataCode" jdbcType="VARCHAR" property="dictDataCode" />
+    <result column="dictDataenname" jdbcType="VARCHAR" property="dictDataenname" />
+    <result column="dictDatacnname" jdbcType="VARCHAR" property="dictDatacnname" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="orderNum" jdbcType="SMALLINT" property="orderNum" />
+    <result column="levelNum" jdbcType="INTEGER" property="levelNum" />
+    <result column="leafFlag" jdbcType="BIT" property="leafFlag" />
+    <result column="parentId" jdbcType="BIGINT" property="parentId" />
+    <result column="systemFlag" jdbcType="BIT" property="systemFlag" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  
+  <select id="selectDicData" parameterType="map" resultType="map">
+		 SELECT
+			t1.*,
+			t2.dictTypeName,
+			t2.dictTypeCode 
+		FROM
+			dictionarydata t1
+			LEFT JOIN dictionary t2 ON t1.dictId = t2.dictId 
+		<where>
+			<if test="dictId != null">
+				AND t1.dictId = #{dictId}
+			</if>
+			<if test="entId  != null">
+				AND t1.entId  = #{entId}
+			</if>
+			<if test="dictCode != null">	
+				AND t1.dictCode = #{dictCode}
+			</if>
+		</where>
+		ORDER BY createDate DESC
+		<if test="page_no != null and page_size != null">
+				LIMIT ${page_no},${page_size}
+		</if>
+  </select>
+  
+   <select id="countSelectDicData" parameterType="map" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			dictionarydata t1
+			LEFT JOIN dictionary t2 ON t1.dictId = t2.dictId 
+		<where>
+			<if test="dictId != null">
+				AND t1.dictId = #{dictId}
+			</if>
+			<if test="entId  != null">
+				AND t1.entId  = #{entId}
+			</if>
+			<if test="dictCode != null">	
+				AND t1.dictCode = #{dictCode}
+			</if>
+		</where>
+ 	</select>
+ 	
+</mapper>

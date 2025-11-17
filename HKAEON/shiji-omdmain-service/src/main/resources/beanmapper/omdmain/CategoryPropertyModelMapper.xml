@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.CategoryPropertyModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.CategoryPropertyModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="cpmid" jdbcType="BIGINT" property="cpmid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="categoryId" jdbcType="BIGINT" property="categoryId" />
+    <result column="categoryCode" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="propertyCode" jdbcType="VARCHAR" property="propertyCode" />
+    <result column="propertyName" jdbcType="VARCHAR" property="propertyName" />
+    <result column="propertyDesc" jdbcType="VARCHAR" property="propertyDesc" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="generatesFlag" jdbcType="BIT" property="generatesFlag" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+
+	<!-- 打印副单-查询 -->  
+	<select id="queryCategoryPropertys" parameterType="java.lang.Long" resultType="String">
+		select group_concat(propertyName separator ',')  categoryProperty from categoryproperty where categoryId = #{categoryId} and status='1' group by categoryId;
+	</select>
+	
+	  <update id="updateCategoryProperty">
+	    UPDATE categoryProperty SET status=#{status},updateDate=now() WHERE
+	    categoryId IN
+	    <foreach collection="categoryId" index="index" item="item" open="(" separator="," close=")">
+	      #{item}
+	    </foreach>
+	    AND propertyCode IN
+	    <foreach collection="propertyCode" index="index" item="item" open="(" separator="," close=")">
+	      #{item}
+	    </foreach>
+	  </update>
+	  
+	  <select id="selectCategoryPropertyBySSGID" parameterType="map" resultType="map">
+	  	SELECT g.sgid, p.propertyCode, p.propertyName
+	  	FROM SaleGoods g, CategoryProperty p
+	  	WHERE 1=1
+	  	<if test = "ssgid != null">
+	  		AND g.ssgid IN
+			<foreach collection="ssgid" item="item" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+	  	</if>
+	  	<if test = "shopId != null">
+	  		AND g.shopId = #{shopId}
+	  	</if>
+	  	<if test = "entId != null">
+	  		AND g.entId = #{entId}
+	  	</if>
+	  	<if test = "erpCode != null">
+	  		AND g.erpCode = #{erpCode}
+	  	</if>
+	  	<if test = "shopCode != null">
+	  		AND g.shopCode = #{shopCode}
+	  	</if>
+	  	<if test = "sgid != null">
+			AND g.sgid IN
+			<foreach collection="sgid" item="item" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+	  	</if>
+	  	AND g.categoryId = p.categoryId AND g.erpCode = p.erpCode AND g.entId = p.entId  
+	  	ORDER BY g.ssgid
+	  </select>
+</mapper>

@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.GoodsModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.GoodsModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="sgid" jdbcType="BIGINT" property="sgid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="goodsType" jdbcType="INTEGER" property="goodsType" />
+    <result column="directFromErp" jdbcType="BIT" property="directFromErp" />
+    <result column="singleItemFlag" jdbcType="BIT" property="singleItemFlag" />
+    <result column="canSaleFlag" jdbcType="BIT" property="canSaleFlag" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="parentGoodsCode" jdbcType="VARCHAR" property="parentGoodsCode" />
+    <result column="goodsName" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goodsDisplayName" jdbcType="VARCHAR" property="goodsDisplayName" />
+    <result column="fullName" jdbcType="VARCHAR" property="fullName" />
+    <result column="enSname" jdbcType="VARCHAR" property="enSname" />
+    <result column="enFname" jdbcType="VARCHAR" property="enFname" />
+    <result column="barNo" jdbcType="VARCHAR" property="barNo" />
+    <result column="salePrice" jdbcType="DECIMAL" property="salePrice" />
+    <result column="refPrice" jdbcType="DECIMAL" property="refPrice" />
+    <result column="minSalePrice" jdbcType="DECIMAL" property="minSalePrice" />
+    <result column="minDiscount" jdbcType="REAL" property="minDiscount" />
+    <result column="memberPrice" jdbcType="DECIMAL" property="memberPrice" />
+    <result column="primeCost" jdbcType="DECIMAL" property="primeCost" />
+    <result column="goodsFromCode" jdbcType="VARCHAR" property="goodsFromCode" />
+    <result column="measureUnit" jdbcType="VARCHAR" property="measureUnit" />
+    <result column="saleUnit" jdbcType="VARCHAR" property="saleUnit" />
+    <result column="partsNum" jdbcType="DOUBLE" property="partsNum" />
+    <result column="partsUnit" jdbcType="VARCHAR" property="partsUnit" />
+    <result column="categoryId" jdbcType="BIGINT" property="categoryId" />
+    <result column="categoryCode" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="brandId" jdbcType="BIGINT" property="brandId" />
+    <result column="brandCode" jdbcType="VARCHAR" property="brandCode" />
+    <result column="artNo" jdbcType="VARCHAR" property="artNo" />
+    <result column="textture" jdbcType="VARCHAR" property="textture" />
+    <result column="originArea" jdbcType="VARCHAR" property="originArea" />
+    <result column="nweight" jdbcType="DOUBLE" property="nweight" />
+    <result column="rweight" jdbcType="DOUBLE" property="rweight" />
+    <result column="qaDays" jdbcType="INTEGER" property="qaDays" />
+    <result column="qaDaysUnit" jdbcType="SMALLINT" property="qaDaysUnit" />
+    <result column="waterDamage" jdbcType="REAL" property="waterDamage" />
+    <result column="lowTemp" jdbcType="REAL" property="lowTemp" />
+    <result column="highTemp" jdbcType="REAL" property="highTemp" />
+    <result column="inputTax" jdbcType="REAL" property="inputTax" />
+    <result column="outputTax" jdbcType="REAL" property="outputTax" />
+    <result column="consumpTax" jdbcType="REAL" property="consumpTax" />
+    <result column="longScale" jdbcType="INTEGER" property="longScale" />
+    <result column="wideScale" jdbcType="INTEGER" property="wideScale" />
+    <result column="highScale" jdbcType="INTEGER" property="highScale" />
+    <result column="goodsGrade" jdbcType="VARCHAR" property="goodsGrade" />
+    <result column="orderSpec" jdbcType="VARCHAR" property="orderSpec" />
+    <result column="orderUnit" jdbcType="VARCHAR" property="orderUnit" />
+    <result column="orderNum" jdbcType="INTEGER" property="orderNum" />
+    <result column="safeStockDays" jdbcType="INTEGER" property="safeStockDays" />
+    <result column="minStockDays" jdbcType="INTEGER" property="minStockDays" />
+    <result column="maxStockDays" jdbcType="INTEGER" property="maxStockDays" />
+    <result column="isPercious" jdbcType="BIT" property="isPercious" />
+    <result column="coldTransFlag" jdbcType="BIT" property="coldTransFlag" />
+    <result column="escaleFlag" jdbcType="BIT" property="escaleFlag" />
+    <result column="timesFlag" jdbcType="SMALLINT" property="timesFlag" />
+    <result column="season" jdbcType="VARCHAR" property="season" />
+    <result column="isBatch" jdbcType="BIT" property="isBatch" />
+    <result column="controlFlag" jdbcType="BIT" property="controlFlag" />
+    <result column="recycleFee" jdbcType="DECIMAL" property="recycleFee" />
+    <result column="multiUnitFlag" jdbcType="BIT" property="multiUnitFlag" />
+    <result column="goodsStatus" jdbcType="SMALLINT" property="goodsStatus" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="categoryName" jdbcType="VARCHAR" property="categoryName" />
+    <result column="erpName" jdbcType="VARCHAR" property="erpName" />
+    <result column="brandName" jdbcType="VARCHAR" property="brandName" />
+    <result column="deliveryFlag" jdbcType="SMALLINT" property="deliveryFlag" />
+  </resultMap>
+  
+  <!-- 导入时查询商品 -->
+  <select id="checkGoodsCode" parameterType="java.util.Map" resultType="java.lang.String">
+  	select goodsCode from goods where goodsCode in 
+	  	<foreach collection="goodsList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+  </select>
+  
+  <!-- 导入校验成功返回数据 -->
+  <select id="afterCheckQuery" parameterType="java.util.Map" resultType="java.util.Map">
+   SELECT g.goodsCode,g.goodsName,g.enSname,c.categoryCode AS 'class',c.parentCode AS 'artCode',g.deliveryFlag as oldDeliveryFlag,g.erpCode,g.entId 
+		FROM goods g
+		LEFT JOIN category c ON g.categoryId = c.categoryId
+		WHERE g.goodsCode IN
+		<foreach collection="goodsList" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+  </select>
+  
+  <update id="importDeliveryGoods" parameterType="java.util.Map">
+		UPDATE goods set deliveryFlag = #{deliveryFlag},
+			<if test="modifier !=null and modifier !=''">
+				modifier = #{modifier},
+			</if>
+			updateDate = #{updateDate} 
+			WHERE erpCode = #{erpCode} AND entId = #{entId} AND goodsCode = #{goodsCode}
+  </update>
+  
+  <update id="importDeliverySaleGoods" parameterType="java.util.Map">
+		UPDATE salegoods set deliveryFlag = #{deliveryFlag}, updateDate = #{updateDate} 
+		WHERE erpCode = #{erpCode} AND entId = #{entId} AND goodsCode = #{goodsCode}
+  </update>
+  
+  <!-- 批量更新行送商品goods -->
+  <update id="updateDeliveryGoods" parameterType="java.util.Map">
+		UPDATE goods set deliveryFlag = #{deliveryFlag},
+			<if test="modifier !=null and modifier !=''">
+				modifier = #{modifier},
+			</if>
+       		updateDate = #{updateDate} 
+		WHERE erpCode = #{erpCode} AND entId = #{entId}
+			AND goodsCode IN
+			<foreach collection="goodsCode" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+   </update>
+    
+   <!-- 批量更新行送商品salegoods -->
+   <update id="updateDeliverySaleGoods" parameterType="java.util.Map">
+		UPDATE salegoods set deliveryFlag = #{deliveryFlag},
+       		updateDate = #{updateDate} 
+		WHERE erpCode = #{erpCode} AND entId = #{entId}
+			AND goodsCode IN
+			<foreach collection="goodsCode" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+    </update>
+  
+  <!--1.行送商品查询（编码） -->
+  <select id="deliveryGoods4Code" parameterType="map" resultType="map">
+	  SELECT g.goodsCode,g.goodsName,g.enSname,c.categoryCode AS 'class',c.parentCode AS 'artCode',g.deliveryFlag,g.erpCode,g.entId 
+		FROM goods g
+		LEFT JOIN category c ON g.categoryId = c.categoryId
+		<where>
+			<if test="goodsName !=null and goodsName !=''">
+				AND g.goodsName like concat('%',#{goodsName},'%')
+			</if>
+			<if test="artCode !=null and artCode !=''">
+				AND c.parentCode IN
+				<foreach collection="artCode" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="goodsCode !=null and goodsCode !=''">
+				AND g.goodsCode = #{goodsCode}
+			</if>
+			<if test="(deliveryFlag !=null and deliveryFlag !='') or deliveryFlag == 0">
+				AND g.deliveryFlag = #{deliveryFlag}
+			</if>
+		</where>
+  		LIMIT ${page_no},${page_size}
+  </select>
+  <!--1.Count 行送商品查询（编码） -->
+  <select id="countDeliveryGoods4Code" parameterType="map" resultType="int">
+  	 SELECT COUNT(1) FROM goods g
+		LEFT JOIN category c ON g.categoryId = c.categoryId
+		<where>
+			<if test="goodsName !=null and goodsName !=''">
+				AND g.goodsName like concat('%',#{goodsName},'%')
+			</if>
+			<if test="artCode !=null and artCode !=''">
+				AND c.parentCode IN
+				<foreach collection="artCode" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="goodsCode !=null and goodsCode !=''">
+				AND g.goodsCode = #{goodsCode}
+			</if>
+			<if test="(deliveryFlag !=null and deliveryFlag !='') or deliveryFlag == 0">
+				AND g.deliveryFlag = #{deliveryFlag}
+			</if>
+		</where>
+  </select>
+  
+  <!--2.行送商品查询（条码） -->
+  <select id="deliveryGoods4BarNo" parameterType="map" resultType="map">
+  	SELECT g.goodsCode,g.goodsName,g.enSname,c.categoryCode AS 'class',c.parentCode AS 'artCode',g.deliveryFlag,g.erpCode,g.entId,b.barNo
+		FROM goods g JOIN (select distinct goodsCode,barNo,barNoStatus from aeonmorebarno where barNoStatus = 1 and barNo = #{goodsCode}) b ON g.goodsCode = b.goodsCode
+		LEFT JOIN category c ON g.categoryId = c.categoryId
+		<where>
+			<if test="goodsName !=null and goodsName !=''">
+				AND g.goodsName like concat('%',#{goodsName},'%')
+			</if>
+			<if test="artCode !=null and artCode !=''">
+				AND c.parentCode IN
+				<foreach collection="artCode" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="(deliveryFlag !=null and deliveryFlag !='') or deliveryFlag == 0">
+				AND g.deliveryFlag = #{deliveryFlag}
+			</if>
+		</where>
+  		LIMIT #{page_no},#{page_size}
+  </select>
+  <!--2.Count 行送商品查询（条码） -->
+  <select id="countDeliveryGoods4BarNo" parameterType="map" resultType="int">
+  	SELECT COUNT(1)
+		FROM goods g JOIN (select distinct goodsCode,barNo,barNoStatus from aeonmorebarno where barNoStatus = 1 and barNo = #{goodsCode}) b ON g.goodsCode = b.goodsCode
+		LEFT JOIN category c ON g.categoryId = c.categoryId
+		<where>
+			<if test="goodsName !=null and goodsName !=''">
+				AND g.goodsName like concat('%',#{goodsName},'%')
+			</if>
+			<if test="artCode !=null and artCode !=''">
+				AND c.parentCode IN
+				<foreach collection="artCode" index="index" item="item" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="(deliveryFlag !=null and deliveryFlag !='') or deliveryFlag == 0">
+				AND g.deliveryFlag = #{deliveryFlag}
+			</if>
+		</where>
+  </select>
+  
+  <!-- 单店/全店·商品库存基础策略设置（商品查询） -->
+  <select id="stockGoodsShopSearch" parameterType="map" resultType="map">
+		SELECT
+			g.sgid,g.goodsCode,g.goodsName,g.safeStockDays,g.minStockDays,g.maxStockDays,g.goodsStatus,g.erpCode,g.entId
+		FROM
+			goods g
+			<if test='shopSheetType == "0"'>
+				JOIN goodsshopref r ON r.goodsCode = g.goodsCode 
+				AND r.entId = g.entId 
+				AND r.erpCode = g.erpCode
+			</if>
+			<if test="manageCategoryCode != null">
+				JOIN category c ON  c.categoryCode = g.categoryCode
+				AND c.entId = g.entId 
+				AND c.erpCode = g.erpCode
+			</if>  
+		WHERE
+			g.shopSheetType = #{shopSheetType}
+			<if test='shopSheetType == "0"'>
+				AND r.shopCode = #{shopCode}
+				AND r.entId = #{entId}
+				AND r.erpCode = #{erpCode}
+			</if>
+			<if test="manageCategoryCode != null"> 
+				AND c.manageCategoryCode = #{manageCategoryCode}
+			</if>
+			<if test="goodsCode != null"> 
+				AND g.goodsCode = #{goodsCode}
+			</if>
+			LIMIT #{page_no},#{page_size}
+  </select>
+  
+  <!-- 单店/全店·商品库存基础策略设置（商品查询） Count -->
+  <select id="stockGoodsShopSearchCount" parameterType="map" resultType="long">
+ 	SELECT
+		count(1)
+	FROM
+		goods g
+		<if test='shopSheetType == "0"'>
+			JOIN goodsshopref r ON r.goodsCode = g.goodsCode 
+			AND r.entId = g.entId 
+			AND r.erpCode = g.erpCode
+		</if> 
+		<if test="manageCategoryCode != null">
+			JOIN category c ON  c.categoryCode = g.categoryCode
+			AND c.entId = g.entId 
+			AND c.erpCode = g.erpCode
+		</if> 
+	WHERE
+		g.shopSheetType = #{shopSheetType}
+		<if test='shopSheetType == "0"'>
+			AND r.shopCode = #{shopCode}
+			AND r.entId = #{entId}
+			AND r.erpCode = #{erpCode}
+		</if>
+		<if test="manageCategoryCode != null"> 
+			AND c.manageCategoryCode = #{manageCategoryCode}
+		</if>
+		<if test="goodsCode != null"> 
+			AND g.goodsCode = #{goodsCode}
+		</if>
+  </select>
+  
+  
+  <!-- 通过子品多规格属性值查询子品信息 -->
+  <select id="searchSonGoods" parameterType="map" resultType="java.util.Map">
+  	SELECT sgid,goodsName,barNo,salePrice FROM goods 
+		WHERE sgid IN ( SELECT sgid FROM goodspropertyextvalue where psgid = #{psgid} )
+		AND goodsStatus = 1
+  </select>
+  
+  <select id="search4Like" parameterType="map" resultType="java.util.Map">
+		SELECT s.*
+		FROM 
+			goods s 
+		WHERE 
+			1=1
+		<if test="barNo != null">
+			AND s.barNo = #{barNo}
+		</if>
+		<if test="entId != null">
+			AND s.entId = #{entId}
+		</if>
+		<if test="goodsType != null">
+			AND s.goodsType = #{goodsType}
+		</if>
+		<if test="sgid != null">
+			AND s.sgid = #{sgid}
+		</if>
+		<if test="goodsCode != null">
+			AND s.goodsCode LIKE '%${goodsCode}%'
+		</if>
+		<if test="goodsName != null">
+			AND s.goodsName LIKE '%${goodsName}%'
+		</if>
+		<if test="erpCode != null">
+			AND s.erpCode LIKE '%${erpCode}%'
+		</if>
+		<if test="directFromErp != null">
+			AND s.directFromErp = #{directFromErp}
+		</if>
+		<if test="brandId != null and brandId.size() > 0">
+			AND s.brandId IN
+			<foreach collection="brandId" open="(" separator="," item="item" index="index" close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="brandName != null">
+			AND s.brandName LIKE '%${brandName}%'
+		</if>
+		<if test = "categoryId != null and categoryId.size() > 0">
+			AND s.categoryId IN
+			<foreach collection="categoryId" open="(" separator="," item="item" index="index" close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="categoryName != null">
+			AND s.categoryName LIKE '%${categoryName}%'
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>  
+	</select>
+	
+	<select id="search4LikeCount" parameterType="map" resultType="long">
+		SELECT COUNT(1)
+		FROM 
+			goods s 
+		WHERE 
+			1=1 
+		<if test="barNo != null">
+			AND s.barNo = #{barNo}
+		</if>
+		<if test="entId != null">
+			AND s.entId = #{entId}
+		</if>
+		<if test="goodsType != null">
+			AND s.goodsType = #{goodsType}
+		</if>
+		<if test="sgid != null">
+			AND s.sgid = #{sgid}
+		</if>
+		<if test="goodsCode != null">
+			AND s.goodsCode LIKE '%${goodsCode}%'
+		</if>
+		<if test="goodsName != null">
+			AND s.goodsName LIKE '%${goodsName}%'
+		</if>
+		<if test="erpCode != null">
+			AND s.erpCode LIKE '%${erpCode}%'
+		</if>
+		<if test="directFromErp != null">
+			AND s.directFromErp = #{directFromErp}
+		</if>
+		<if test="brandId != null and brandId.size() > 0">
+			AND s.brandId IN
+			<foreach collection="brandId" open="(" separator="," item="item" index="index" close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="brandName != null">
+			AND s.brandName LIKE '%${brandName}%'
+		</if>
+		<if test = "categoryId != null and categoryId.size() > 0">
+			AND s.categoryId IN
+			<foreach collection="categoryId" open="(" separator="," item="item" index="index" close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="categoryName != null">
+			AND s.categoryName LIKE '%${categoryName}%'
+		</if>  
+	</select>
+	
+	<select id="selectIn" parameterType="map" resultMap="BaseResultMap">
+		SELECT s.*
+		FROM goods s
+		WHERE 1=1 and s.entId = #{entId} AND s.goodsCode IN
+		<foreach collection="goodsCodes" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<select id="selectInSGID" parameterType="map" resultMap="BaseResultMap">
+		SELECT s.*
+		FROM goods s
+		WHERE 1=1 AND s.sgid IN
+		<foreach collection="sgids" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<!--按条件查询商品基础表 -->
+	<select id="getGoodsList" parameterType="map" resultType="map">
+		SELECT g.*
+		FROM goods g
+		WHERE 1=1
+		<if test="entId != null">
+			AND g.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND g.erpCode = #{erpCode}
+		</if>
+		<if test="goodsCode != null">
+			AND g.goodsCode = #{goodsCode}
+		</if>
+		<if test="goodsName != null">
+			AND g.goodsName like concat(#{goodsName},'%')
+		</if>
+		<if test="brandId != null">
+			AND g.brandId = #{brandId}
+		</if>	
+		<if test="coldTransFlag != null">
+			AND g.coldTransFlag = #{coldTransFlag}
+		</if>
+		<if test="shopSheetType != null">
+			AND g.shopSheetType = #{shopSheetType}
+		</if>
+		<if test="categoryId != null">
+			AND g.categoryId IN 
+            <foreach collection="categoryId" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<!--按条件查询商品基础表总数 -->
+	<select id="countGoodsList" parameterType="map" resultType="long">
+		SELECT
+			COUNT(1)
+		FROM goods g
+		WHERE 	1=1
+		<if test="entId != null">
+			AND g.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND g.erpCode = #{erpCode}
+		</if>
+		<if test="goodsCode != null">
+			AND g.goodsCode = #{goodsCode}
+		</if>
+		<if test="goodsName != null">
+			AND g.goodsName like concat(#{goodsName},'%')
+		</if>
+		<if test="brandId != null">
+			AND g.brandId = #{brandId}
+		</if>	
+		<if test="coldTransFlag != null">
+			AND g.coldTransFlag = #{coldTransFlag}
+		</if>
+		<if test="categoryId != null">
+			AND g.categoryId IN 
+            <foreach collection="categoryId" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+		</if>
+ 	</select>
+	
+
+	<!--由parentGoodsCode查子品详细信息 -->
+	<select id="getGoodsByParentGoodsCode" parameterType="map" resultType="map">
+		SELECT g.sgid,g.goodsCode,g.goodsName,g.barNo,g.salePrice,b.erpName,g.goodsStatus,gd.goodsDesc,
+		g.goodsType,gd.showTerm,g.goodsFromCode,g.controlFlag, g.recycleFee
+		FROM goods g
+		LEFT JOIN businesscompany b ON  b.erpCode=g.erpCode
+		LEFT JOIN goodsdesc gd ON  gd.sgid=g.sgid
+		WHERE 1=1
+		<if test="parentGoodsCode != null">
+			AND g.parentGoodsCode = #{parentGoodsCode}
+		</if>
+<!-- 		<if test="parentGoodsCode != null"> -->
+<!-- 			AND g.parentGoodsCode IN  -->
+<!--             <foreach collection="goodsCode" index="index" item="item" open="(" separator="," close=")"> -->
+<!--                 #{item} -->
+<!--             </foreach> -->
+<!-- 		</if> -->
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<select id="searchByState" parameterType="map" resultMap="BaseResultMap">
+		SELECT g.*
+		FROM  Goods g
+		WHERE 1=1
+		<if test = "entId != null">
+			AND g.entId = #{entId}
+		</if>
+		<if test = "erpCode != null">
+			AND g.erpCode = #{erpCode}
+		</if>
+		<if test = "sgid != null">
+			AND g.sgid = #{sgid}
+		</if>
+	</select>
+	
+	<select id="getGoodsByGoodsCode" parameterType="map" resultMap="BaseResultMap">
+		select 
+			g.sgid,g.barNo,g.goodsCode,g.goodsName,g.goodsDisplayName,g.goodsFromCode,g.categoryId,c.categoryCode,c.categoryName,g.entId,g.erpCode,g.fullName,g.goodsStatus,g.goodsType,g.measureUnit,g.rweight,g.nweight,g.partsNum,g.primeCost,g.brandId,b.brandName 
+		from 
+			goods g 
+				left join category c on g.categoryId=c.categoryId and g.entId=c.entId
+				left join brandinfo b on g.brandId=b.brandId and g.entId=b.entId
+		where g.entId=#{entId} and g.goodsCode=#{goodsCode}
+	</select>
+	
+	<select id="findBySgidAndCid" resultType="Map" parameterType="Map">
+		select g.*, gf.logistics, c.categoryName from goods g 
+			left join goodsshopref gf on gf.entId = g.entId and gf.erpCode = g.erpCode and gf.sgid = g.sgid and gf.shopId = #{shopId}
+			left join category c on c.categoryId = g.categoryId
+		where g.categoryId = #{categoryId} and g.goodsStatus = 1 and g.sgid in 
+		<foreach collection="goodsIds" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		<if test="goodsCode != null">
+			and g.goodsCode like concat('%',#{goodsCode},'%')
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<select id="findAllZp" resultMap="BaseResultMap" parameterType="map">
+		select 
+			t1.sgid,
+			t1.barNo,
+			t1.goodsCode,
+			t1.goodsName,
+			t1.categoryId,
+			t3.categoryName,
+			t1.salePrice,
+			t1.erpCode,
+			t5.erpName,
+			t1.categoryCode,
+			t1.entId,
+			t1.brandId,
+     		t4.brandName
+ 		from 
+ 			goods t1 left join category t3 on t1.categoryId=t3.categoryId
+ 			      left join brandinfo t4 on t1.brandId=t4.brandId
+				  left join businesscompany t5 on t1.erpCode=t5.erpCode
+ 		<where>
+ 			exists(select 1 from goods t2 where t2.parentGoodsCode=t1.goodsCode and t2.goodsStatus = 1)
+ 			<if test="erpCode!=null and erpCode!=''">
+ 				and t1.erpCode=#{erpCode}	
+ 			</if>
+ 			<if test="directFromErp!=null and directFromErp!=''">
+ 				and t1.directFromErp=#{directFromErp}	
+ 			</if>
+ 			<if test="goodsCode!=null and goodsCode!=''">
+ 				and t1.goodsCode=#{goodsCode}	
+ 			</if>
+ 			<if test="goodsName!=null and goodsName!=''">
+ 				and t1.goodsName like CONCAT('%',#{goodsName},'%') 	
+ 			</if>
+ 			<if test="brandId!=null and brandId!=''">
+ 				and t1.brandId=#{brandId}	
+ 			</if>
+ 			<if test="categoryId!=null and categoryId!=''">
+ 				and t1.categoryId=#{categoryId}	
+ 			</if>
+ 		</where>
+ 		order by t1.sgid
+ 		limit #{offset},#{limit}
+	</select>
+	
+	<select id="findAllZpCount" resultType="long" parameterType="map">
+		select 
+			count(1)
+ 		from 
+ 			goods t1 left join category t3 on t1.categoryId=t3.categoryId
+ 			      left join brandinfo t4 on t1.brandId=t4.brandId
+				  left join businesscompany t5 on t1.erpCode=t5.erpCode
+ 		<where>
+ 			exists(select 1 from goods t2 where t2.parentGoodsCode=t1.goodsCode and t2.goodsStatus = 1)
+ 			<if test="erpCode!=null and erpCode!=''">
+ 				and t1.erpCode=#{erpCode}	
+ 			</if>
+ 			<if test="directFromErp!=null and directFromErp!=''">
+ 				and t1.directFromErp=#{directFromErp}	
+ 			</if>
+ 			<if test="goodsCode!=null and goodsCode!=''">
+ 				and t1.goodsCode=#{goodsCode}	
+ 			</if>
+ 			<if test="goodsName!=null and goodsName!=''">
+ 				and t1.goodsName like CONCAT('%',#{goodsName},'%')
+ 			</if>
+ 			<if test="brandId!=null and brandId!=''">
+ 				and t1.brandId=#{brandId}	
+ 			</if>
+ 			<if test="categoryId!=null and categoryId!=''">
+ 				and t1.categoryId=#{categoryId}	
+ 			</if>
+ 		</where>
+	</select>
+	
+	
+	<!--按条件查询受限商品 -->
+	<select id="getRestrictedGoods" parameterType="map" resultType="map">
+		SELECT g.goodsCode,g.enFname,g.brandCode,b.brandName,g.categoryCode,c.categoryName,g.goodsName,g.goodsDisplayName,c.parentCode as artiCode
+		FROM goods g
+		LEFT JOIN category c ON  c.categoryId=g.categoryId
+		LEFT JOIN brandinfo b ON  b.brandId=g.brandId
+		WHERE  c.restricted = '0'
+		<if test="entId != null">
+			AND g.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND g.erpCode = #{erpCode}
+		</if>
+		<if test="season != null">
+			AND g.season = #{season}
+		</if>
+		<if test="goodsCode != null and goodsCode != ''">
+			AND g.goodsCode like '${goodsCode}%'
+		</if>
+		<if test="goodsName != null and goodsName != ''">
+			AND g.goodsName like concat('%',#{goodsName},'%')
+		</if>
+		<if test="brandId != null and brandId != ''">
+			AND g.brandId = #{brandId}
+		</if>
+		<if test="categoryId != null and categoryId != ''">
+			AND g.categoryId IN
+			<foreach collection="categoryId" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="categoryCode != null and categoryCode != ''">
+			AND g.categoryCode IN
+			<foreach collection="categoryCode" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="artiCode != null and artiCode != ''">
+			AND c.parentCode IN
+			<foreach collection="artiCode" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<!--按条件查询受限商品总数 -->
+	<select id="countRestrictedGoods" parameterType="map" resultType="long">
+		SELECT
+		COUNT(1)
+		FROM goods g
+		LEFT JOIN category c ON  c.categoryId=g.categoryId
+		LEFT JOIN brandinfo b ON  b.brandId=g.brandId
+		WHERE  c.restricted = '0'
+		<if test="entId != null">
+			AND g.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND g.erpCode = #{erpCode}
+		</if>
+		<if test="season != null">
+			AND g.season = #{season}
+		</if>
+		<if test="goodsCode != null and goodsCode != ''">
+			AND g.goodsCode like '${goodsCode}%'
+		</if>
+		<if test="goodsName != null and goodsName != ''">
+			AND g.goodsName like concat('%',#{goodsName},'%')
+		</if>
+		<if test="brandId != null and brandId != ''">
+			AND g.brandId = #{brandId}
+		</if>
+		<if test="categoryId != null and categoryId != ''">
+			AND g.categoryId IN
+			<foreach collection="categoryId" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="categoryCode != null and categoryCode != ''">
+			AND g.categoryCode IN
+			<foreach collection="categoryCode" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="artiCode != null and artiCode != ''">
+			AND c.parentCode IN
+			<foreach collection="artiCode" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</select>
+	
+    <!-- 批量设置受限商品 -->
+    <update id="batchRestrictedGoods" parameterType="java.util.Map">
+		UPDATE goods set  season = #{season}
+		<if test="updateDate != null">
+       		,updateDate = #{updateDate} 
+       	</if>
+		WHERE erpCode = #{erpCode} and entId = #{entId}
+		and goodsCode IN
+			<foreach collection="goodsCodes" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+    </update>
+	
+	<!--导出全部受限商品 -->
+	<select id="exportRestrictedGoods" parameterType="map" resultType="map">
+		SELECT g.goodsCode,g.enFname,g.goodsName,g.goodsDisplayName,g.categoryCode,c.categoryName,g.brandCode,b.brandName
+		FROM goods g
+		LEFT JOIN category c ON  c.categoryId=g.categoryId
+		LEFT JOIN brandinfo b ON  b.brandId=g.brandId
+		WHERE  g.season = '1'
+		<if test="entId != null">
+			AND g.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND g.erpCode = #{erpCode}
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<!-- 批量设置类别库存策略商品 -->
+   <update id="batchShopSheetTypeGoods" parameterType="java.util.Map">
+	 UPDATE goods set shopSheetType = #{shopSheetType}
+	 WHERE sgid IN
+		<foreach collection="sgids" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+   </update>
+   
+   <!-- 查询类别库存策略商品 -->
+   <select id="getShopSheetTypeGoodsList" parameterType="map" resultType="map">
+		SELECT g.sgid,g.entId,g.erpCode,g.categoryId,g.categoryCode,g.shopSheetType
+		FROM goods g
+		WHERE 1=1
+		<if test="entId != null">
+			AND g.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND g.erpCode = #{erpCode}
+		</if>
+		<if test="goodsCode != null">
+			AND g.goodsCode = #{goodsCode}
+		</if>
+		<if test="goodsName != null">
+			AND g.goodsName like concat(#{goodsName},'%')
+		</if>
+		<if test="brandId != null">
+			AND g.brandId = #{brandId}
+		</if>	
+		<if test="coldTransFlag != null">
+			AND g.coldTransFlag = #{coldTransFlag}
+		</if>
+		<if test="shopSheetType != null">
+			AND g.shopSheetType = #{shopSheetType}
+		</if>
+		<if test="categoryId != null">
+			AND g.categoryId IN 
+            <foreach collection="categoryId" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	<!--导出库存策略管理部类 -->
+   <select id="shopSheetTypeGoods" parameterType="map" resultType="map">
+		SELECT g.erpCode,g.goodsCode,g.goodsName,g.barNo,g.shopSheetType,g.categoryId,
+		ifnull(c.manageCategoryCode,c.categoryCode) categoryCode,c.shopSheetType cs
+		FROM goods g
+		LEFT JOIN category c ON g.categoryId = c.categoryId
+		WHERE  g.shopSheetType !='-1' and g.shopSheetType!=c.shopSheetType
+		<if test="entId != null">
+			AND g.entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND g.erpCode = #{erpCode}
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+	</select>
+	
+	
+	<!--按条件查询折扣商品 -->
+	<select id="getDiscountGoodsList" parameterType="map" resultType="map">
+		SELECT g.sgid,g.erpCode,bu.erpName,g.goodsCode,g.goodsName,g.salePrice,g.minDiscount,
+			g.categoryId,g.categoryCode,c.categoryName,
+			g.barNo,b.brandName,g.brandId,g.brandCode 
+		FROM (select * from goods WHERE 1=1 
+		<if test="entId != null">
+			AND entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND erpCode = #{erpCode}
+		</if>
+		<if test="goodsCode != null">
+			AND goodsCode  = #{goodsCode}
+		</if>
+		<if test="goodsName != null">
+			AND goodsName like concat(#{goodsName},'%')
+		</if>
+		<if test="brandId != null">
+			AND brandId = #{brandId}
+		</if>
+		<if test="categoryId != null and categoryId != ''">
+			AND categoryId IN
+			<foreach collection="categoryId" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="page_no != null and page_size != null">
+			limit ${page_no},${page_size}
+		</if>
+		) g 
+		LEFT JOIN businesscompany bu ON  bu.erpCode=g.erpCode
+		LEFT JOIN category c ON  c.categoryId=g.categoryId
+		LEFT JOIN brandinfo b ON  b.brandId=g.brandId
+	</select>
+
+	<!--按条件查询折扣商品总数 -->
+	<select id="countDiscountGoods" parameterType="map" resultType="long">
+		SELECT COUNT(1) FROM goods 
+		WHERE 1=1
+		<if test="entId != null">
+			AND entId = #{entId}
+		</if>
+		<if test="erpCode != null">
+			AND erpCode = #{erpCode}
+		</if>
+		<if test="goodsCode != null">
+			AND goodsCode = #{goodsCode}
+		</if>
+		<if test="goodsName != null">
+			AND goodsName like concat(#{goodsName},'%')
+		</if>
+		<if test="brandId != null">
+			AND brandId = #{brandId}
+		</if>
+		<if test="categoryId != null and categoryId != ''">
+			AND categoryId IN
+			<foreach collection="categoryId" index="index" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</select>
+	
+</mapper>

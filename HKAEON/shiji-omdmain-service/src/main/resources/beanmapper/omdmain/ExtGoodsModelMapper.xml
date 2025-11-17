@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beanmapper.ExtGoodsModelMapper">
+  <resultMap id="BaseResultMap" type="com.efuture.omdmain.model.ExtGoodsModel">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="egid" jdbcType="BIGINT" property="egid" />
+    <result column="entId" jdbcType="BIGINT" property="entId" />
+    <result column="erpCode" jdbcType="VARCHAR" property="erpCode" />
+    <result column="goodsType" jdbcType="INTEGER" property="goodsType" />
+    <result column="directFromErp" jdbcType="BIT" property="directFromErp" />
+    <result column="singleItemFlag" jdbcType="BIT" property="singleItemFlag" />
+    <result column="canSaleFlag" jdbcType="BIT" property="canSaleFlag" />
+    <result column="goodsCode" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="parentGoodsCode" jdbcType="VARCHAR" property="parentGoodsCode" />
+    <result column="goodsName" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goodsDisplayName" jdbcType="VARCHAR" property="goodsDisplayName" />
+    <result column="fullName" jdbcType="VARCHAR" property="fullName" />
+    <result column="enSname" jdbcType="VARCHAR" property="enSname" />
+    <result column="enFname" jdbcType="VARCHAR" property="enFname" />
+    <result column="barNo" jdbcType="VARCHAR" property="barNo" />
+    <result column="salePrice" jdbcType="DECIMAL" property="salePrice" />
+    <result column="refPrice" jdbcType="DECIMAL" property="refPrice" />
+    <result column="minSalePrice" jdbcType="DECIMAL" property="minSalePrice" />
+    <result column="minDiscount" jdbcType="REAL" property="minDiscount" />
+    <result column="memberPrice" jdbcType="DECIMAL" property="memberPrice" />
+    <result column="primeCost" jdbcType="DECIMAL" property="primeCost" />
+    <result column="goodsFromCode" jdbcType="VARCHAR" property="goodsFromCode" />
+    <result column="measureUnit" jdbcType="VARCHAR" property="measureUnit" />
+    <result column="saleUnit" jdbcType="VARCHAR" property="saleUnit" />
+    <result column="partsNum" jdbcType="DOUBLE" property="partsNum" />
+    <result column="partsUnit" jdbcType="VARCHAR" property="partsUnit" />
+    <result column="categoryId" jdbcType="BIGINT" property="categoryId" />
+    <result column="categoryCode" jdbcType="VARCHAR" property="categoryCode" />
+    <result column="brandId" jdbcType="BIGINT" property="brandId" />
+    <result column="brandCode" jdbcType="VARCHAR" property="brandCode" />
+    <result column="artNo" jdbcType="VARCHAR" property="artNo" />
+    <result column="textture" jdbcType="VARCHAR" property="textture" />
+    <result column="originArea" jdbcType="VARCHAR" property="originArea" />
+    <result column="nweight" jdbcType="DOUBLE" property="nweight" />
+    <result column="rweight" jdbcType="DOUBLE" property="rweight" />
+    <result column="qaDays" jdbcType="INTEGER" property="qaDays" />
+    <result column="qaDaysUnit" jdbcType="SMALLINT" property="qaDaysUnit" />
+    <result column="waterDamage" jdbcType="REAL" property="waterDamage" />
+    <result column="lowTemp" jdbcType="REAL" property="lowTemp" />
+    <result column="highTemp" jdbcType="REAL" property="highTemp" />
+    <result column="inputTax" jdbcType="REAL" property="inputTax" />
+    <result column="outputTax" jdbcType="REAL" property="outputTax" />
+    <result column="consumpTax" jdbcType="REAL" property="consumpTax" />
+    <result column="longScale" jdbcType="INTEGER" property="longScale" />
+    <result column="wideScale" jdbcType="INTEGER" property="wideScale" />
+    <result column="highScale" jdbcType="INTEGER" property="highScale" />
+    <result column="goodsGrade" jdbcType="VARCHAR" property="goodsGrade" />
+    <result column="orderSpec" jdbcType="VARCHAR" property="orderSpec" />
+    <result column="orderUnit" jdbcType="VARCHAR" property="orderUnit" />
+    <result column="orderNum" jdbcType="INTEGER" property="orderNum" />
+    <result column="safeStockDays" jdbcType="INTEGER" property="safeStockDays" />
+    <result column="minStockDays" jdbcType="INTEGER" property="minStockDays" />
+    <result column="maxStockDays" jdbcType="INTEGER" property="maxStockDays" />
+    <result column="isPercious" jdbcType="BIT" property="isPercious" />
+    <result column="coldTransFlag" jdbcType="BIT" property="coldTransFlag" />
+    <result column="escaleFlag" jdbcType="BIT" property="escaleFlag" />
+    <result column="timesFlag" jdbcType="SMALLINT" property="timesFlag" />
+    <result column="season" jdbcType="VARCHAR" property="season" />
+    <result column="isBatch" jdbcType="BIT" property="isBatch" />
+    <result column="controlFlag" jdbcType="BIT" property="controlFlag" />
+    <result column="recycleFee" jdbcType="DECIMAL" property="recycleFee" />
+    <result column="multiUnitFlag" jdbcType="BIT" property="multiUnitFlag" />
+    <result column="goodsStatus" jdbcType="SMALLINT" property="goodsStatus" />
+    <result column="lang" jdbcType="VARCHAR" property="lang" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+</mapper>
