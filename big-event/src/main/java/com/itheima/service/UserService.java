@@ -17,4 +17,6 @@ public interface UserService {
 
     //更新密码
     void updatePwd(String newPwd);
+
+    int getNumber();
 }

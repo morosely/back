@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Override
     public User findByUserName(String username) {
+        System.out.println("username = " + username);
         User u = userMapper.findByUserName(username);
         return u;
     }
@@ -47,6 +48,12 @@ public class UserServiceImpl implements UserService {
         Map<String,Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
         userMapper.updatePwd(Md5Util.getMD5String(newPwd),id);
+    }
+
+    @Override
+    public int getNumber() {
+        System.out.println("getNumber is calling...");
+        return 100;
     }
 
 
