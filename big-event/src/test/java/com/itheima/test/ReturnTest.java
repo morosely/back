@@ -74,7 +74,7 @@ public class ReturnTest {
         Assertions.assertEquals(300, number5);
     }
 
-    //thenAns实现指定逻辑的插桩
+    //thenAnswer实现指定逻辑的插桩
     @Test
     public void test6(){
         when(mockList.get(anyInt())).thenAnswer(new Answer<String>() {

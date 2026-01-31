@@ -1,6 +1,7 @@
 package com.itheima.test;
 
 import com.itheima.mapper.UserMapper;
+import com.itheima.pojo.User;
 import com.itheima.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
 public class InjectMocksTest {
@@ -24,7 +27,11 @@ public class InjectMocksTest {
     @Test
     public void test1(){
         System.out.println("userService = " + userService);
-        int number = userService.getNumber();
-        Assertions.assertEquals(100, number);
+        User user = new User();
+        user.setId(1);
+        user.setUsername("Tom");
+        doReturn(user).when(userMapper).findByUserName("Tom");
+        userService.findByUserName("Tom");
+        Assertions.assertEquals("Tom", userService.findByUserName("Tom").getUsername());
     }
 }
