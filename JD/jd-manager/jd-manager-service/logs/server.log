@@ -1,0 +1,32 @@
+
+
+[INFO ] 2017-08-18 12:26:05,360 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@98d1693: startup date [Fri Aug 18 12:26:05 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-18 12:26:05,459 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from class path resource [spring/applicationContext-activemq.xml]
+
+
+[INFO ] 2017-08-18 13:43:05,651 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@dcf8640: startup date [Fri Aug 18 13:43:05 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-18 13:43:05,729 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from class path resource [spring/applicationContext-activemq.xml]
+
+
+[INFO ] 2017-08-18 13:43:06,152 method:org.springframework.jms.connection.SingleConnectionFactory.initConnection(SingleConnectionFactory.java:311)
+Established shared JMS Connection: ActiveMQConnection {id=ID:Mbenben-54435-1503034945961-9:1,clientId=null,started=false}
+
+
+[INFO ] 2017-08-18 13:46:41,718 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3bcb55c5: startup date [Fri Aug 18 13:46:41 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-18 13:46:41,795 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from class path resource [spring/applicationContext-activemq.xml]
+
+
+[INFO ] 2017-08-18 13:46:42,166 method:org.springframework.jms.connection.SingleConnectionFactory.initConnection(SingleConnectionFactory.java:311)
+Established shared JMS Connection: ActiveMQConnection {id=ID:Mbenben-54445-1503035199040-9:1,clientId=null,started=false}

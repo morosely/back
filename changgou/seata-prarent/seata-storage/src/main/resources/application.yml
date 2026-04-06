@@ -1,0 +1,33 @@
+server:
+  port: 18004
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:18000/eureka/
+spring:
+  application:
+    name: seata-storage
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.84.136:3306/seata?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: seata-storage
+seata:
+  service:
+    vgroup-mapping:
+      seata-storage: default
+    grouplist:
+      default: 192.168.84.136:8091
+    tx-service-group: seata-storage
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+

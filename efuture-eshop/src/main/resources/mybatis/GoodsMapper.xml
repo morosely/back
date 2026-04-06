@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.efuture.eshop.inventory.mapper.GoodsMapper">
+ 	
+  	<update id="updateGoods" parameterType="com.efuture.eshop.inventory.model.Goods">
+		update goods set stock=#{stock} where goodsId=#{goodsId}
+  	</update>
+  	 
+  	<select id="findGoods" resultType="com.efuture.eshop.inventory.model.Goods"> 
+  		select goodsId as "goodsId",stock as "stock" from goods where goodsId=#{goodsId}
+  	</select>
+ 
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+	<!-- 如果这两个xml文件中分别有property-placeholder，那么，一定会出"Could not resolve placeholder"解决方案注意两个都要加上ignore-unresolvable="true" 
+	applicationContext-dao.xml已经加载所有的*.properties"-->
+	<!-- <context:property-placeholder location="classpath:properties/redis.properties" ignore-unresolvable="true"/> -->
+	
+	<!-- <context:annotation-config/> -->
+	<!-- 配置包扫描器，扫描所有带@Service注解的类 -->
+	<context:component-scan base-package="com.jd.common.redis"/>
+	
+	<!-- redis单机版 -->
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg name="host" value="${REDIS_HOST}"/>
+		<constructor-arg name="port" value="${REDIS_PORT}"/>
+	</bean>
+	<bean id="jedisClientPool" class="com.jd.common.redis.JedisClientPool"/>
+	
+	<!-- redis集群 -->
+	<!-- <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
+		<constructor-arg>
+			<set>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${REDIS_HOST}"/>
+					<constructor-arg name="port" value="${REDIS_CLUSTER_PROT01}"/>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${REDIS_HOST}"/>
+					<constructor-arg name="port" value="${REDIS_CLUSTER_PROT02}"/>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${REDIS_HOST}"/>
+					<constructor-arg name="port" value="${REDIS_CLUSTER_PROT03}"/>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${REDIS_HOST}"/>
+					<constructor-arg name="port" value="${REDIS_CLUSTER_PROT04}"/>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${REDIS_HOST}"/>
+					<constructor-arg name="port" value="${REDIS_CLUSTER_PROT05}"/>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${REDIS_HOST}"/>
+					<constructor-arg name="port" value="${REDIS_CLUSTER_PROT06}"/>
+				</bean>
+			</set>
+		</constructor-arg>
+	</bean>
+	<bean id="jedisClientCluster" class="com.jd.common.redis.JedisClientCluster"/> -->
+</beans>

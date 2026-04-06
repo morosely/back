@@ -1,0 +1,687 @@
+
+
+[INFO ] 2017-08-20 23:09:29,244 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-20 23:09:29,404 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Sun Aug 20 23:09:29 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-20 23:09:29,526 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-20 23:09:29,727 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-20 23:09:29,924 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-20 23:09:29,985 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-20 23:09:30,372 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-20 23:09:30,373 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-20 23:09:30,373 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-20 23:09:30,374 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\resource.properties]
+
+
+[INFO ] 2017-08-20 23:09:30,396 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[WARN ] 2017-08-20 23:09:32,187 method:org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546)
+Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderServiceImpl': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.jd.common.redis.JedisClient com.jd.order.service.impl.OrderServiceImpl.jedisClient; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type [com.jd.common.redis.JedisClient] found for dependency: expected at least 1 bean which qualifies as autowire candidate for this dependency. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+
+
+[ERROR] 2017-08-20 23:09:32,193 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:353)
+Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderServiceImpl': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.jd.common.redis.JedisClient com.jd.order.service.impl.OrderServiceImpl.jedisClient; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type [com.jd.common.redis.JedisClient] found for dependency: expected at least 1 bean which qualifies as autowire candidate for this dependency. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1214)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:772)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:839)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:538)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:446)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:328)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.jd.common.redis.JedisClient com.jd.order.service.impl.OrderServiceImpl.jedisClient; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type [com.jd.common.redis.JedisClient] found for dependency: expected at least 1 bean which qualifies as autowire candidate for this dependency. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:573)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)
+	... 22 more
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type [com.jd.common.redis.JedisClient] found for dependency: expected at least 1 bean which qualifies as autowire candidate for this dependency. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoSuchBeanDefinitionException(DefaultListableBeanFactory.java:1373)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1119)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1014)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:545)
+	... 24 more
+
+
+[INFO ] 2017-08-20 23:12:16,475 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-20 23:12:16,667 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Sun Aug 20 23:12:16 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-20 23:12:16,750 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-20 23:12:16,953 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-redis.xml]
+
+
+[INFO ] 2017-08-20 23:12:17,075 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-20 23:12:17,200 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-20 23:12:17,262 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-20 23:12:17,689 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-20 23:12:17,689 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-20 23:12:17,690 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-20 23:12:17,691 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\resource.properties]
+
+
+[INFO ] 2017-08-20 23:12:17,713 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[WARN ] 2017-08-20 23:12:19,669 method:org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:546)
+Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderServiceImpl': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private java.lang.String com.jd.order.service.impl.OrderServiceImpl.ORDER_GEN_KEY; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'ORDER_GEN_KEY' in string value "${ORDER_GEN_KEY}"
+
+
+[ERROR] 2017-08-20 23:12:19,676 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:353)
+Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderServiceImpl': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private java.lang.String com.jd.order.service.impl.OrderServiceImpl.ORDER_GEN_KEY; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'ORDER_GEN_KEY' in string value "${ORDER_GEN_KEY}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1214)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:772)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:839)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:538)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:446)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:328)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:107)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:744)
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private java.lang.String com.jd.order.service.impl.OrderServiceImpl.ORDER_GEN_KEY; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'ORDER_GEN_KEY' in string value "${ORDER_GEN_KEY}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:573)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)
+	... 22 more
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'ORDER_GEN_KEY' in string value "${ORDER_GEN_KEY}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:174)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:204)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:178)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer$2.resolveStringValue(PropertySourcesPlaceholderConfigurer.java:172)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:808)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1027)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1014)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:545)
+	... 24 more
+
+
+[INFO ] 2017-08-20 23:20:44,473 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-20 23:20:44,645 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Sun Aug 20 23:20:44 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-20 23:20:44,735 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-20 23:20:44,926 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-redis.xml]
+
+
+[INFO ] 2017-08-20 23:20:45,045 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-20 23:20:45,198 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-20 23:20:45,266 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-20 23:20:45,662 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-20 23:20:45,662 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-20 23:20:45,663 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-20 23:20:45,663 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\resource.properties]
+
+
+[INFO ] 2017-08-20 23:20:45,679 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[INFO ] 2017-08-20 23:20:48,200 method:com.alibaba.dubbo.config.spring.ServiceBean.onApplicationEvent(ServiceBean.java:107)
+ [DUBBO] The service ready on spring started. service: com.jd.order.service.OrderService, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:20:48,386 method:com.alibaba.dubbo.config.ServiceConfig.exportLocal(ServiceConfig.java:510)
+ [DUBBO] Export dubbo service com.jd.order.service.OrderService to local registry, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:20:48,386 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:470)
+ [DUBBO] Export dubbo service com.jd.order.service.OrderService to url dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:20:48,387 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:481)
+ [DUBBO] Register dubbo service com.jd.order.service.OrderService url dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233 to registry registry://192.168.124.4:2181/com.alibaba.dubbo.registry.RegistryService?application=jd-order&dubbo=2.5.3&file=jd-order/dubbo-registry/dubbo-registry.properties&pid=1552&registry=zookeeper&timestamp=1503242448220, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:20:48,712 method:com.alibaba.dubbo.remoting.transport.AbstractServer.<init>(AbstractServer.java:69)
+ [DUBBO] Start NettyServer bind /0.0.0.0:20884, export /192.168.20.1:20884, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:20:48,774 method:org.I0Itec.zkclient.ZkEventThread.run(ZkEventThread.java:64)
+Starting ZkClient event thread.
+
+
+[INFO ] 2017-08-20 23:20:48,818 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+
+
+[INFO ] 2017-08-20 23:20:48,818 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:host.name=192.168.20.1
+
+
+[INFO ] 2017-08-20 23:20:48,818 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.version=1.7.0_45
+
+
+[INFO ] 2017-08-20 23:20:48,819 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.vendor=Oracle Corporation
+
+
+[INFO ] 2017-08-20 23:20:48,819 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.home=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre
+
+
+[INFO ] 2017-08-20 23:20:48,819 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.class.path=C:\Tools\apache-maven-3.2.2\boot\plexus-classworlds-2.5.1.jar
+
+
+[INFO ] 2017-08-20 23:20:48,820 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.library.path=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\bin;C:\Tools\apache-maven-3.2.2\bin;C:\Tools\Oracle\product\11.2.0\dbhome_1\bin;C:\Tools\Java\jdk1.7.0_80\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;.
+
+
+[INFO ] 2017-08-20 23:20:48,820 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+
+
+[INFO ] 2017-08-20 23:20:48,820 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.compiler=<NA>
+
+
+[INFO ] 2017-08-20 23:20:48,820 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.name=Windows 7
+
+
+[INFO ] 2017-08-20 23:20:48,821 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.arch=amd64
+
+
+[INFO ] 2017-08-20 23:20:48,821 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.version=6.1
+
+
+[INFO ] 2017-08-20 23:20:48,821 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.name=Administrator
+
+
+[INFO ] 2017-08-20 23:20:48,821 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.home=C:\Users\Administrator
+
+
+[INFO ] 2017-08-20 23:20:48,822 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.dir=D:\WorkSpace\MyEclipse2014\jd-order
+
+
+[INFO ] 2017-08-20 23:20:48,823 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@7b56d21b
+
+
+[INFO ] 2017-08-20 23:20:48,858 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-20 23:20:48,859 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-20 23:20:48,870 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15df5eeb38c0058, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-20 23:20:48,874 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-20 23:20:48,876 method:com.alibaba.dubbo.registry.support.AbstractRegistry.register(AbstractRegistry.java:302)
+ [DUBBO] Register: dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:20:48,920 method:com.alibaba.dubbo.registry.support.AbstractRegistry.subscribe(AbstractRegistry.java:325)
+ [DUBBO] Subscribe: provider://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:20:49,001 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, urls: [empty://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:20:49,064 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:347)
+Root WebApplicationContext: initialization completed in 4586 ms
+
+
+[WARN ] 2017-08-21 00:00:24,795 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20884. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:00:24,976 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:49435,url:dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[WARN ] 2017-08-21 00:04:24,353 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20884. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:04:24,376 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:49960,url:dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[WARN ] 2017-08-21 00:06:47,812 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1108)
+Client session timed out, have not heard from server in 49557ms for sessionid 0x15df5eeb38c0058
+
+
+[WARN ] 2017-08-21 00:06:47,832 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20884. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:06:48,418 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1156)
+Client session timed out, have not heard from server in 49557ms for sessionid 0x15df5eeb38c0058, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-21 00:06:48,432 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:50188,url:dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:06:48,556 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Disconnected)
+
+
+[INFO ] 2017-08-21 00:06:50,156 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-21 00:06:50,659 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[WARN ] 2017-08-21 00:06:50,890 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1285)
+Unable to reconnect to ZooKeeper service, session 0x15df5eeb38c0058 has expired
+
+
+[INFO ] 2017-08-21 00:06:50,891 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1154)
+Unable to reconnect to ZooKeeper service, session 0x15df5eeb38c0058 has expired, closing socket connection
+
+
+[INFO ] 2017-08-21 00:06:50,890 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Expired)
+
+
+[INFO ] 2017-08-21 00:06:50,905 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@7b56d21b
+
+
+[INFO ] 2017-08-21 00:06:51,315 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-21 00:06:51,328 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-21 00:06:51,331 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15df5eeb38c0063, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-21 00:06:51,331 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-21 00:06:51,401 method:com.alibaba.dubbo.registry.support.FailbackRegistry.recover(FailbackRegistry.java:282)
+ [DUBBO] Recover register url [dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:06:51,411 method:com.alibaba.dubbo.registry.support.FailbackRegistry.recover(FailbackRegistry.java:292)
+ [DUBBO] Recover subscribe url [provider://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:06:51,919 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, urls: [empty://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:06:52,313 method:org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:519)
+EventThread shut down for session: 0x15df5eeb38c0058
+
+
+[INFO ] 2017-08-21 00:06:52,833 method:com.alibaba.dubbo.registry.support.FailbackRegistry.retry(FailbackRegistry.java:309)
+ [DUBBO] Retry register [dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:06:54,155 method:com.alibaba.dubbo.registry.support.FailbackRegistry.retry(FailbackRegistry.java:354)
+ [DUBBO] Retry subscribe {provider://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233=[com.alibaba.dubbo.registry.integration.RegistryProtocol$OverrideListener@453be9da]}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:06:54,229 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, urls: [empty://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[WARN ] 2017-08-21 00:33:39,516 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20884. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:33:39,946 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:50227,url:dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:35:19,982 method:com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:655)
+{dataSource-1} inited
+
+
+[WARN ] 2017-08-21 00:35:26,091 method:com.alibaba.dubbo.rpc.filter.TimeoutFilter.invoke(TimeoutFilter.java:48)
+ [DUBBO] invoke time out. method: createOrderarguments: [com.jd.order.pojo.OrderInfo@5237f197] , url is dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233, invoke elapsed 8505 ms., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[WARN ] 2017-08-21 00:40:04,394 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1108)
+Client session timed out, have not heard from server in 20000ms for sessionid 0x15df5eeb38c0063
+
+
+[INFO ] 2017-08-21 00:40:04,672 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1156)
+Client session timed out, have not heard from server in 20000ms for sessionid 0x15df5eeb38c0063, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-21 00:40:04,797 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Disconnected)
+
+
+[INFO ] 2017-08-21 00:40:06,479 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-24 00:03:21,421 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-24 00:03:21,632 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Thu Aug 24 00:03:21 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-24 00:03:21,723 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-24 00:03:22,003 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-redis.xml]
+
+
+[INFO ] 2017-08-24 00:03:22,151 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-24 00:03:22,297 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-24 00:03:22,359 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-24 00:03:22,940 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-24 00:03:22,941 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-24 00:03:22,941 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-24 00:03:22,942 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-order\jd-order-service\target\classes\properties\resource.properties]
+
+
+[INFO ] 2017-08-24 00:03:22,967 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[INFO ] 2017-08-24 00:03:27,000 method:com.alibaba.dubbo.config.spring.ServiceBean.onApplicationEvent(ServiceBean.java:107)
+ [DUBBO] The service ready on spring started. service: com.jd.order.service.OrderService, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:03:27,230 method:com.alibaba.dubbo.config.ServiceConfig.exportLocal(ServiceConfig.java:510)
+ [DUBBO] Export dubbo service com.jd.order.service.OrderService to local registry, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:03:27,231 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:470)
+ [DUBBO] Export dubbo service com.jd.order.service.OrderService to url dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=7632&side=provider&timeout=5000&timestamp=1503504207028, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:03:27,231 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:481)
+ [DUBBO] Register dubbo service com.jd.order.service.OrderService url dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=7632&side=provider&timeout=5000&timestamp=1503504207028 to registry registry://192.168.124.4:2181/com.alibaba.dubbo.registry.RegistryService?application=jd-order&dubbo=2.5.3&file=jd-order/dubbo-registry/dubbo-registry.properties&pid=7632&registry=zookeeper&timestamp=1503504207015, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:03:27,724 method:com.alibaba.dubbo.remoting.transport.AbstractServer.<init>(AbstractServer.java:69)
+ [DUBBO] Start NettyServer bind /0.0.0.0:20884, export /192.168.20.1:20884, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:03:27,784 method:com.alibaba.dubbo.registry.support.AbstractRegistry.loadProperties(AbstractRegistry.java:232)
+ [DUBBO] Load registry store file jd-order\dubbo-registry\dubbo-registry.properties, data: {com.jd.order.service.OrderService=empty://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=1552&side=provider&timeout=5000&timestamp=1503242448233}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:03:27,814 method:org.I0Itec.zkclient.ZkEventThread.run(ZkEventThread.java:64)
+Starting ZkClient event thread.
+
+
+[INFO ] 2017-08-24 00:03:27,835 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+
+
+[INFO ] 2017-08-24 00:03:27,836 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:host.name=Mbenben
+
+
+[INFO ] 2017-08-24 00:03:27,836 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.version=1.7.0_45
+
+
+[INFO ] 2017-08-24 00:03:27,837 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.vendor=Oracle Corporation
+
+
+[INFO ] 2017-08-24 00:03:27,837 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.home=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre
+
+
+[INFO ] 2017-08-24 00:03:27,837 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.class.path=C:\Tools\apache-maven-3.2.2\boot\plexus-classworlds-2.5.1.jar
+
+
+[INFO ] 2017-08-24 00:03:27,837 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.library.path=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\bin;C:\Tools\apache-maven-3.2.2\bin;C:\Tools\Oracle\product\11.2.0\dbhome_1\bin;C:\Tools\Java\jdk1.7.0_80\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;.
+
+
+[INFO ] 2017-08-24 00:03:27,838 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+
+
+[INFO ] 2017-08-24 00:03:27,838 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.compiler=<NA>
+
+
+[INFO ] 2017-08-24 00:03:27,838 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.name=Windows 7
+
+
+[INFO ] 2017-08-24 00:03:27,839 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.arch=amd64
+
+
+[INFO ] 2017-08-24 00:03:27,839 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.version=6.1
+
+
+[INFO ] 2017-08-24 00:03:27,839 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.name=Administrator
+
+
+[INFO ] 2017-08-24 00:03:27,839 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.home=C:\Users\Administrator
+
+
+[INFO ] 2017-08-24 00:03:27,840 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.dir=D:\WorkSpace\MyEclipse2014\jd-order
+
+
+[INFO ] 2017-08-24 00:03:27,841 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@67d368b9
+
+
+[INFO ] 2017-08-24 00:03:27,882 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-24 00:03:27,887 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-24 00:03:28,149 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15df5eeb38c008f, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-24 00:03:28,156 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-24 00:03:28,161 method:com.alibaba.dubbo.registry.support.AbstractRegistry.register(AbstractRegistry.java:302)
+ [DUBBO] Register: dubbo://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=7632&side=provider&timeout=5000&timestamp=1503504207028, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:03:28,195 method:com.alibaba.dubbo.registry.support.AbstractRegistry.subscribe(AbstractRegistry.java:325)
+ [DUBBO] Subscribe: provider://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=7632&side=provider&timeout=5000&timestamp=1503504207028, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:03:28,299 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=7632&side=provider&timeout=5000&timestamp=1503504207028, urls: [empty://192.168.20.1:20884/com.jd.order.service.OrderService?anyhost=true&application=jd-order&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.order.service.OrderService&methods=createOrder&pid=7632&side=provider&timeout=5000&timestamp=1503504207028], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:03:28,377 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:347)
+Root WebApplicationContext: initialization completed in 6934 ms
+
+
+[WARN ] 2017-08-24 00:06:58,316 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1108)
+Client session timed out, have not heard from server in 20001ms for sessionid 0x15df5eeb38c008f
+
+
+[INFO ] 2017-08-24 00:06:58,319 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1156)
+Client session timed out, have not heard from server in 20001ms for sessionid 0x15df5eeb38c008f, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-24 00:06:58,420 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Disconnected)
+
+
+[INFO ] 2017-08-24 00:06:59,514 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-24 00:06:59,516 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-24 00:06:59,615 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15df5eeb38c008f, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-24 00:06:59,615 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)

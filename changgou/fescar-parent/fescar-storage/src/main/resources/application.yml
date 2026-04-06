@@ -1,0 +1,30 @@
+server:
+  port: 18004
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:18000/eureka/
+spring:
+  application:
+    name: fescar-storage
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.84.136:3306/fescar_storage?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: fescar-storage
+seata:
+  service:
+    vgroup-mapping:
+      fescar-storage: default
+    grouplist:
+      default: 192.168.84.136:8091
+    tx-service-group: fescar-storage
+
+
+

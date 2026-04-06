@@ -1,0 +1,28 @@
+server:
+  port: 18002
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:18000/eureka/
+spring:
+  application:
+    name: fescar-order
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.84.136:3306/fescar_order?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: fescar-order
+
+seata:
+  service:
+    vgroup-mapping:
+      fescar-order: default
+    grouplist:
+      default: 192.168.84.136:8091
+

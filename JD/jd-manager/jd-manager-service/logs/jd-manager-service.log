@@ -1,0 +1,12 @@
+
+
+[INFO ] 2017-08-31 23:35:11,193 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6fec9818: startup date [Thu Aug 31 23:35:11 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-31 23:35:11,341 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from class path resource [spring/applicationContext-activemq.xml]
+
+
+[INFO ] 2017-08-31 23:35:12,186 method:org.springframework.jms.connection.SingleConnectionFactory.initConnection(SingleConnectionFactory.java:311)
+Established shared JMS Connection: ActiveMQConnection {id=ID:Mbenben-64355-1504193685160-9:1,clientId=null,started=false}

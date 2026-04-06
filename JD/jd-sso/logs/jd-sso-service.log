@@ -1,0 +1,1609 @@
+
+
+[INFO ] 2017-08-20 23:21:29,901 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-20 23:21:30,263 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Sun Aug 20 23:21:30 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-20 23:21:30,410 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-20 23:21:30,659 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-redis.xml]
+
+
+[INFO ] 2017-08-20 23:21:30,841 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-20 23:21:30,989 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-20 23:21:31,086 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-20 23:21:31,563 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-20 23:21:31,563 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-20 23:21:31,564 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-20 23:21:31,586 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[INFO ] 2017-08-20 23:21:34,658 method:com.alibaba.dubbo.config.spring.ServiceBean.onApplicationEvent(ServiceBean.java:107)
+ [DUBBO] The service ready on spring started. service: com.jd.sso.service.UserService, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:21:34,904 method:com.alibaba.dubbo.config.ServiceConfig.exportLocal(ServiceConfig.java:510)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to local registry, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:21:34,904 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:470)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:21:34,905 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:481)
+ [DUBBO] Register dubbo service com.jd.sso.service.UserService url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696 to registry registry://192.168.124.4:2181/com.alibaba.dubbo.registry.RegistryService?application=jd-sso&dubbo=2.5.3&file=jd-sso/dubbo-registry/dubbo-registry.properties&pid=7452&registry=zookeeper&timestamp=1503242494682, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:21:35,351 method:com.alibaba.dubbo.remoting.transport.AbstractServer.<init>(AbstractServer.java:69)
+ [DUBBO] Start NettyServer bind /0.0.0.0:20883, export /192.168.20.1:20883, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:21:35,395 method:com.alibaba.dubbo.registry.support.AbstractRegistry.loadProperties(AbstractRegistry.java:232)
+ [DUBBO] Load registry store file jd-sso\dubbo-registry\dubbo-registry.properties, data: {com.jd.sso.service.UserService=empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=4300&side=provider&timeout=5000&timestamp=1503240986472}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:21:35,435 method:org.I0Itec.zkclient.ZkEventThread.run(ZkEventThread.java:64)
+Starting ZkClient event thread.
+
+
+[INFO ] 2017-08-20 23:21:35,455 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+
+
+[INFO ] 2017-08-20 23:21:35,456 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:host.name=192.168.20.1
+
+
+[INFO ] 2017-08-20 23:21:35,456 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.version=1.7.0_45
+
+
+[INFO ] 2017-08-20 23:21:35,456 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.vendor=Oracle Corporation
+
+
+[INFO ] 2017-08-20 23:21:35,456 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.home=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre
+
+
+[INFO ] 2017-08-20 23:21:35,457 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.class.path=C:\Tools\apache-maven-3.2.2\boot\plexus-classworlds-2.5.1.jar
+
+
+[INFO ] 2017-08-20 23:21:35,457 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.library.path=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\bin;C:\Tools\apache-maven-3.2.2\bin;C:\Tools\Oracle\product\11.2.0\dbhome_1\bin;C:\Tools\Java\jdk1.7.0_80\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;.
+
+
+[INFO ] 2017-08-20 23:21:35,458 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+
+
+[INFO ] 2017-08-20 23:21:35,458 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.compiler=<NA>
+
+
+[INFO ] 2017-08-20 23:21:35,458 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.name=Windows 7
+
+
+[INFO ] 2017-08-20 23:21:35,459 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.arch=amd64
+
+
+[INFO ] 2017-08-20 23:21:35,459 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.version=6.1
+
+
+[INFO ] 2017-08-20 23:21:35,459 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.name=Administrator
+
+
+[INFO ] 2017-08-20 23:21:35,460 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.home=C:\Users\Administrator
+
+
+[INFO ] 2017-08-20 23:21:35,460 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.dir=D:\WorkSpace\MyEclipse2014\jd-sso
+
+
+[INFO ] 2017-08-20 23:21:35,462 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@6f426966
+
+
+[INFO ] 2017-08-20 23:21:35,537 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-20 23:21:35,568 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-20 23:21:35,607 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15df5eeb38c0059, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-20 23:21:35,630 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-20 23:21:35,634 method:com.alibaba.dubbo.registry.support.AbstractRegistry.register(AbstractRegistry.java:302)
+ [DUBBO] Register: dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:21:35,761 method:com.alibaba.dubbo.registry.support.AbstractRegistry.subscribe(AbstractRegistry.java:325)
+ [DUBBO] Subscribe: provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:21:35,812 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-20 23:21:35,907 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:347)
+Root WebApplicationContext: initialization completed in 6001 ms
+
+
+[INFO ] 2017-08-20 23:42:19,122 method:com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:655)
+{dataSource-1} inited
+
+
+[INFO ] 2017-08-21 00:00:24,627 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:49434,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:04:24,316 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:49959,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:10:47,686 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:49495,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:12:09,234 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:50545,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:32:50,100 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:50573,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[WARN ] 2017-08-21 00:33:39,517 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20883. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-21 00:33:39,520 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:50187,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[WARN ] 2017-08-21 00:40:07,014 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1108)
+Client session timed out, have not heard from server in 20000ms for sessionid 0x15df5eeb38c0059
+
+
+[INFO ] 2017-08-21 00:40:07,118 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1156)
+Client session timed out, have not heard from server in 20000ms for sessionid 0x15df5eeb38c0059, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-21 00:40:07,281 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Disconnected)
+
+
+[INFO ] 2017-08-21 00:40:08,764 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-23 23:56:49,701 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-23 23:56:49,928 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Wed Aug 23 23:56:49 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-23 23:56:50,018 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-23 23:56:50,259 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-redis.xml]
+
+
+[INFO ] 2017-08-23 23:56:50,483 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-23 23:56:50,644 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-23 23:56:50,702 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-23 23:56:51,353 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-23 23:56:51,353 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-23 23:56:51,354 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-23 23:56:51,378 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[INFO ] 2017-08-23 23:56:54,788 method:com.alibaba.dubbo.config.spring.ServiceBean.onApplicationEvent(ServiceBean.java:107)
+ [DUBBO] The service ready on spring started. service: com.jd.sso.service.UserService, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-23 23:56:55,001 method:com.alibaba.dubbo.config.ServiceConfig.exportLocal(ServiceConfig.java:510)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to local registry, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-23 23:56:55,002 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:470)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6788&side=provider&timeout=5000&timestamp=1503503814817, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-23 23:56:55,003 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:481)
+ [DUBBO] Register dubbo service com.jd.sso.service.UserService url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6788&side=provider&timeout=5000&timestamp=1503503814817 to registry registry://192.168.124.4:2181/com.alibaba.dubbo.registry.RegistryService?application=jd-sso&dubbo=2.5.3&file=jd-sso/dubbo-registry/dubbo-registry.properties&pid=6788&registry=zookeeper&timestamp=1503503814803, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-23 23:56:55,331 method:com.alibaba.dubbo.remoting.transport.AbstractServer.<init>(AbstractServer.java:69)
+ [DUBBO] Start NettyServer bind /0.0.0.0:20883, export /192.168.20.1:20883, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-23 23:56:55,365 method:com.alibaba.dubbo.registry.support.AbstractRegistry.loadProperties(AbstractRegistry.java:232)
+ [DUBBO] Load registry store file jd-sso\dubbo-registry\dubbo-registry.properties, data: {com.jd.sso.service.UserService=empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=7452&side=provider&timeout=5000&timestamp=1503242494696}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-23 23:56:55,390 method:org.I0Itec.zkclient.ZkEventThread.run(ZkEventThread.java:64)
+Starting ZkClient event thread.
+
+
+[INFO ] 2017-08-23 23:56:55,409 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+
+
+[INFO ] 2017-08-23 23:56:55,411 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:host.name=Mbenben
+
+
+[INFO ] 2017-08-23 23:56:55,411 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.version=1.7.0_45
+
+
+[INFO ] 2017-08-23 23:56:55,414 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.vendor=Oracle Corporation
+
+
+[INFO ] 2017-08-23 23:56:55,414 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.home=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre
+
+
+[INFO ] 2017-08-23 23:56:55,415 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.class.path=C:\Tools\apache-maven-3.2.2\boot\plexus-classworlds-2.5.1.jar
+
+
+[INFO ] 2017-08-23 23:56:55,416 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.library.path=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\bin;C:\Tools\apache-maven-3.2.2\bin;C:\Tools\Oracle\product\11.2.0\dbhome_1\bin;C:\Tools\Java\jdk1.7.0_80\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;.
+
+
+[INFO ] 2017-08-23 23:56:55,416 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+
+
+[INFO ] 2017-08-23 23:56:55,416 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.compiler=<NA>
+
+
+[INFO ] 2017-08-23 23:56:55,417 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.name=Windows 7
+
+
+[INFO ] 2017-08-23 23:56:55,417 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.arch=amd64
+
+
+[INFO ] 2017-08-23 23:56:55,418 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.version=6.1
+
+
+[INFO ] 2017-08-23 23:56:55,418 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.name=Administrator
+
+
+[INFO ] 2017-08-23 23:56:55,418 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.home=C:\Users\Administrator
+
+
+[INFO ] 2017-08-23 23:56:55,418 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.dir=D:\WorkSpace\MyEclipse2014\jd-sso
+
+
+[INFO ] 2017-08-23 23:56:55,420 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@4d17ea4e
+
+
+[INFO ] 2017-08-23 23:56:55,454 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-23 23:56:55,456 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-23 23:56:55,530 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15df5eeb38c008b, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-23 23:56:55,538 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-23 23:56:55,544 method:com.alibaba.dubbo.registry.support.AbstractRegistry.register(AbstractRegistry.java:302)
+ [DUBBO] Register: dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6788&side=provider&timeout=5000&timestamp=1503503814817, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-23 23:56:55,944 method:com.alibaba.dubbo.registry.support.AbstractRegistry.subscribe(AbstractRegistry.java:325)
+ [DUBBO] Subscribe: provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6788&side=provider&timeout=5000&timestamp=1503503814817, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-23 23:56:56,112 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6788&side=provider&timeout=5000&timestamp=1503503814817, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6788&side=provider&timeout=5000&timestamp=1503503814817], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-23 23:56:56,171 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:347)
+Root WebApplicationContext: initialization completed in 6450 ms
+
+
+[WARN ] 2017-08-24 00:06:56,183 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1108)
+Client session timed out, have not heard from server in 20000ms for sessionid 0x15df5eeb38c008b
+
+
+[INFO ] 2017-08-24 00:06:56,186 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1156)
+Client session timed out, have not heard from server in 20000ms for sessionid 0x15df5eeb38c008b, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-24 00:06:56,286 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Disconnected)
+
+
+[INFO ] 2017-08-24 00:06:57,333 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[WARN ] 2017-08-24 00:07:18,344 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1162)
+Session 0x15df5eeb38c008b for server null, unexpected error, closing socket connection and attempting reconnect
+java.net.ConnectException: Connection timed out: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:735)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:361)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1141)
+
+
+[INFO ] 2017-08-24 00:07:19,743 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-24 00:07:19,770 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-24 00:07:19,774 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15df5eeb38c008b, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-24 00:07:19,774 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-24 00:10:31,550 method:com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:655)
+{dataSource-1} inited
+
+
+[INFO ] 2017-08-24 00:43:10,060 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-24 00:43:10,234 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Thu Aug 24 00:43:10 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-24 00:43:10,337 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-24 00:43:10,577 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-redis.xml]
+
+
+[INFO ] 2017-08-24 00:43:10,695 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-24 00:43:10,812 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-24 00:43:10,865 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-24 00:43:11,238 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-24 00:43:11,238 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-24 00:43:11,238 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\jd-sso\jd-sso-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-24 00:43:11,262 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[INFO ] 2017-08-24 00:43:13,732 method:com.alibaba.dubbo.config.spring.ServiceBean.onApplicationEvent(ServiceBean.java:107)
+ [DUBBO] The service ready on spring started. service: com.jd.sso.service.UserService, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:43:13,933 method:com.alibaba.dubbo.config.ServiceConfig.exportLocal(ServiceConfig.java:510)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to local registry, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:43:13,933 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:470)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6232&side=provider&timeout=5000&timestamp=1503506593774, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:43:13,935 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:481)
+ [DUBBO] Register dubbo service com.jd.sso.service.UserService url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6232&side=provider&timeout=5000&timestamp=1503506593774 to registry registry://192.168.124.4:2181/com.alibaba.dubbo.registry.RegistryService?application=jd-sso&dubbo=2.5.3&file=jd-sso/dubbo-registry/dubbo-registry.properties&pid=6232&registry=zookeeper&timestamp=1503506593752, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:43:14,239 method:com.alibaba.dubbo.remoting.transport.AbstractServer.<init>(AbstractServer.java:69)
+ [DUBBO] Start NettyServer bind /0.0.0.0:20883, export /192.168.20.1:20883, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:43:14,279 method:com.alibaba.dubbo.registry.support.AbstractRegistry.loadProperties(AbstractRegistry.java:232)
+ [DUBBO] Load registry store file jd-sso\dubbo-registry\dubbo-registry.properties, data: {com.jd.sso.service.UserService=empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6788&side=provider&timeout=5000&timestamp=1503503814817}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:43:14,306 method:org.I0Itec.zkclient.ZkEventThread.run(ZkEventThread.java:64)
+Starting ZkClient event thread.
+
+
+[INFO ] 2017-08-24 00:43:14,324 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+
+
+[INFO ] 2017-08-24 00:43:14,324 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:host.name=Mbenben
+
+
+[INFO ] 2017-08-24 00:43:14,324 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.version=1.7.0_45
+
+
+[INFO ] 2017-08-24 00:43:14,324 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.vendor=Oracle Corporation
+
+
+[INFO ] 2017-08-24 00:43:14,324 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.home=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre
+
+
+[INFO ] 2017-08-24 00:43:14,324 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.class.path=C:\Tools\apache-maven-3.2.2\boot\plexus-classworlds-2.5.1.jar
+
+
+[INFO ] 2017-08-24 00:43:14,326 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.library.path=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\bin;C:\Tools\apache-maven-3.2.2\bin;C:\Tools\Oracle\product\11.2.0\dbhome_1\bin;C:\Tools\Java\jdk1.7.0_80\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;.
+
+
+[INFO ] 2017-08-24 00:43:14,326 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+
+
+[INFO ] 2017-08-24 00:43:14,326 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.compiler=<NA>
+
+
+[INFO ] 2017-08-24 00:43:14,326 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.name=Windows 7
+
+
+[INFO ] 2017-08-24 00:43:14,326 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.arch=amd64
+
+
+[INFO ] 2017-08-24 00:43:14,326 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.version=6.1
+
+
+[INFO ] 2017-08-24 00:43:14,326 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.name=Administrator
+
+
+[INFO ] 2017-08-24 00:43:14,326 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.home=C:\Users\Administrator
+
+
+[INFO ] 2017-08-24 00:43:14,326 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.dir=D:\WorkSpace\MyEclipse2014\jd-sso
+
+
+[INFO ] 2017-08-24 00:43:14,329 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@235657c8
+
+
+[INFO ] 2017-08-24 00:43:14,364 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-24 00:43:14,386 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-24 00:43:14,411 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15df5eeb38c0094, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-24 00:43:14,414 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-24 00:43:14,416 method:com.alibaba.dubbo.registry.support.AbstractRegistry.register(AbstractRegistry.java:302)
+ [DUBBO] Register: dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6232&side=provider&timeout=5000&timestamp=1503506593774, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:43:14,459 method:com.alibaba.dubbo.registry.support.AbstractRegistry.subscribe(AbstractRegistry.java:325)
+ [DUBBO] Subscribe: provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6232&side=provider&timeout=5000&timestamp=1503506593774, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:43:14,489 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6232&side=provider&timeout=5000&timestamp=1503506593774, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6232&side=provider&timeout=5000&timestamp=1503506593774], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 00:43:14,558 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:347)
+Root WebApplicationContext: initialization completed in 4493 ms
+
+
+[INFO ] 2017-08-24 00:58:54,592 method:com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:655)
+{dataSource-1} inited
+
+
+[WARN ] 2017-08-24 01:03:11,740 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20883. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-24 01:03:11,752 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:63408,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6232&side=provider&timeout=5000&timestamp=1503506593774, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-25 00:12:15,904 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-25 00:12:16,444 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Fri Aug 25 00:12:16 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-25 00:12:16,612 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-25 00:12:16,969 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-redis.xml]
+
+
+[INFO ] 2017-08-25 00:12:17,235 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-25 00:12:17,484 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-25 00:12:17,595 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-25 00:12:18,254 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-25 00:12:18,254 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-25 00:12:18,256 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-25 00:12:18,280 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[INFO ] 2017-08-25 00:12:21,789 method:com.alibaba.dubbo.config.spring.ServiceBean.onApplicationEvent(ServiceBean.java:107)
+ [DUBBO] The service ready on spring started. service: com.jd.sso.service.UserService, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-25 00:12:22,052 method:com.alibaba.dubbo.config.ServiceConfig.exportLocal(ServiceConfig.java:510)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to local registry, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-25 00:12:22,123 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:470)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6828&side=provider&timeout=5000&timestamp=1503591141823, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-25 00:12:22,123 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:481)
+ [DUBBO] Register dubbo service com.jd.sso.service.UserService url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6828&side=provider&timeout=5000&timestamp=1503591141823 to registry registry://192.168.124.4:2181/com.alibaba.dubbo.registry.RegistryService?application=jd-sso&dubbo=2.5.3&file=jd-sso/dubbo-registry/dubbo-registry.properties&pid=6828&registry=zookeeper&timestamp=1503591141808, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-25 00:12:22,465 method:com.alibaba.dubbo.remoting.transport.AbstractServer.<init>(AbstractServer.java:69)
+ [DUBBO] Start NettyServer bind /0.0.0.0:20883, export /192.168.20.1:20883, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-25 00:12:22,499 method:com.alibaba.dubbo.registry.support.AbstractRegistry.loadProperties(AbstractRegistry.java:232)
+ [DUBBO] Load registry store file jd-sso\dubbo-registry\dubbo-registry.properties, data: {com.jd.sso.service.UserService=empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6232&side=provider&timeout=5000&timestamp=1503506593774}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-25 00:12:22,527 method:org.I0Itec.zkclient.ZkEventThread.run(ZkEventThread.java:64)
+Starting ZkClient event thread.
+
+
+[INFO ] 2017-08-25 00:12:22,543 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+
+
+[INFO ] 2017-08-25 00:12:22,543 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:host.name=Mbenben
+
+
+[INFO ] 2017-08-25 00:12:22,544 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.version=1.7.0_45
+
+
+[INFO ] 2017-08-25 00:12:22,544 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.vendor=Oracle Corporation
+
+
+[INFO ] 2017-08-25 00:12:22,544 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.home=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre
+
+
+[INFO ] 2017-08-25 00:12:22,544 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.class.path=C:\Tools\apache-maven-3.2.2\boot\plexus-classworlds-2.5.1.jar
+
+
+[INFO ] 2017-08-25 00:12:22,545 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.library.path=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\bin;C:\Tools\apache-maven-3.2.2\bin;C:\Tools\Oracle\product\11.2.0\dbhome_1\bin;C:\Tools\Java\jdk1.7.0_80\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;.
+
+
+[INFO ] 2017-08-25 00:12:22,545 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+
+
+[INFO ] 2017-08-25 00:12:22,545 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.compiler=<NA>
+
+
+[INFO ] 2017-08-25 00:12:22,545 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.name=Windows 7
+
+
+[INFO ] 2017-08-25 00:12:22,546 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.arch=amd64
+
+
+[INFO ] 2017-08-25 00:12:22,546 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.version=6.1
+
+
+[INFO ] 2017-08-25 00:12:22,546 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.name=Administrator
+
+
+[INFO ] 2017-08-25 00:12:22,546 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.home=C:\Users\Administrator
+
+
+[INFO ] 2017-08-25 00:12:22,547 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.dir=D:\WorkSpace\MyEclipse2014\JD\jd-sso
+
+
+[INFO ] 2017-08-25 00:12:22,548 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@2e2b403b
+
+
+[INFO ] 2017-08-25 00:12:22,584 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-25 00:12:22,586 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-25 00:12:22,601 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15e14ec17f50005, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-25 00:12:22,605 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-25 00:12:22,607 method:com.alibaba.dubbo.registry.support.AbstractRegistry.register(AbstractRegistry.java:302)
+ [DUBBO] Register: dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6828&side=provider&timeout=5000&timestamp=1503591141823, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-25 00:12:22,646 method:com.alibaba.dubbo.registry.support.AbstractRegistry.subscribe(AbstractRegistry.java:325)
+ [DUBBO] Subscribe: provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6828&side=provider&timeout=5000&timestamp=1503591141823, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-25 00:12:22,710 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6828&side=provider&timeout=5000&timestamp=1503591141823, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6828&side=provider&timeout=5000&timestamp=1503591141823], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-25 00:12:22,769 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:347)
+Root WebApplicationContext: initialization completed in 6820 ms
+
+
+[INFO ] 2017-08-26 16:01:43,791 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-26 16:01:44,037 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Sat Aug 26 16:01:44 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-26 16:01:44,133 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-26 16:01:44,374 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-redis.xml]
+
+
+[INFO ] 2017-08-26 16:01:44,515 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-26 16:01:44,673 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-26 16:01:44,743 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-26 16:01:45,196 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-26 16:01:45,196 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-26 16:01:45,199 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-26 16:01:45,222 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[INFO ] 2017-08-26 16:01:47,867 method:com.alibaba.dubbo.config.spring.ServiceBean.onApplicationEvent(ServiceBean.java:107)
+ [DUBBO] The service ready on spring started. service: com.jd.sso.service.UserService, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 16:01:48,112 method:com.alibaba.dubbo.config.ServiceConfig.exportLocal(ServiceConfig.java:510)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to local registry, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 16:01:48,112 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:470)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 16:01:48,112 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:481)
+ [DUBBO] Register dubbo service com.jd.sso.service.UserService url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898 to registry registry://192.168.124.4:2181/com.alibaba.dubbo.registry.RegistryService?application=jd-sso&dubbo=2.5.3&file=jd-sso/dubbo-registry/dubbo-registry.properties&pid=5884&registry=zookeeper&timestamp=1503734507886, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 16:01:48,443 method:com.alibaba.dubbo.remoting.transport.AbstractServer.<init>(AbstractServer.java:69)
+ [DUBBO] Start NettyServer bind /0.0.0.0:20883, export /192.168.20.1:20883, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 16:01:48,476 method:com.alibaba.dubbo.registry.support.AbstractRegistry.loadProperties(AbstractRegistry.java:232)
+ [DUBBO] Load registry store file jd-sso\dubbo-registry\dubbo-registry.properties, data: {com.jd.sso.service.UserService=empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=6828&side=provider&timeout=5000&timestamp=1503591141823}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 16:01:48,507 method:org.I0Itec.zkclient.ZkEventThread.run(ZkEventThread.java:64)
+Starting ZkClient event thread.
+
+
+[INFO ] 2017-08-26 16:01:48,530 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+
+
+[INFO ] 2017-08-26 16:01:48,530 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:host.name=Mbenben
+
+
+[INFO ] 2017-08-26 16:01:48,531 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.version=1.7.0_45
+
+
+[INFO ] 2017-08-26 16:01:48,531 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.vendor=Oracle Corporation
+
+
+[INFO ] 2017-08-26 16:01:48,532 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.home=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre
+
+
+[INFO ] 2017-08-26 16:01:48,532 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.class.path=C:\Tools\apache-maven-3.2.2\boot\plexus-classworlds-2.5.1.jar
+
+
+[INFO ] 2017-08-26 16:01:48,532 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.library.path=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\bin;C:\Tools\apache-maven-3.2.2\bin;C:\Tools\Oracle\product\11.2.0\dbhome_1\bin;C:\Tools\Java\jdk1.7.0_80\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;.
+
+
+[INFO ] 2017-08-26 16:01:48,532 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+
+
+[INFO ] 2017-08-26 16:01:48,533 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.compiler=<NA>
+
+
+[INFO ] 2017-08-26 16:01:48,533 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.name=Windows 7
+
+
+[INFO ] 2017-08-26 16:01:48,533 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.arch=amd64
+
+
+[INFO ] 2017-08-26 16:01:48,533 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.version=6.1
+
+
+[INFO ] 2017-08-26 16:01:48,534 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.name=Administrator
+
+
+[INFO ] 2017-08-26 16:01:48,534 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.home=C:\Users\Administrator
+
+
+[INFO ] 2017-08-26 16:01:48,534 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.dir=D:\WorkSpace\MyEclipse2014\JD\jd-sso
+
+
+[INFO ] 2017-08-26 16:01:48,536 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@1cf9b9c6
+
+
+[INFO ] 2017-08-26 16:01:48,576 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 16:01:48,581 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-26 16:01:48,596 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15e1d8ac8440003, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-26 16:01:48,600 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-26 16:01:48,603 method:com.alibaba.dubbo.registry.support.AbstractRegistry.register(AbstractRegistry.java:302)
+ [DUBBO] Register: dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 16:01:48,649 method:com.alibaba.dubbo.registry.support.AbstractRegistry.subscribe(AbstractRegistry.java:325)
+ [DUBBO] Subscribe: provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 16:01:48,670 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 16:01:48,723 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:347)
+Root WebApplicationContext: initialization completed in 4918 ms
+
+
+[INFO ] 2017-08-26 16:26:06,995 method:com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:655)
+{dataSource-1} inited
+
+
+[WARN ] 2017-08-26 17:00:48,962 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1108)
+Client session timed out, have not heard from server in 20000ms for sessionid 0x15e1d8ac8440003
+
+
+[INFO ] 2017-08-26 17:00:48,964 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1156)
+Client session timed out, have not heard from server in 20000ms for sessionid 0x15e1d8ac8440003, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-26 17:01:04,075 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Disconnected)
+
+
+[INFO ] 2017-08-26 17:01:08,291 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 17:01:15,786 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[WARN ] 2017-08-26 17:01:45,785 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1108)
+Client session timed out, have not heard from server in 30000ms for sessionid 0x15e1d8ac8440003
+
+
+[INFO ] 2017-08-26 17:01:45,786 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1156)
+Client session timed out, have not heard from server in 30000ms for sessionid 0x15e1d8ac8440003, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-26 17:01:47,251 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 17:01:47,611 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[WARN ] 2017-08-26 17:01:54,745 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1285)
+Unable to reconnect to ZooKeeper service, session 0x15e1d8ac8440003 has expired
+
+
+[INFO ] 2017-08-26 17:01:54,745 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Expired)
+
+
+[INFO ] 2017-08-26 17:01:54,746 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1154)
+Unable to reconnect to ZooKeeper service, session 0x15e1d8ac8440003 has expired, closing socket connection
+
+
+[INFO ] 2017-08-26 17:01:54,746 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@1cf9b9c6
+
+
+[INFO ] 2017-08-26 17:01:55,187 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 17:01:55,189 method:com.alibaba.dubbo.registry.support.FailbackRegistry.recover(FailbackRegistry.java:282)
+ [DUBBO] Recover register url [dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 17:01:55,218 method:com.alibaba.dubbo.registry.support.FailbackRegistry.recover(FailbackRegistry.java:292)
+ [DUBBO] Recover subscribe url [provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 17:01:55,251 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-26 17:01:55,473 method:org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:519)
+EventThread shut down for session: 0x15e1d8ac8440003
+
+
+[INFO ] 2017-08-26 17:01:55,801 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15e1d8ac844000f, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-26 17:01:55,801 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-26 17:01:57,802 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[WARN ] 2017-08-26 17:01:58,477 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20883. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 17:01:59,613 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:64863,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 17:02:00,332 method:com.alibaba.dubbo.registry.support.FailbackRegistry.retry(FailbackRegistry.java:309)
+ [DUBBO] Retry register [dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 17:02:06,468 method:com.alibaba.dubbo.registry.support.FailbackRegistry.retry(FailbackRegistry.java:354)
+ [DUBBO] Retry subscribe {provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898=[com.alibaba.dubbo.registry.integration.RegistryProtocol$OverrideListener@18c3de19]}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 17:02:09,934 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[WARN ] 2017-08-26 17:03:27,959 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20883. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 17:03:28,110 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:51562,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:43:49,307 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-26 18:43:49,503 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Sat Aug 26 18:43:49 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-26 18:43:49,587 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-26 18:43:49,831 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-redis.xml]
+
+
+[INFO ] 2017-08-26 18:43:49,985 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-26 18:43:50,126 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-26 18:43:50,179 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-26 18:43:50,631 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-26 18:43:50,632 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-26 18:43:50,633 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-26 18:43:50,651 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[INFO ] 2017-08-26 18:43:53,490 method:com.alibaba.dubbo.config.spring.ServiceBean.onApplicationEvent(ServiceBean.java:107)
+ [DUBBO] The service ready on spring started. service: com.jd.sso.service.UserService, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:43:53,706 method:com.alibaba.dubbo.config.ServiceConfig.exportLocal(ServiceConfig.java:510)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to local registry, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:43:53,707 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:470)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:43:53,707 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:481)
+ [DUBBO] Register dubbo service com.jd.sso.service.UserService url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518 to registry registry://192.168.124.4:2181/com.alibaba.dubbo.registry.RegistryService?application=jd-sso&dubbo=2.5.3&file=jd-sso/dubbo-registry/dubbo-registry.properties&pid=3220&registry=zookeeper&timestamp=1503744233504, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:43:54,052 method:com.alibaba.dubbo.remoting.transport.AbstractServer.<init>(AbstractServer.java:69)
+ [DUBBO] Start NettyServer bind /0.0.0.0:20883, export /192.168.20.1:20883, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:43:54,094 method:com.alibaba.dubbo.registry.support.AbstractRegistry.loadProperties(AbstractRegistry.java:232)
+ [DUBBO] Load registry store file jd-sso\dubbo-registry\dubbo-registry.properties, data: {com.jd.sso.service.UserService=empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=5884&side=provider&timeout=5000&timestamp=1503734507898}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:43:54,130 method:org.I0Itec.zkclient.ZkEventThread.run(ZkEventThread.java:64)
+Starting ZkClient event thread.
+
+
+[INFO ] 2017-08-26 18:43:54,152 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+
+
+[INFO ] 2017-08-26 18:43:54,152 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:host.name=Mbenben
+
+
+[INFO ] 2017-08-26 18:43:54,153 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.version=1.7.0_45
+
+
+[INFO ] 2017-08-26 18:43:54,153 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.vendor=Oracle Corporation
+
+
+[INFO ] 2017-08-26 18:43:54,154 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.home=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre
+
+
+[INFO ] 2017-08-26 18:43:54,154 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.class.path=C:\Tools\apache-maven-3.2.2\boot\plexus-classworlds-2.5.1.jar
+
+
+[INFO ] 2017-08-26 18:43:54,154 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.library.path=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\bin;C:\Tools\apache-maven-3.2.2\bin;C:\Tools\Oracle\product\11.2.0\dbhome_1\bin;C:\Tools\Java\jdk1.7.0_80\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;.
+
+
+[INFO ] 2017-08-26 18:43:54,155 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+
+
+[INFO ] 2017-08-26 18:43:54,155 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.compiler=<NA>
+
+
+[INFO ] 2017-08-26 18:43:54,155 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.name=Windows 7
+
+
+[INFO ] 2017-08-26 18:43:54,156 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.arch=amd64
+
+
+[INFO ] 2017-08-26 18:43:54,156 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.version=6.1
+
+
+[INFO ] 2017-08-26 18:43:54,156 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.name=Administrator
+
+
+[INFO ] 2017-08-26 18:43:54,157 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.home=C:\Users\Administrator
+
+
+[INFO ] 2017-08-26 18:43:54,157 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.dir=D:\WorkSpace\MyEclipse2014\JD\jd-sso
+
+
+[INFO ] 2017-08-26 18:43:54,159 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@4a549ab0
+
+
+[INFO ] 2017-08-26 18:43:54,196 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 18:43:54,198 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-26 18:43:54,261 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15e1d8ac8440014, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-26 18:43:54,264 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-26 18:43:54,267 method:com.alibaba.dubbo.registry.support.AbstractRegistry.register(AbstractRegistry.java:302)
+ [DUBBO] Register: dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:43:54,321 method:com.alibaba.dubbo.registry.support.AbstractRegistry.subscribe(AbstractRegistry.java:325)
+ [DUBBO] Subscribe: provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:43:54,447 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:43:54,496 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:347)
+Root WebApplicationContext: initialization completed in 5185 ms
+
+
+[WARN ] 2017-08-26 18:48:24,833 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1108)
+Client session timed out, have not heard from server in 20001ms for sessionid 0x15e1d8ac8440014
+
+
+[INFO ] 2017-08-26 18:48:24,840 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1156)
+Client session timed out, have not heard from server in 20001ms for sessionid 0x15e1d8ac8440014, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-26 18:48:24,948 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Disconnected)
+
+
+[INFO ] 2017-08-26 18:48:29,293 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[WARN ] 2017-08-26 18:48:50,305 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1162)
+Session 0x15e1d8ac8440014 for server null, unexpected error, closing socket connection and attempting reconnect
+java.net.ConnectException: Connection timed out: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:735)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:361)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1141)
+
+
+[INFO ] 2017-08-26 18:48:51,432 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 18:48:52,787 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[WARN ] 2017-08-26 18:48:56,454 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1285)
+Unable to reconnect to ZooKeeper service, session 0x15e1d8ac8440014 has expired
+
+
+[INFO ] 2017-08-26 18:48:56,455 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1154)
+Unable to reconnect to ZooKeeper service, session 0x15e1d8ac8440014 has expired, closing socket connection
+
+
+[INFO ] 2017-08-26 18:48:56,457 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Expired)
+
+
+[INFO ] 2017-08-26 18:48:56,458 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@4a549ab0
+
+
+[INFO ] 2017-08-26 18:48:56,475 method:com.alibaba.dubbo.registry.support.FailbackRegistry.recover(FailbackRegistry.java:282)
+ [DUBBO] Recover register url [dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:48:56,501 method:com.alibaba.dubbo.registry.support.FailbackRegistry.recover(FailbackRegistry.java:292)
+ [DUBBO] Recover subscribe url [provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:48:56,516 method:org.apache.zookeeper.ClientCnxn$EventThread.run(ClientCnxn.java:519)
+EventThread shut down for session: 0x15e1d8ac8440014
+
+
+[INFO ] 2017-08-26 18:48:56,512 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 18:48:57,415 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-26 18:48:59,302 method:com.alibaba.dubbo.registry.support.FailbackRegistry.retry(FailbackRegistry.java:309)
+ [DUBBO] Retry register [dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:49:09,088 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15e1d8ac844001b, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-26 18:49:09,089 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-26 18:49:09,250 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[WARN ] 2017-08-26 18:49:09,270 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20883. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:49:09,276 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:65457,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:49:09,616 method:com.alibaba.dubbo.registry.support.FailbackRegistry.retry(FailbackRegistry.java:354)
+ [DUBBO] Retry subscribe {provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518=[com.alibaba.dubbo.registry.integration.RegistryProtocol$OverrideListener@3d3a58c1]}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 18:49:10,067 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 20:28:55,750 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1158)
+Unable to read additional data from server sessionid 0x15e1d8ac844001b, likely server has closed socket, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-26 20:28:55,874 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (Disconnected)
+
+
+[INFO ] 2017-08-26 20:28:57,400 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[WARN ] 2017-08-26 20:28:58,474 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1162)
+Session 0x15e1d8ac844001b for server null, unexpected error, closing socket connection and attempting reconnect
+java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:735)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:361)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1141)
+
+
+[INFO ] 2017-08-26 20:28:59,782 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[WARN ] 2017-08-26 20:29:00,832 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1162)
+Session 0x15e1d8ac844001b for server null, unexpected error, closing socket connection and attempting reconnect
+java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:735)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:361)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1141)
+
+
+[INFO ] 2017-08-26 20:29:02,771 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[WARN ] 2017-08-26 20:29:03,825 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1162)
+Session 0x15e1d8ac844001b for server null, unexpected error, closing socket connection and attempting reconnect
+java.net.ConnectException: Connection refused: no further information
+	at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:735)
+	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:361)
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1141)
+
+
+[INFO ] 2017-08-26 20:29:04,985 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 20:29:04,991 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-26 20:29:04,994 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1158)
+Unable to read additional data from server sessionid 0x15e1d8ac844001b, likely server has closed socket, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-26 20:29:06,611 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 20:29:06,619 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-26 20:29:06,621 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1158)
+Unable to read additional data from server sessionid 0x15e1d8ac844001b, likely server has closed socket, closing socket connection and attempting reconnect
+
+
+[INFO ] 2017-08-26 20:29:08,278 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 20:29:08,280 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-26 20:29:08,282 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15e1d8ac844001b, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-26 20:29:08,282 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[WARN ] 2017-08-26 20:41:13,338 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20883. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 20:41:13,340 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:65525,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:09:43,405 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307)
+Root WebApplicationContext: initialization started
+
+
+[INFO ] 2017-08-26 23:09:45,035 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:578)
+Refreshing Root WebApplicationContext: startup date [Sat Aug 26 23:09:45 CST 2017]; root of context hierarchy
+
+
+[INFO ] 2017-08-26 23:09:45,126 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-dao.xml]
+
+
+[INFO ] 2017-08-26 23:09:45,332 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-redis.xml]
+
+
+[INFO ] 2017-08-26 23:09:45,475 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-service.xml]
+
+
+[INFO ] 2017-08-26 23:09:45,600 method:
+using logger: com.alibaba.dubbo.common.logger.log4j.Log4jLoggerAdapter
+
+
+[INFO ] 2017-08-26 23:09:45,657 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:317)
+Loading XML bean definitions from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\spring\applicationContext-trans.xml]
+
+
+[INFO ] 2017-08-26 23:09:46,089 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\db.properties]
+
+
+[INFO ] 2017-08-26 23:09:46,090 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\dubbo.properties]
+
+
+[INFO ] 2017-08-26 23:09:46,091 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:172)
+Loading properties file from file [D:\WorkSpace\MyEclipse2014\JD\jd-sso\jd-sso-service\target\classes\properties\redis.properties]
+
+
+[INFO ] 2017-08-26 23:09:46,112 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:153)
+JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+
+
+[INFO ] 2017-08-26 23:09:48,972 method:com.alibaba.dubbo.config.spring.ServiceBean.onApplicationEvent(ServiceBean.java:107)
+ [DUBBO] The service ready on spring started. service: com.jd.sso.service.UserService, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:09:49,155 method:com.alibaba.dubbo.config.ServiceConfig.exportLocal(ServiceConfig.java:510)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to local registry, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:09:49,155 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:470)
+ [DUBBO] Export dubbo service com.jd.sso.service.UserService to url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=11140&side=provider&timeout=5000&timestamp=1503760188999, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:09:49,156 method:com.alibaba.dubbo.config.ServiceConfig.doExportUrlsFor1Protocol(ServiceConfig.java:481)
+ [DUBBO] Register dubbo service com.jd.sso.service.UserService url dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=11140&side=provider&timeout=5000&timestamp=1503760188999 to registry registry://192.168.124.4:2181/com.alibaba.dubbo.registry.RegistryService?application=jd-sso&dubbo=2.5.3&file=jd-sso/dubbo-registry/dubbo-registry.properties&pid=11140&registry=zookeeper&timestamp=1503760188985, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:09:49,479 method:com.alibaba.dubbo.remoting.transport.AbstractServer.<init>(AbstractServer.java:69)
+ [DUBBO] Start NettyServer bind /0.0.0.0:20883, export /192.168.20.1:20883, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:09:49,513 method:com.alibaba.dubbo.registry.support.AbstractRegistry.loadProperties(AbstractRegistry.java:232)
+ [DUBBO] Load registry store file jd-sso\dubbo-registry\dubbo-registry.properties, data: {com.jd.sso.service.UserService=empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=3220&side=provider&timeout=5000&timestamp=1503744233518}, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:09:49,539 method:org.I0Itec.zkclient.ZkEventThread.run(ZkEventThread.java:64)
+Starting ZkClient event thread.
+
+
+[INFO ] 2017-08-26 23:09:49,555 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:zookeeper.version=3.4.7-1713338, built on 11/09/2015 04:32 GMT
+
+
+[INFO ] 2017-08-26 23:09:49,556 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:host.name=Mbenben
+
+
+[INFO ] 2017-08-26 23:09:49,556 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.version=1.7.0_45
+
+
+[INFO ] 2017-08-26 23:09:49,557 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.vendor=Oracle Corporation
+
+
+[INFO ] 2017-08-26 23:09:49,557 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.home=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre
+
+
+[INFO ] 2017-08-26 23:09:49,557 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.class.path=C:\Tools\apache-maven-3.2.2\boot\plexus-classworlds-2.5.1.jar
+
+
+[INFO ] 2017-08-26 23:09:49,557 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.library.path=C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Tools\MyEclipse Professional 2014\binary\com.sun.java.jdk7.win32.x86_64_1.7.0.u45\jre\bin;C:\Tools\apache-maven-3.2.2\bin;C:\Tools\Oracle\product\11.2.0\dbhome_1\bin;C:\Tools\Java\jdk1.7.0_80\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;.
+
+
+[INFO ] 2017-08-26 23:09:49,558 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.io.tmpdir=C:\Users\ADMINI~1\AppData\Local\Temp\
+
+
+[INFO ] 2017-08-26 23:09:49,558 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:java.compiler=<NA>
+
+
+[INFO ] 2017-08-26 23:09:49,558 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.name=Windows 7
+
+
+[INFO ] 2017-08-26 23:09:49,558 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.arch=amd64
+
+
+[INFO ] 2017-08-26 23:09:49,559 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:os.version=6.1
+
+
+[INFO ] 2017-08-26 23:09:49,559 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.name=Administrator
+
+
+[INFO ] 2017-08-26 23:09:49,559 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.home=C:\Users\Administrator
+
+
+[INFO ] 2017-08-26 23:09:49,559 method:org.apache.zookeeper.Environment.logEnv(Environment.java:100)
+Client environment:user.dir=D:\WorkSpace\MyEclipse2014\JD\jd-sso
+
+
+[INFO ] 2017-08-26 23:09:49,561 method:org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:438)
+Initiating client connection, connectString=192.168.124.4:2181 sessionTimeout=30000 watcher=org.I0Itec.zkclient.ZkClient@7ebe525d
+
+
+[INFO ] 2017-08-26 23:09:49,593 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1032)
+Opening socket connection to server 192.168.124.4/192.168.124.4:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2017-08-26 23:09:53,522 method:org.apache.zookeeper.ClientCnxn$SendThread.primeConnection(ClientCnxn.java:876)
+Socket connection established to 192.168.124.4/192.168.124.4:2181, initiating session
+
+
+[INFO ] 2017-08-26 23:09:59,582 method:org.apache.zookeeper.ClientCnxn$SendThread.onConnected(ClientCnxn.java:1299)
+Session establishment complete on server 192.168.124.4/192.168.124.4:2181, sessionid = 0x15e1e8468a70004, negotiated timeout = 30000
+
+
+[INFO ] 2017-08-26 23:09:59,586 method:org.I0Itec.zkclient.ZkClient.processStateChanged(ZkClient.java:449)
+zookeeper state changed (SyncConnected)
+
+
+[INFO ] 2017-08-26 23:09:59,589 method:com.alibaba.dubbo.registry.support.AbstractRegistry.register(AbstractRegistry.java:302)
+ [DUBBO] Register: dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=11140&side=provider&timeout=5000&timestamp=1503760188999, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:10:00,297 method:com.alibaba.dubbo.registry.support.AbstractRegistry.subscribe(AbstractRegistry.java:325)
+ [DUBBO] Subscribe: provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=11140&side=provider&timeout=5000&timestamp=1503760188999, dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:10:00,331 method:com.alibaba.dubbo.registry.support.AbstractRegistry.notify(AbstractRegistry.java:422)
+ [DUBBO] Notify urls for subscribe url provider://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=11140&side=provider&timeout=5000&timestamp=1503760188999, urls: [empty://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&category=configurators&check=false&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=11140&side=provider&timeout=5000&timestamp=1503760188999], dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:10:00,433 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:347)
+Root WebApplicationContext: initialization completed in 15553 ms
+
+
+[INFO ] 2017-08-26 23:14:33,882 method:com.alibaba.druid.pool.DruidDataSource.init(DruidDataSource.java:655)
+{dataSource-1} inited
+
+
+[WARN ] 2017-08-26 23:14:41,690 method:com.alibaba.dubbo.rpc.filter.TimeoutFilter.invoke(TimeoutFilter.java:48)
+ [DUBBO] invoke time out. method: loginarguments: [yihaitao, 123456] , url is dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&dubbo=2.5.3&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=11140&side=provider&timeout=5000&timestamp=1503760188999, invoke elapsed 8767 ms., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[WARN ] 2017-08-26 23:34:57,201 method:com.alibaba.dubbo.remoting.transport.AbstractServer.disconnected(AbstractServer.java:197)
+ [DUBBO] All clients has discontected from /192.168.20.1:20883. You can graceful shutdown now., dubbo version: 2.5.3, current host: 127.0.0.1
+
+
+[INFO ] 2017-08-26 23:34:57,513 method:com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol$1.disconnected(DubboProtocol.java:130)
+ [DUBBO] disconected from /192.168.20.1:62095,url:dubbo://192.168.20.1:20883/com.jd.sso.service.UserService?anyhost=true&application=jd-sso&channel.readonly.sent=true&codec=dubbo&dubbo=2.5.3&heartbeat=60000&interface=com.jd.sso.service.UserService&methods=createUser,login,getUserByToken,checkData&pid=11140&side=provider&timeout=5000&timestamp=1503760188999, dubbo version: 2.5.3, current host: 127.0.0.1
